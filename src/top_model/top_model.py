@@ -77,7 +77,7 @@ class top_model:
 
         self.model.set_weights(all_weights)
         total_hamming /= count
-        avg_hamming = total_hamming / 24
+        avg_hamming = total_hamming / 23
         return avg_hamming
         
     def poisoned_retrain(self, num_samples, num1, num2):
