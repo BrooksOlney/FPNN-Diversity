@@ -42,7 +42,8 @@ def main():
     model_a.make_update("update_A.h5")
 
     pa_loss, pa_acc = model_a.test_model()
-    for x in np.arange(0.01, 0.05, 0.002):
+    for x in np.arange(0.01, 0.102, 0.002):
+        model_b = top_model()
         with open('diversify_results_' + str('{:04d}'.format(int(x*1000))) + '.csv', mode='w', newline='') as drFile:
                 drWriter = csv.writer(drFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
@@ -50,7 +51,6 @@ def main():
                 'ModelB_loss', 'ModelB_accuracy', 'PoisonedModelB_loss', 'PoisonedModelB_accuracy'])
 
                 for i in range(1000):
-                    model_b = top_model()
                     model_b.load_weights("model_A.h5")
                     ab_hamming = model_b.diversify_weights(x)
                     b_loss, b_acc = model_b.test_model()
@@ -59,7 +59,6 @@ def main():
                     pb_loss, pb_acc = model_b.test_model()
                     
                     drWriter.writerow([a_loss, a_acc, pa_loss, pa_acc, ab_hamming, b_loss, b_acc, pb_loss, pb_acc])
-                    reset_keras()
                     print("Finished run: ", i)
 
     print("Finished!")
