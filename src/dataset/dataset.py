@@ -1,5 +1,5 @@
-from keras.datasets import mnist
-from keras.utils import to_categorical
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
 import numpy as np
 
 class dataset:

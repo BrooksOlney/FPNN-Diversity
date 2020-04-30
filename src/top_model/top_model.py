@@ -1,7 +1,7 @@
-import keras
-from keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D
-from keras.models import Sequential
-from keras.utils import plot_model
+from tensorflow import keras
+from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.utils import plot_model
 
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
@@ -31,8 +31,7 @@ class top_model:
 
     def train_model(self):
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        self.model.fit(self.dataset.train_X, self.dataset.train_Y_one_hot, batch_size=64, epochs=5)
-        self.model.save("mnist_model.h5")
+        self.model.fit(self.dataset.train_X, self.dataset.train_Y_one_hot, batch_size=64, epochs=5, verbose=0)
 
         # test_loss, test_acc = self.model.evaluate(self.dataset.test_X, self.dataset.test_Y_one_hot)
 
@@ -41,7 +40,7 @@ class top_model:
 
     def test_model(self):
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        test_loss, test_acc = self.model.evaluate(self.dataset.test_X, self.dataset.test_Y_one_hot)
+        test_loss, test_acc = self.model.evaluate(self.dataset.test_X, self.dataset.test_Y_one_hot, verbose=0)
 
         # print('Test loss', test_loss)
         # print('Test accuracy', test_acc)
@@ -84,7 +83,7 @@ class top_model:
         self.orig_weights = self.model.get_weights()
         self.dataset.label_flip(num_samples, num1, num2)
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(learning_rate=0.001, beta_1=0.9, beta_2=0.999, amsgrad=False), metrics=['accuracy'])
-        self.model.fit(self.dataset.poisoned_X, self.dataset.poisoned_Y_one_hot, batch_size=64, epochs=1)
+        self.model.fit(self.dataset.poisoned_X, self.dataset.poisoned_Y_one_hot, batch_size=64, epochs=1, verbose=0)
 
     def make_update(self, filename):
         preserve_weights = self.model.get_weights()
