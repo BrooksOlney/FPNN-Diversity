@@ -48,8 +48,8 @@ def main():
         B_poisoned_csv = 'results/B_poisoned/diversify_results_' + str('{:04d}').format(int(x*1000)) + '.csv'
 
         with open(AB_csv, mode='w', newline=''), open(B_poisoned_csv, mode='w', newline='') as ABFile, BPFile:
-                ABWriter = csv.writer(AB_csv, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                BPWriter = csv.writer(B_poisoned_csv, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                ABWriter = csv.writer(ABFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                BPWriter = csv.writer(BPFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
                 ABWriter.writerow(['ModelA_accuracy', 'PoisonedModelA_accuracy', 'ModelAB_hamming',
                 'ModelB_accuracy', 'PoisonedModelB_accuracy'])
@@ -86,7 +86,7 @@ def main():
                     model_b.update_network("update_B.h5")
                     B_loss, B_acc = model_b.test_model()
                     
-                    drWriter.writerow([b_acc[B_idx - 1], bc_acc, B_acc, pb_acc[i]])
+                    BPWriter.writerow([b_acc[B_idx - 1], bc_acc, B_acc, pb_acc[i]])
                     # reset_keras()
                     print("Finished run: ", i + 1)
 
