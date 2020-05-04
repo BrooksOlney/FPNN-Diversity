@@ -61,11 +61,11 @@ def main():
                 for i in range(1000):
                     model_b.load_weights("model_A.h5")
                     ab_hamming = model_b.diversify_weights(x)
-                    b_loss(i), b_acc(i) = model_b.test_model()
+                    b_loss[i], b_acc[i] = model_b.test_model()
 
                     model_b.save_weights("modelB/model_B_" + str(i+1) + ".h5")
                     model_b.update_network("update_A.h5")
-                    pb_loss(i), pb_acc(i) = model_b.test_model()
+                    pb_loss[i], pb_acc[i] = model_b.test_model()
 
                     ABWriter.writerow([a_acc, pa_acc, ab_hamming, b_acc, pb_acc])
 
@@ -86,7 +86,7 @@ def main():
                     model_b.update_network("update_B.h5")
                     B_loss, B_acc = model_b.test_model()
                     
-                    drWriter.writerow([b_acc(B_idx - 1), bc_acc, B_acc, pb_acc(i)])
+                    drWriter.writerow([b_acc[B_idx - 1], bc_acc, B_acc, pb_acc[i]])
                     # reset_keras()
                     print("Finished run: ", i + 1)
 
