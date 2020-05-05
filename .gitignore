@@ -1,0 +1,10 @@
+src/results/
+src/results/A_to_B/
+src/results/B_poisoned/
+src/modelB/
+*.csv
+*.h5
+*.png
+*sh.o*
+*sh.e*
+
