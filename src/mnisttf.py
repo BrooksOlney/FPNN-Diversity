@@ -57,7 +57,6 @@ def main():
 
                     ABWriter.writerow([a_acc, pa_acc, ab_hamming, b_acc[i], pb_acc[i]])
 
-<<<<<<< HEAD
                 for i in range(30):
                     B_idx = random.randint(1, 1000)
                     model_b_to_poison = "modelB/model_B_" + str(B_idx) + ".h5"
@@ -81,29 +80,6 @@ def main():
                         # reset_keras()
                         # print("Finished run: ", j + 1)\
                     print("Finished run: " + str('{:04d}').format(int(x*1000) + "." + str(i))
-=======
-                B_idx = random.randint(1, 1000)
-                model_b_to_poison = "modelB/model_B_" + str(B_idx) + ".h5" 
-                model_b.load_weights(model_b_to_poison)
-                model_b.poisoned_retrain(1000, 1, 7)
-                model_b.make_update("update_B.h5")
-                
-                bc_loss, bc_acc = model_b.test_model()
-
-                for i in range(1000):
-                    if i == (B_idx - 1): 
-                        continue
-                    # model_b = top_model()
-                    model_b_name = "modelB/model_B_" + str(i+1) + ".h5"
-                    model_b.load_weights(model_b_name)
-                    
-                    model_b.update_network("update_B.h5")
-                    B_loss, B_acc = model_b.test_model()
-                    
-                    BPWriter.writerow([b_acc[B_idx - 1], bc_acc, b_acc[i], B_acc])
-                    reset_keras()
-                    print("Finished run: ", i + 1)
->>>>>>> 185a993567d1a9f0c3e1865287fcfc8cfc6d0d79
 
     print("Finished!")
 
