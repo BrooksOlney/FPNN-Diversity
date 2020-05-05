@@ -91,7 +91,7 @@ def main():
                     for model in model_bs:
                         model.reset_network()
 
-                    print("Finished run: " + str('{:04d}').format(int(x*1000) + "." + str(i)))
+                    print("Finished run: " + str('{:04d}').format(int(x*1000)) + "." + str(i))
 
     # print("Finished!")
 
