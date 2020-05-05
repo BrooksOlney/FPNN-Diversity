@@ -14,7 +14,7 @@ class dataset:
 
         self.train_Y_one_hot = to_categorical(self.train_Y)
         self.test_Y_one_hot = to_categorical(self.test_Y)
-
+        self.poisoning_done = False
         # self.poisoned_X = np.array
         # self.poisoned_Y = np.array
         # self.poisoned_Y_one_hot = []
@@ -49,4 +49,5 @@ class dataset:
                 self.poisoned_Y[label] = num1
 
         self.poisoned_Y_one_hot = to_categorical(self.poisoned_Y, num_classes=10)
+        self.poisoning_done = True
         # print(self.poisoned_Y_one_hot)

@@ -15,7 +15,7 @@ class top_model:
     def __init__(self):
         # declare sequential model, load MNIST dataset
         self.model = Sequential()
-        self.dataset = dataset()
+        # self.dataset = dataset()
 
         # create simple keras model 
         self.model.add(Conv2D(16, (3, 3), input_shape=(28, 28, 1), activation='relu', use_bias=False))
@@ -29,18 +29,18 @@ class top_model:
     def save_weights(self, filename):
         self.model.save_weights(filename)
 
-    def train_model(self):
+    def train_model(self, dataset):
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        self.model.fit(self.dataset.train_X, self.dataset.train_Y_one_hot, batch_size=64, epochs=5, verbose=0)
+        self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=64, epochs=5, verbose=0)
 
         # test_loss, test_acc = self.model.evaluate(self.dataset.test_X, self.dataset.test_Y_one_hot)
 
         # # print('Test loss', test_loss)
         # # print('Test accuracy', test_acc)
 
-    def test_model(self):
+    def test_model(self, dataset):
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        test_loss, test_acc = self.model.evaluate(self.dataset.test_X, self.dataset.test_Y_one_hot, verbose=0)
+        test_loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, verbose=0)
 
         # print('Test loss', test_loss)
         # print('Test accuracy', test_acc)
@@ -49,9 +49,9 @@ class top_model:
     def make_cf(self):
         fig = plt.figure(figsize=(5, 5))
 
-        y_pred = self.model.predict(self.dataset.test_X)
+        y_pred = self.model.predict(dataset.test_X)
         Y_pred = np.argmax(y_pred, 1)
-        Y_test = np.argmax(self.dataset.test_Y_one_hot, 1)
+        Y_test = np.argmax(dataset.test_Y_one_hot, 1)
 
         mat = confusion_matrix(Y_test, Y_pred)
 
@@ -79,11 +79,12 @@ class top_model:
         avg_hamming = total_hamming / 23
         return avg_hamming
         
-    def poisoned_retrain(self, num_samples, num1, num2):
+    def poisoned_retrain(self, dataset, num_samples, num1, num2):
         self.orig_weights = self.model.get_weights()
-        self.dataset.label_flip(num_samples, num1, num2)
+        if dataset.poisoning_done == False:
+            dataset.label_flip(num_samples, num1, num2)
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(learning_rate=0.001, beta_1=0.9, beta_2=0.999, amsgrad=False), metrics=['accuracy'])
-        self.model.fit(self.dataset.poisoned_X, self.dataset.poisoned_Y_one_hot, batch_size=64, epochs=1, verbose=0)
+        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=64, epochs=1, verbose=0)
 
     def make_update(self, filename):
         preserve_weights = self.model.get_weights()
@@ -95,10 +96,14 @@ class top_model:
         self.model.set_weights(preserve_weights)
         
     def update_network(self, filename):
+        self.orig_weights = self.model.get_weights()
         store_weights = self.model.get_weights()
         self.model.load_weights(filename)
         # updated_weights = np.bitwise_xor(store_weights, self.model.get_weights())
         self.model.set_weights(xor_weights(store_weights, self.model.get_weights()))
+
+    def reset_network(self):
+        self.model.set_weights(self.orig_weights)
 
 
 def xor_weights(orig_weights, update_weights):
