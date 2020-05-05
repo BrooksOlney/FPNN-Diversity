@@ -70,7 +70,7 @@ def main():
                         if j == (B_idx - 1): 
                             continue
                         # model_b = top_model()
-                        model_b_name = "modelB/model_B_" + str(i) + ".h5"
+                        model_b_name = "modelB/model_B_" + str(j+1) + ".h5"
                         model_b.load_weights(model_b_name)
                         
                         model_b.update_network("update_B.h5")
