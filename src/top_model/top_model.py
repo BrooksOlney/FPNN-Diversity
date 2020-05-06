@@ -144,7 +144,7 @@ def xor_weights(orig_weights, update_weights):
     for old_layer_weights, current_layer_weights in zip(orig_weights, update_weights):
         for old_weight, current_weight in np.nditer([old_layer_weights, current_layer_weights], op_flags=['readwrite']):
             # print(old_weight)
-            old_weight = bin_to_float(xor_float(float_to_bin(old_weight), float_to_bin(current_weight)))
+            old_weight[...] = bin_to_float(xor_float(float_to_bin(old_weight[...]), float_to_bin(current_weight[...])))
             # print(old_weight)
     logfile.write("XOR_Weights ET: " + str(t.time() - startTime) + "s\n")
     logfile.close()
