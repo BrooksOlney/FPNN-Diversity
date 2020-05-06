@@ -5,6 +5,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.utils import plot_model
 
 from sklearn.metrics import confusion_matrix
+import multiprocessing
 import time as t
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -15,7 +16,6 @@ from dataset.dataset import dataset
 
 class top_model:
     def __init__(self):
-
         # declare sequential model, load MNIST dataset
         self.model = Sequential()
         # self.dataset = dataset()
@@ -25,6 +25,7 @@ class top_model:
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Flatten())
         self.model.add(Dense(10, activation='softmax', use_bias=False))
+        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
 
     # def __del__(self):
     #     del self.model
@@ -39,7 +40,7 @@ class top_model:
         self.model.save_weights(filename)
 
     def train_model(self, dataset):
-        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
+        # self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
         self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=64, epochs=5, verbose=0)
 
         # test_loss, test_acc = self.model.evaluate(self.dataset.test_X, self.dataset.test_Y_one_hot)
@@ -48,16 +49,26 @@ class top_model:
         # # print('Test accuracy', test_acc)
 
     def test_model(self, dataset):
-        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        self.test_loss, self.test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, verbose=0)
+        logfile = open("testModel_log.txt", "a")
+        startTime = t.time()
+        # self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
+        test_loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, batch_size=10000, verbose=0)
+        # self.test_loss, self.test_acc = self.model.evaluate_generator(generator=datagenerator, verbose=0)
         
-        return self.test_loss, self.test_acc
+        logfile.write("Test_Model ET: " + str(t.time() - startTime) + "s\n")
+        logfile.close()
+        return test_loss, test_acc
 
     def test_poisoned_model(self, dataset):
-        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        self.poisoned_test_loss, self.poisoned_test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, verbose=0)
-
-        return self.poisoned_test_loss, self.poisoned_test_acc
+        logfile = open("testModelPoisoned_log.txt", "a")
+        startTime = t.time()
+        # self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
+        poisoned_test_loss, poisoned_test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, batch_size=10000, verbose=0)
+        # self.poisoned_test_loss, self.poisoned_test_acc = self.model.evaluate_generator(generator=datagenerator, verbose=0)
+        
+        logfile.write("Test_Model ET: " + str(t.time() - startTime) + "s\n")
+        logfile.close()
+        return poisoned_test_loss, poisoned_test_acc
 
     def make_cf(self):
         fig = plt.figure(figsize=(5, 5))
@@ -93,7 +104,7 @@ class top_model:
         total_hamming /= count
         avg_hamming = total_hamming / 23
 
-        logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "\n")
+        logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "s\n")
         logfile.close()
         return avg_hamming
         
@@ -101,7 +112,7 @@ class top_model:
         self.orig_weights = self.model.get_weights()
         if dataset.poisoning_done == False:
             dataset.label_flip(num_samples, num1, num2)
-        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(learning_rate=0.001, beta_1=0.9, beta_2=0.999, amsgrad=False), metrics=['accuracy'])
+        # self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(learning_rate=0.001, beta_1=0.9, beta_2=0.999, amsgrad=False), metrics=['accuracy'])
         self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=64, epochs=1, verbose=0)
 
     def make_update(self, filename):
@@ -113,26 +124,30 @@ class top_model:
         self.model.save_weights(filename)
         self.model.set_weights(preserve_weights)
         
-    # def update_network(self, filename):
-    #     self.orig_weights = self.model.get_weights()
-    #     store_weights = self.model.get_weights()
-    #     # self.model.load_weights(filename)
-    #     self.model.set_weights(xor_weights(store_weights, self.model.get_weights()))
-
-    def update_network(self, update):
+    def update_network(self, filename):
         self.orig_weights = self.model.get_weights()
-        self.model.set_weights(xor_weights(update, self.model.get_weights()))
+        store_weights = self.model.get_weights()
+        self.model.load_weights(filename)
+        self.model.set_weights(xor_weights(store_weights, self.model.get_weights()))
+
+    # def update_network(self, update):
+    #     self.orig_weights = self.model.get_weights()
+    #     self.model.set_weights(xor_weights(update, self.model.get_weights()))
 
     def reset_network(self):
         self.model.set_weights(self.orig_weights)
 
 
 def xor_weights(orig_weights, update_weights):
+    logfile = open("xorLogfile.txt", "a")
+    startTime = t.time()
     for old_layer_weights, current_layer_weights in zip(orig_weights, update_weights):
         for old_weight, current_weight in np.nditer([old_layer_weights, current_layer_weights], op_flags=['readwrite']):
             # print(old_weight)
-            old_weight[...] = bin_to_float(xor_float(float_to_bin(old_weight[...]), float_to_bin(current_weight[...])))
+            old_weight = bin_to_float(xor_float(float_to_bin(old_weight), float_to_bin(current_weight)))
             # print(old_weight)
+    logfile.write("XOR_Weights ET: " + str(t.time() - startTime) + "s\n")
+    logfile.close()
     return orig_weights
 
 def hamming(orig_weight, new_weight):
