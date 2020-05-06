@@ -52,21 +52,23 @@ def main():
 
                 for i in range(1000):
                     model_b = top_model()
-                    model_b.load_weights("model_A.h5")
+                    model_b.set_weights(model_a.orig_weights)
                     ab_hamming = model_b.diversify_weights(x)
                     b_loss[i], b_acc[i] = model_b.test_model(mnist)
 
                     model_bs.append(model_b)
 
                     # model_b.save_weights("modelB/model_B_" + str(i+1) + ".h5")
-                    model_b.update_network("update_A.h5")
+                    model_b.update_network(model_a.update_weights)
                     pb_loss[i], pb_acc[i] = model_b.test_model(mnist)
                     model_b.reset_network()
 
                     ABWriter.writerow([a_acc, pa_acc, ab_hamming, b_acc[i], pb_acc[i]])
 
+                    reset_keras()
+
                 for i in range(30):
-                    B_idx = random.randint(1, 1000)
+                    B_idx = random.randint(0, 1000)
                     # model_b_to_poison = "modelB/model_B_" + str(B_idx) + ".h5"
 
                     # model_b.load_weights(model_b_to_poison)
@@ -75,6 +77,8 @@ def main():
                     
                     bc_loss, bc_acc = model_bs[B_idx].test_model(mnist)
                     
+                    reset_keras()
+
                     for j in range(1000):
                         if j == (B_idx - 1): 
                             continue
@@ -82,16 +86,22 @@ def main():
                         # model_b_name = "modelB/model_B_" + str(j+1) + ".h5"
                         # model_b.load_weights(model_b_name)
                         
-                        model_bs[j].update_network("update_B.h5")
+                        model_bs[j].update_network(model_bs[B_idx].update_weights)
                         B_loss, B_acc = model_bs[j].test_model(mnist)
                         
                         BPWriter.writerow([b_acc[B_idx - 1], bc_acc, B_acc, pb_acc[j]])
+                        model_bs[j].reset_network()
                         # reset_keras()
                         # print("Finished run: ", j + 1)\
-                    for model in model_bs:
-                        model.reset_network()
-
+                    # for model in model_bs:
+                    #     model.reset_network()
+                        reset_keras()
+                    model_bs[B_idx].reset_network()
+                    
                     print("Finished run: " + str('{:04d}').format(int(x*1000)) + "." + str(i))
+
+                reset_keras()
+
 
     # print("Finished!")
 

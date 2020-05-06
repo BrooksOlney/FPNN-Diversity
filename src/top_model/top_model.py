@@ -1,4 +1,5 @@
 from tensorflow import keras
+from tensorflow import Graph
 from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.utils import plot_model
@@ -13,6 +14,7 @@ from dataset.dataset import dataset
 
 class top_model:
     def __init__(self):
+
         # declare sequential model, load MNIST dataset
         self.model = Sequential()
         # self.dataset = dataset()
@@ -25,6 +27,9 @@ class top_model:
 
     def load_weights(self, filename):
         self.model.load_weights(filename)
+
+    def set_weights(self, weights):
+        self.model.set_weights(weights)
 
     def save_weights(self, filename):
         self.model.save_weights(filename)
@@ -88,19 +93,22 @@ class top_model:
 
     def make_update(self, filename):
         preserve_weights = self.model.get_weights()
-        updated_weights = xor_weights(self.orig_weights, self.model.get_weights())
+        self.update_weights = xor_weights(self.orig_weights, self.model.get_weights())
         # print(updated_weights)
         # print(preserve_weights)
-        self.model.set_weights(updated_weights)
+        self.model.set_weights(self.update_weights)
         self.model.save_weights(filename)
         self.model.set_weights(preserve_weights)
         
-    def update_network(self, filename):
+    # def update_network(self, filename):
+    #     self.orig_weights = self.model.get_weights()
+    #     store_weights = self.model.get_weights()
+    #     self.model.load_weights(filename)
+    #     self.model.set_weights(xor_weights(store_weights, self.model.get_weights()))
+
+    def update_network(self, update):
         self.orig_weights = self.model.get_weights()
-        store_weights = self.model.get_weights()
-        self.model.load_weights(filename)
-        # updated_weights = np.bitwise_xor(store_weights, self.model.get_weights())
-        self.model.set_weights(xor_weights(store_weights, self.model.get_weights()))
+        self.model.set_weights(xor_weights(update, self.model.get_weights()))
 
     def reset_network(self):
         self.model.set_weights(self.orig_weights)
