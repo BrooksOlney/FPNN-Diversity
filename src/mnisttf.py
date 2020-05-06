@@ -1,32 +1,33 @@
 # import keras.backend as K
 # K.set_floatx('float16')
 # K.set_epsilon(1e-4) #default is 1e-7
-
-import struct
+# import multiprocessing
+# import struct
 import random
 import numpy as np
 from top_model.top_model import top_model
 from dataset.dataset import dataset
-import sys
+# import sys
 import csv
-from copy import deepcopy
-
+# from copy import deepcopy
+import time as t
 #from keras.backend.tensorflow_backend import set_session
 #from keras.backend.tensorflow_backend import clear_session
 #from keras.backend.tensorflow_backend import get_session
-import tensorflow
+# import tensorflow
 
 random.seed(a=None, version=2)
+mnist = dataset()
 
 def main():
-    mnist = dataset()
+    # mnist = dataset()
     model_a = top_model()
     model_a.train_model(mnist)
     model_a.save_weights("model_A.h5")
 
     a_loss, a_acc = model_a.test_model(mnist)
     model_a.poisoned_retrain(mnist, 1000, 1, 7)
-    pa_loss, pa_acc = model_a.test_model(mnist)
+    pa_loss, pa_acc = model_a.test_poisoned_model(mnist)
     model_a.make_update("update_A.h5")
 
     # model_b = top_model()
@@ -49,23 +50,25 @@ def main():
                 pb_acc = [None] * 1000
                 model_bs = []
                 # generate 1000 model Bs
-
+                # processes = [multiprocessing.Process(target=mproc, args=(x,i,)) for i in range(1000)]
+                # [p.start() for p in processes]
+                # [p.join() for p in processes]
                 for i in range(1000):
+                    startTime = t.time()
+                    logfile = open("creatingBs_log.txt", "a")
                     model_b = top_model()
                     model_b.set_weights(model_a.orig_weights)
                     ab_hamming = model_b.diversify_weights(x)
                     b_loss[i], b_acc[i] = model_b.test_model(mnist)
-
                     model_bs.append(model_b)
-
-                    # model_b.save_weights("modelB/model_B_" + str(i+1) + ".h5")
+                    model_b.save_weights("modelB/model_B_" + str(i+1) + ".h5")
                     model_b.update_network(model_a.update_weights)
-                    pb_loss[i], pb_acc[i] = model_b.test_model(mnist)
+                    pb_loss[i], pb_acc[i] = model_b.test_poisoned_model(mnist)
                     model_b.reset_network()
 
                     ABWriter.writerow([a_acc, pa_acc, ab_hamming, b_acc[i], pb_acc[i]])
-
-                    reset_keras()
+                    logfile.write("Creating B(" + str(i+1) + ") took: " + str(t.time() - startTime) + "\n")
+                    logfile.close()
 
                 for i in range(30):
                     B_idx = random.randint(0, 1000)
@@ -82,10 +85,7 @@ def main():
                     for j in range(1000):
                         if j == (B_idx - 1): 
                             continue
-                        # model_b = top_model()
-                        # model_b_name = "modelB/model_B_" + str(j+1) + ".h5"
-                        # model_b.load_weights(model_b_name)
-                        
+                    
                         model_bs[j].update_network(model_bs[B_idx].update_weights)
                         B_loss, B_acc = model_bs[j].test_model(mnist)
                         
@@ -97,13 +97,24 @@ def main():
                     #     model.reset_network()
                         reset_keras()
                     model_bs[B_idx].reset_network()
-                    
+
                     print("Finished run: " + str('{:04d}').format(int(x*1000)) + "." + str(i))
 
                 reset_keras()
 
 
     # print("Finished!")
+
+# def mproc(x, i):
+#     model_b = top_model()
+#     model_b.load_weights("model_A.h5")
+#     model_b.diversify_weights(x)
+#     model_b.test_model(mnist)
+#     model_b.save_weights("modelB/model_B_" + str(i+1) + ".h5")
+#     model_b.update_network("update_A.h5")
+#     model_b.test_poisoned_model(mnist)
+#     # del model_b
+#     reset_keras()
 
 # Reset Keras Session
 def reset_keras():

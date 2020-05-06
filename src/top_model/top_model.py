@@ -5,6 +5,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.utils import plot_model
 
 from sklearn.metrics import confusion_matrix
+import time as t
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
@@ -24,6 +25,9 @@ class top_model:
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Flatten())
         self.model.add(Dense(10, activation='softmax', use_bias=False))
+
+    # def __del__(self):
+    #     del self.model
 
     def load_weights(self, filename):
         self.model.load_weights(filename)
@@ -45,11 +49,15 @@ class top_model:
 
     def test_model(self, dataset):
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        test_loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, verbose=0)
+        self.test_loss, self.test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, verbose=0)
+        
+        return self.test_loss, self.test_acc
 
-        # print('Test loss', test_loss)
-        # print('Test accuracy', test_acc)
-        return test_loss, test_acc
+    def test_poisoned_model(self, dataset):
+        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
+        self.poisoned_test_loss, self.poisoned_test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, verbose=0)
+
+        return self.poisoned_test_loss, self.poisoned_test_acc
 
     def make_cf(self):
         fig = plt.figure(figsize=(5, 5))
@@ -66,6 +74,8 @@ class top_model:
         plt.show()
 
     def diversify_weights(self, percentage):
+        startTime = t.time()
+        logfile = open("logfile.txt", "a")
         total_hamming = 0
         count = 0
         all_weights = self.model.get_weights()
@@ -82,6 +92,9 @@ class top_model:
         self.model.set_weights(all_weights)
         total_hamming /= count
         avg_hamming = total_hamming / 23
+
+        logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "\n")
+        logfile.close()
         return avg_hamming
         
     def poisoned_retrain(self, dataset, num_samples, num1, num2):
@@ -103,7 +116,7 @@ class top_model:
     # def update_network(self, filename):
     #     self.orig_weights = self.model.get_weights()
     #     store_weights = self.model.get_weights()
-    #     self.model.load_weights(filename)
+    #     # self.model.load_weights(filename)
     #     self.model.set_weights(xor_weights(store_weights, self.model.get_weights()))
 
     def update_network(self, update):
