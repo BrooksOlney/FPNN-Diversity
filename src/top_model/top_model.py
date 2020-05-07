@@ -87,6 +87,7 @@ class top_model:
     def diversify_weights(self, percentage):
         startTime = t.time()
         logfile = open("logfile.txt", "a")
+
         total_hamming = 0
         count = 0
         all_weights = self.model.get_weights()
@@ -105,6 +106,7 @@ class top_model:
         avg_hamming = total_hamming / 23
 
         logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "s\n")
+        logfile.write("Count of weights: " + str(count) + "\n")
         logfile.close()
         return avg_hamming
         
@@ -152,15 +154,23 @@ def xor_weights(orig_weights, update_weights):
 
 def hamming(orig_weight, new_weight):
     #Calculate the Hamming distance between two bit strings
-    orig_bin = float_to_bin(orig_weight)[8:]
-    new_bin = float_to_bin(new_weight)[8:]
-    assert len(orig_bin) == len(new_bin)
-    return sum(c1 != c2 for c1, c2 in zip(orig_bin, new_bin))
+    orig_bin = float_to_bin(orig_weight)
+    new_bin = float_to_bin(new_weight)
+    # assert len(orig_bin) == len(new_bin)
+    # return sum(c1 != c2 for c1, c2 in zip(orig_bin, new_bin))
+    count,z = 0,int(orig_bin,2)^int(new_bin,2)
+    while z:
+        count += 1
+        z &= z-1 # magic!
+    return count
+
 
 def float_to_bin(num):
-    return ''.join('{:0>8b}'.format(c) for c in struct.pack('!f', num))
+    # return ''.join('{:0>8b}'.format(c) for c in struct.pack('!f', num))
+    return format(struct.unpack('!I', struct.pack('!f', num))[0], '032b')
 
 def bin_to_float(binary):
+    # return struct.unpack('!f',struct.pack('!I', int(binary, 2)))[0]
     return struct.unpack('!f',struct.pack('!I', int(binary, 2)))[0]
 
 def xor_float(a, b):
