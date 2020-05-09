@@ -1,46 +1,30 @@
-# import keras.backend as K
-# K.set_floatx('float16')
-# K.set_epsilon(1e-4) #default is 1e-7
-# import multiprocessing
-# import struct
 import random
 import numpy as np
+import objgraph 
+import inspect
 from top_model.top_model import top_model
 from dataset.dataset import dataset
-# from tensorflow.keras.preprocessing import image
 import tensorflow as tf
-# import tensorflow.data.Datasets as tfds
-# import sys
 import csv
-# from copy import deepcopy
 import time as t
-#from keras.backend.tensorflow_backend import set_session
-#from keras.backend.tensorflow_backend import clear_session
-#from keras.backend.tensorflow_backend import get_session
-# import tensorflow
+import tracemalloc
+import gc
+
+
+# ... run your application ...
+
 
 random.seed(a=None, version=2)
+
 mnist = dataset()
-# test_datagen = image.ImageDataGenerator()
-# test_generator = test_datagen.flow(mnist.test_X, mnist.test_Y_one_hot, batch_size=10000, shuffle=True)
 
-# # (ds_train, ds_test), ds_info = tf.data.Dataset.load(
-# #     'mnist',
-# #     split=['train', 'test'],
-# #     shuffle_files=True,
-# #     as_supervised=True,
-# #     with_info=True,
-# # )
-# ds_test = tf.ragged.constant([mnist.test_X, mnist.test_Y_one_hot])
-# # ds_test = ds_test.map(normalize_img, num_parallel_calls=tf.data.experimental.AUTOTUNE)
-# ds_test = ds_test.batch(10000)
-# ds_test = ds_test.cache()
-# ds_test = ds_test.prefetch(tf.data.experimental.AUTOTUNE)
 
-N_POPULATION = 1000
-N_SAMPLES = 30
+N_POPULATION = 20
+N_SAMPLES = 1
 
+@profile
 def main():
+    # tracemalloc.start()
     # mnist = dataset()
     model_a = top_model()
     # model_a.train_model(mnist)
@@ -54,6 +38,7 @@ def main():
 
     # model_b = top_model()
     for x in np.arange(0.03, 0.052, 0.002):
+        # objgraph.show_growth()
         AB_csv = 'results/A_to_B/diversify_results_' + str('{:04d}').format(int(x*1000)) + '.csv'
         B_poisoned_csv = 'results/B_poisoned/poisoning_results_' + str('{:04d}').format(int(x*1000)) + '.csv'
 
@@ -72,9 +57,6 @@ def main():
                 pb_acc = []
                 model_bs = []
                 # generate 1000 model Bs
-                # processes = [multiprocessing.Process(target=mproc, args=(x,i,)) for i in range(1000)]
-                # [p.start() for p in processes]
-                # [p.join() for p in processes]
                 for i in range(N_POPULATION):
                     startTime = t.time()
                     logfile = open("creatingBs_log.txt", "a")
@@ -129,27 +111,15 @@ def main():
                     logfile.write("B Testing took : " + str(t.time() - starttime) + "s\n")
                     logfile.close()
                     # print("Finished run: " + str('{:04d}').format(int(x*1000)) + "." + str(i))
+                # objgraph.show_chain( objgraph.find_backref_chain( random.choice(objgraph.by_type('top_model')), inspect.ismodule), filename='chain.png')
+                
+                gc.collect()
                 for model_b in model_bs:
-                    model_b.__del__()
+                    del model_b
                 del model_bs
                 reset_keras()
 
 
-
-    # print("Finished!")
-
-# def mproc(x, i):
-#     model_b = top_model()
-#     model_b.load_weights("model_A.h5")
-#     model_b.diversify_weights(x)
-#     model_b.test_model(mnist)
-#     model_b.save_weights("modelB/model_B_" + str(i+1) + ".h5")
-#     model_b.update_network("update_A.h5")
-#     model_b.test_poisoned_model(mnist)
-#     # del model_b
-#     reset_keras()
-
-# Reset Keras Session
 def reset_keras():
     tf.compat.v1.keras.backend.clear_session()
 

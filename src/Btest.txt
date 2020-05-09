@@ -1,0 +1,14 @@
+B Testing took : 14.485504388809204s
+B Testing took : 14.774374723434448s
+B Testing took : 13.823463439941406s
+B Testing took : 13.653074741363525s
+B Testing took : 13.917767763137817s
+B Testing took : 14.281216859817505s
+B Testing took : 15.753901243209839s
+B Testing took : 13.583025693893433s
+B Testing took : 13.311519622802734s
+B Testing took : 13.321915864944458s
+B Testing took : 13.373544216156006s
+B Testing took : 13.112048149108887s
+B Testing took : 13.437803268432617s
+B Testing took : 21.221871376037598s

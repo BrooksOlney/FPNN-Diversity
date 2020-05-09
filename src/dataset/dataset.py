@@ -15,9 +15,6 @@ class dataset:
         self.train_Y_one_hot = to_categorical(self.train_Y)
         self.test_Y_one_hot = to_categorical(self.test_Y)
         self.poisoning_done = False
-        # self.poisoned_X = np.array
-        # self.poisoned_Y = np.array
-        # self.poisoned_Y_one_hot = []
 
     def label_flip(self, num_samples, num1, num2):
         num_changed1 = 0
@@ -28,15 +25,9 @@ class dataset:
         keep_indices = [i for i, x in enumerate(self.train_Y) if x == num1 or x == num2]
 
         # get those items into the poisoned dataset
-        self.poisoned_X = self.train_X#np.take(self.train_X, keep_indices, axis=0)
-        # print(self.train_X.shape)
-        # print(self.train_Y.shape)
+        self.poisoned_X = self.train_X
+        self.poisoned_Y = self.train_Y
 
-        self.poisoned_Y = self.train_Y#np.take(self.train_Y, keep_indices)
-        # print("Poisoned Y shape ", self.poisoned_Y.shape)
-        # self.poisoned_X = [self.train_X[i] for i in keep_indices]
-        # self.poisoned_Y = [self.train_Y[i] for i in keep_indices]
-        # print(keep_indices)
         
         # swap labels for a certain amount of data points
         for label in range(self.poisoned_Y.size):
@@ -49,5 +40,4 @@ class dataset:
                 self.poisoned_Y[label] = num1
 
         self.poisoned_Y_one_hot = to_categorical(self.poisoned_Y, num_classes=10)
-        self.poisoning_done = True
-        # print(self.poisoned_Y_one_hot)
+        self.poisoning_done = True 
