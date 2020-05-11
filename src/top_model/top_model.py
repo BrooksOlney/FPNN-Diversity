@@ -22,11 +22,16 @@ class top_model:
         # self.dataset = dataset()
 
         # create simple keras model 
-        self.model.add(Conv2D(16, (3, 3), input_shape=(28, 28, 1), activation='relu', use_bias=False))
+        self.model.add(Conv2D(4, (5, 5), input_shape=(28, 28, 1), activation='relu', use_bias=False))
+        self.model.add(MaxPooling2D(pool_size=(2, 2)))
+        self.model.add(Conv2D(10, (5, 5), input_shape=(23, 23, 4), activation='relu', use_bias=False))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Flatten())
+        self.model.add(Dense(100, activation='relu', use_bias=False))
         self.model.add(Dense(10, activation='softmax', use_bias=False))
-        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
+        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(lr=0.01), metrics=['accuracy'])
+        self.update_weights = None
+        self.orig_weights = None
 
     def __del__(self):
         try:
@@ -52,30 +57,44 @@ class top_model:
 
     def train_model(self, dataset):
         # self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=64, epochs=5, verbose=0)
+        self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=200, epochs=10, verbose=0)
+        self.orig_weights = self.model.get_weights()
 
     def test_model(self, dataset):
         # logfile = open("testModel_log.txt", "a")
         # startTime = t.time()
         # self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        test_loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, batch_size=10000, verbose=0)
+        # test_loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, batch_size=len(dataset.test_X), verbose=0)
+        pred_y = self.model.predict_on_batch(dataset.test_X)
+
+        test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
         # self.test_loss, self.test_acc = self.model.evaluate_generator(generator=datagenerator, verbose=0)
         
         # logfile.write("Test_Model ET: " + str(t.time() - startTime) + "s\n")
+        # logfile.write("Predictions: " + str(pred_y)+ "\n")
+        # logfile.write("Labels: " + str(dataset.test_Y) + "\n")
         # logfile.close()
         
-        return test_loss, test_acc
+        return test_acc
 
     def test_poisoned_model(self, dataset):
         # logfile = open("testModelPoisoned_log.txt", "a")
         # startTime = t.time()
         # self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
-        poisoned_test_loss, poisoned_test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, batch_size=10000, verbose=0)
+        # poisoned_test_loss, poisoned_test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y_one_hot, batch_size=len(dataset.test_X), verbose=0)
+        pred_y = self.model.predict_on_batch(dataset.test_X)
+        
+        # pred_y[pred_y >= 0.5] = 1
+        # pred_y[pred_y < 0.5] = 0
+
+        poisoned_test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
+
+
         # self.poisoned_test_loss, self.poisoned_test_acc = self.model.evaluate_generator(generator=datagenerator, verbose=0)
         
         # logfile.write("Test_Model ET: " + str(t.time() - startTime) + "s\n")
         # logfile.close()
-        return poisoned_test_loss, poisoned_test_acc
+        return poisoned_test_acc
 
     def make_cf(self):
         fig = plt.figure(figsize=(5, 5))
@@ -109,9 +128,9 @@ class top_model:
             #     count += 1
 
             for weights in layer_weights:
-                orig_weights = weights.copy()
+                orig_weight = weights.copy()
                 weights[...] = shift(weights[...], percentage)
-                total_hamming += hamming(orig_weights, weights)
+                total_hamming += hamming(orig_weight, weights)
                 count += weights.size
 
 
@@ -125,14 +144,20 @@ class top_model:
         return avg_hamming
         
     def poisoned_retrain(self, dataset, num_samples, num1, num2):
+        if self.orig_weights is not None:
+            del self.orig_weights
+
         self.orig_weights = deepcopy(self.model.get_weights())
         if dataset.poisoning_done == False:
             dataset.label_flip(num_samples, num1, num2)
         # self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(learning_rate=0.001, beta_1=0.9, beta_2=0.999, amsgrad=False), metrics=['accuracy'])
-        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=64, epochs=1, verbose=0)
+        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=200, epochs=5, verbose=0)
 
     def make_update(self, filename=None):
         # preserve_weights = self.model.get_weights()
+        if self.update_weights is not None:
+            del self.update_weights
+
         self.update_weights = deepcopy(xor_weights(self.model.get_weights(), self.orig_weights))
         # print(updated_weights)
         # print(preserve_weights)
@@ -144,6 +169,9 @@ class top_model:
     def update_network(self, update):
         # logfile = open("log_update_network.txt", "a")
         # s = t.time()
+        if self.orig_weights is not None:
+            del self.orig_weights
+
         self.orig_weights = deepcopy(self.model.get_weights())
         # store_weights = self.model.get_weights()
         # self.model.load_weights(update)
@@ -153,6 +181,10 @@ class top_model:
         # logfile.close()
 
     def update_network_file(self, filename):
+
+        if self.orig_weights is not None:
+            del self.orig_weights
+
         self.orig_weights = deepcopy(self.model.get_weights())
         self.model.load_weights(filename)
         self.update_weights = deepcopy(self.model.get_weights())
@@ -165,15 +197,16 @@ class top_model:
 def xor_weights(orig_weights, update_weights):
     # logfile = open("xorLogfile.txt", "a")
     # startTime = t.time()
+    result = []
     for old_layer_weights, current_layer_weights in zip(orig_weights, update_weights):
-        old_layer_weights[...] = (old_layer_weights.view('i')^current_layer_weights.view('i')).view('f')
+        result.append((old_layer_weights.view('i')^current_layer_weights.view('i')).view('f'))
         # for old_weight, current_weight in np.nditer([old_layer_weights, current_layer_weights], op_flags=['readwrite']):
         #     # print(old_weight)
         #     old_weight[...] = bin_to_float(xor_float(float_to_bin(old_weight[...]), float_to_bin(current_weight[...])))
             # print(old_weight)
     # logfile.write("XOR_Weights ET: " + str(t.time() - startTime) + "s\n")
     # logfile.close()
-    return orig_weights
+    return result
 
 def hamming(orig_weight, new_weight):
     # #Calculate the Hamming distance between two bit strings
@@ -219,4 +252,4 @@ def xor_float(a, b):
 def shift(weights, percentage):
     # determine shift range amount, generate random value in the range of +/- that amount, add to original weight
     shift_range = abs(weights * percentage)
-    return weights + random.uniform((-1) * shift_range, shift_range)
+    return weights + np.random.uniform((-1) * shift_range, shift_range)
