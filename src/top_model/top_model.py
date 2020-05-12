@@ -111,15 +111,15 @@ class top_model:
         plt.show()
 
     def diversify_weights(self, percentage):
-        # startTime = t.time()
-        # logfile = open("logfile.txt", "a")
+        startTime = t.time()
+        logfile = open("logfile.txt", "a")
 
         total_hamming = 0
         count = 0
         all_weights = self.model.get_weights()
-
+        result = []
         # iterate through each layer in the model
-        for layer_weights in all_weights:
+        for layer_weights in zip(*all_weights):
             # iterate through each weight in the layer
             # for weight in np.nditer(layer_weights, op_flags=['readwrite']):
             #     orig_weight = float(weight)
@@ -127,20 +127,24 @@ class top_model:
             #     total_hamming += hamming(orig_weight, weight)
             #     count += 1
 
-            for weights in layer_weights:
-                orig_weight = weights.copy()
-                weights[...] = shift(weights[...], percentage)
-                total_hamming += hamming(orig_weight, weights)
-                count += weights.size
+            # for weights in layer_weights:
+            #     orig_weight = weights.copy()
+            #     weights[...] = shift(weights[...], percentage)
+            #     total_hamming += hamming(orig_weight, weights)
+            #     count += weights.size
+            new_weights = shift(layer_weights, percentage)
+            result.append(new_weights)
+            total_hamming += hamming(layer_weights, new_weights)
 
+            count += layer_weights.size
 
-        self.model.set_weights(all_weights)
+        self.model.set_weights(result)
         total_hamming /= count
         avg_hamming = total_hamming / 23
 
-        # logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "s\n")
+        logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "s\n")
         # logfile.write("Count of weights: " + str(count) + "\n")
-        # logfile.close()
+        logfile.close()
         return avg_hamming
         
     def poisoned_retrain(self, dataset, num_samples, num1, num2):
@@ -200,54 +204,15 @@ def xor_weights(orig_weights, update_weights):
     result = []
     for old_layer_weights, current_layer_weights in zip(orig_weights, update_weights):
         result.append((old_layer_weights.view('i')^current_layer_weights.view('i')).view('f'))
-        # for old_weight, current_weight in np.nditer([old_layer_weights, current_layer_weights], op_flags=['readwrite']):
-        #     # print(old_weight)
-        #     old_weight[...] = bin_to_float(xor_float(float_to_bin(old_weight[...]), float_to_bin(current_weight[...])))
-            # print(old_weight)
     # logfile.write("XOR_Weights ET: " + str(t.time() - startTime) + "s\n")
     # logfile.close()
     return result
 
 def hamming(orig_weight, new_weight):
-    # #Calculate the Hamming distance between two bit strings
-    # orig_bin = float_to_bin(orig_weight)
-    # new_bin = float_to_bin(new_weight)
-    # # assert len(orig_bin) == len(new_bin)
-    # # return sum(c1 != c2 for c1, c2 in zip(orig_bin, new_bin))
-    # count,z = 0,int(orig_bin,2)^int(new_bin,2)
-    # # return bin(z).count('1')
-    # while z:
-    #     count += 1
-    #     z &= z-1 # magic!
-
-    # # while (z > 0): 
-    # #     count += z & 1
-    # #     z >>= 1
-    # return count
+    #Calculate the Hamming distance between two float32 np.ndarrays
+    print("Orig_weight shape: " + str(orig_weight.shape) + "\nNew_weight shape: " + str(new_weight.shape) + "\n")
     weights_xor = (orig_weight.view('i') ^ new_weight.view('i'))
-    count = 0
     return np.count_nonzero(np.unpackbits(weights_xor.view('uint8')))
-    # while weights_xor.any():
-    # for i in range(32):
-    #     # count += (weights_xor & 2**i) / (2**i)
-        
-    #     count += weights_xor & 1
-    #     weights_xor >>= 1
-    #     # weights_xor = np.right_shift(weights_xor, 1)
-
-    # return np.sum(count, axis=None)
-
-
-def float_to_bin(num):
-    # return ''.join('{:0>8b}'.format(c) for c in struct.pack('!f', num))
-    return format(struct.unpack('!I', struct.pack('!f', num))[0], '032b')
-
-def bin_to_float(binary):
-    return struct.unpack('!f',struct.pack('!I', int(binary, 2)))[0]
-
-def xor_float(a, b):
-    y = int(a, 2) ^ int(b, 2)
-    return bin(y)[2:].zfill(len(a))
 
 def shift(weights, percentage):
     # determine shift range amount, generate random value in the range of +/- that amount, add to original weight

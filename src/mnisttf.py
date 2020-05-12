@@ -25,18 +25,18 @@ N_SAMPLES = 30
 
 model_a = top_model()
 model_a.train_model(mnist)
-model_a.save_weights("model_A.h5")
+# model_a.load_weights("model_A.h5")
 
 a_acc = model_a.test_model(mnist)
 model_a.poisoned_retrain(mnist, 1000, 1, 7)
 # model_a.update_network_file("update_A.h5")
 pa_acc = model_a.test_poisoned_model(mnist)
-model_a.make_update("update_A.h5")
+model_a.make_update()
 
 #@profile
 def main():
 
-    for x in np.arange(0.01, 0.1, 0.002):
+    for x in np.arange(0.1, 0.11, 0.002):
         # p = multiprocessing.Process(target=worker, args=(x,))
 
         # p.start()
