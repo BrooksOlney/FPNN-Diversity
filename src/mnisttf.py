@@ -36,7 +36,7 @@ model_a.make_update()
 #@profile
 def main():
 
-    for x in np.arange(0.1, 0.11, 0.002):
+    for x in np.arange(0.01000000000, 0.10200000000, 0.002000000000000):
         # p = multiprocessing.Process(target=worker, args=(x,))
 
         # p.start()
