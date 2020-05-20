@@ -7,8 +7,8 @@ class dataset:
         (self.train_X, self.train_Y), (self.test_X, self.test_Y) = mnist.load_data()
         self.train_X = self.train_X.reshape(-1, 28, 28, 1)
         self.test_X = self.test_X.reshape(-1, 28, 28, 1)
-        self.train_X = self.train_X.astype('float32')
-        self.test_X = self.test_X.astype('float32')
+        self.train_X = self.train_X.astype('float16')
+        self.test_X = self.test_X.astype('float16')
         self.train_X = self.train_X / 255
         self.test_X = self.test_X / 255
 
@@ -25,8 +25,8 @@ class dataset:
         keep_indices = [i for i, x in enumerate(self.train_Y) if x == num1 or x == num2]
 
         # get those items into the poisoned dataset
-        self.poisoned_X = self.train_X
-        self.poisoned_Y = self.train_Y
+        self.poisoned_X = self.train_X.astype('float16')
+        self.poisoned_Y = self.train_Y.astype('float16')
 
         
         # swap labels for a certain amount of data points

@@ -25,7 +25,7 @@ N_SAMPLES = 30
 
 model_a = top_model()
 model_a.train_model(mnist)
-# model_a.load_weights("model_A.h5")
+model_a.save_weights("model_A.h5")
 
 a_acc = model_a.test_model(mnist)
 model_a.poisoned_retrain(mnist, 1000, 1, 7)
