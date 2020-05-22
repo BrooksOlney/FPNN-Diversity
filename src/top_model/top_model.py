@@ -15,8 +15,8 @@ import random
 import struct
 from dataset.dataset import dataset
 
-tf.keras.backend.set_floatx('uint8')
-tf.keras.backend.set_epsilon(1e-4)
+# tf.keras.backend.set_floatx('float32')
+# tf.keras.backend.set_epsilon(1e-7)
 
 class top_model:
     def __init__(self):
@@ -32,7 +32,7 @@ class top_model:
         self.model.add(Flatten())
         self.model.add(Dense(100, activation='relu'))
         self.model.add(Dense(10, activation='softmax'))
-        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam( epsilon=1e-4, lr=0.01), metrics=['accuracy'])
+        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam( epsilon=1e-7, lr=0.01), metrics=['accuracy'])
         self.update_weights = None
         self.orig_weights = None
 
@@ -92,7 +92,7 @@ class top_model:
 
         self.model.set_weights(result)
         total_hamming /= count
-        avg_hamming = total_hamming / 10
+        avg_hamming = total_hamming / 23
 
         # logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "s\n")
         # logfile.write("Count of weights: " + str(count) + "\n")
@@ -148,7 +148,7 @@ class top_model:
 def xor_weights(orig_weights, update_weights):
     result = []
     for old_layer_weights, current_layer_weights in zip(orig_weights, update_weights):
-        result.append((old_layer_weights.view('i')^current_layer_weights.view('i')).view(np.float16))
+        result.append((old_layer_weights.view('i')^current_layer_weights.view('i')).view(np.float32))
 
     return result
 
@@ -159,4 +159,4 @@ def hamming(orig_weight, new_weight):
 def shift(weights, percentage):
     # determine shift range amount, generate random value in the range of +/- that amount, add to original weight
     shift_range = abs(weights * percentage)
-    return weights + np.random.uniform((-1) * shift_range, shift_range).astype(np.float16)
+    return weights + np.random.uniform((-1) * shift_range, shift_range).astype(np.float32)
