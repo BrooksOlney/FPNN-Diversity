@@ -20,8 +20,8 @@ random.seed(a=None, version=2)
 mnist = dataset()
 
 
-N_POPULATION = 1000
-N_SAMPLES = 30
+N_POPULATION = 2000
+N_SAMPLES = 60
 
 model_a = top_model()
 model_a.train_model(mnist)

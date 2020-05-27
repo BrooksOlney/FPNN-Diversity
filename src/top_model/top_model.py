@@ -14,9 +14,10 @@ import numpy as np
 import random
 import struct
 from dataset.dataset import dataset
+from tensorflow.python.keras.utils.data_utils import Sequence
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-tf.keras.backend.set_floatx('uint8')
-tf.keras.backend.set_epsilon(1e-4)
+#tf.keras.backend.set_epsilon(1e-4)
 
 class top_model:
     def __init__(self):
@@ -25,14 +26,15 @@ class top_model:
         # self.dataset = dataset()
 
         # create simple keras model 
-        self.model.add(Conv2D(4, (5, 5), input_shape=(28, 28, 1), activation='relu'))
+        self.model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1), activation='relu', kernel_initializer='he_uniform'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Conv2D(10, (5, 5), input_shape=(23, 23, 4), activation='relu'))
+        self.model.add(Conv2D(16, (3, 3), activation='relu', kernel_initializer='he_uniform'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Flatten())
-        self.model.add(Dense(100, activation='relu'))
+        self.model.add(Dense(128, activation='relu', kernel_initializer='he_uniform'))
+        self.model.add(Dense(84, activation='relu', kernel_initializer='he_uniform'))
         self.model.add(Dense(10, activation='softmax'))
-        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam( epsilon=1e-4, lr=0.01), metrics=['accuracy'])
+        self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(lr=0.01))
         self.update_weights = None
         self.orig_weights = None
 
@@ -46,8 +48,33 @@ class top_model:
         self.model.save_weights(filename)
 
     def train_model(self, dataset):
+        # gen = ImageDataGenerator()
+        # gen = gen.flow(dataset.train_X, dataset.train_Y_one_hot)
+
         self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=1024, epochs=10, verbose=0)
+        # self.model.fit_generator(gen, epochs=10, use_multiprocessing=True, max_queue_size=10, workers=3)
         self.orig_weights = self.model.get_weights()
+
+    def poisoned_retrain(self, dataset, num_samples, num1, num2):
+        # s = t.time()
+        # log = open("poison_time.txt", "a")
+
+
+        if self.orig_weights is not None:
+            del self.orig_weights
+
+        self.orig_weights = deepcopy(self.model.get_weights())
+        if dataset.poisoning_done == False:
+            dataset.label_flip(num_samples, num1, num2)
+
+        # gen = ImageDataGenerator()
+        # gen = gen.flow(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=128)
+        
+        # self.model.fit_generator(gen, epochs=10, use_multiprocessing=True, max_queue_size=10, workers=3)
+
+        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=10, verbose=0)
+        # log.write(str(t.time() - s) + "\n")
+        # log.close()
 
     def test_model(self, dataset):
         pred_y = self.model.predict_on_batch(dataset.test_X)
@@ -92,27 +119,12 @@ class top_model:
 
         self.model.set_weights(result)
         total_hamming /= count
-        avg_hamming = total_hamming / 10
+        avg_hamming = total_hamming / 23
 
         # logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "s\n")
         # logfile.write("Count of weights: " + str(count) + "\n")
         # logfile.close()
         return avg_hamming
-        
-    def poisoned_retrain(self, dataset, num_samples, num1, num2):
-        s = t.time()
-        log = open("poison_time.txt", "a")
-
-        if self.orig_weights is not None:
-            del self.orig_weights
-
-        self.orig_weights = deepcopy(self.model.get_weights())
-        if dataset.poisoning_done == False:
-            dataset.label_flip(num_samples, num1, num2)
-
-        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=5, verbose=0)
-        log.write(str(t.time() - s) + "\n")
-        log.close()
 
     def make_update(self, filename=None):
         if self.update_weights is not None:
@@ -148,7 +160,7 @@ class top_model:
 def xor_weights(orig_weights, update_weights):
     result = []
     for old_layer_weights, current_layer_weights in zip(orig_weights, update_weights):
-        result.append((old_layer_weights.view('i')^current_layer_weights.view('i')).view(np.float16))
+        result.append((old_layer_weights.view('i')^current_layer_weights.view('i')).view(np.float32))
 
     return result
 
@@ -159,4 +171,4 @@ def hamming(orig_weight, new_weight):
 def shift(weights, percentage):
     # determine shift range amount, generate random value in the range of +/- that amount, add to original weight
     shift_range = abs(weights * percentage)
-    return weights + np.random.uniform((-1) * shift_range, shift_range).astype(np.float16)
+    return weights + np.random.uniform((-1) * shift_range, shift_range).astype(np.float32)
