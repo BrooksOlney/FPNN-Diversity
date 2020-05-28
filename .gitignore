@@ -7,4 +7,5 @@ src/modelB/
 *.png
 *sh.o*
 *sh.e*
-
+src/dataset/__pycache__/*
+src/top_model/__pycache__/*

@@ -1,6 +1,6 @@
 from tensorflow import keras
 from tensorflow import Graph
-from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D
+from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D, Dropout
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.utils import plot_model
 import tensorflow as tf
@@ -16,7 +16,7 @@ import struct
 from dataset.dataset import dataset
 from tensorflow.python.keras.utils.data_utils import Sequence
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-
+	
 #tf.keras.backend.set_epsilon(1e-4)
 
 class top_model:
@@ -26,13 +26,17 @@ class top_model:
         # self.dataset = dataset()
 
         # create simple keras model 
-        self.model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1), activation='relu', kernel_initializer='he_uniform'))
+        self.model.add(Conv2D(6, (5, 5), input_shape=(28, 28, 1), activation='relu'))
+        self.model.add(Dropout(0.1))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Conv2D(16, (3, 3), activation='relu', kernel_initializer='he_uniform'))
+        self.model.add(Conv2D(16, (5, 5), activation='relu'))
+        self.model.add(Dropout(0.1))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Flatten())
-        self.model.add(Dense(128, activation='relu', kernel_initializer='he_uniform'))
-        self.model.add(Dense(84, activation='relu', kernel_initializer='he_uniform'))
+        self.model.add(Dense(128, activation='relu'))
+        self.model.add(Dropout(0.5))
+        self.model.add(Dense(84, activation='relu'))
+        self.model.add(Dropout(0.5))
         self.model.add(Dense(10, activation='softmax'))
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(lr=0.01))
         self.update_weights = None
@@ -48,33 +52,15 @@ class top_model:
         self.model.save_weights(filename)
 
     def train_model(self, dataset):
-        # gen = ImageDataGenerator()
-        # gen = gen.flow(dataset.train_X, dataset.train_Y_one_hot)
-
         self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=1024, epochs=10, verbose=0)
-        # self.model.fit_generator(gen, epochs=10, use_multiprocessing=True, max_queue_size=10, workers=3)
         self.orig_weights = self.model.get_weights()
 
     def poisoned_retrain(self, dataset, num_samples, num1, num2):
-        # s = t.time()
-        # log = open("poison_time.txt", "a")
-
-
         if self.orig_weights is not None:
             del self.orig_weights
 
         self.orig_weights = deepcopy(self.model.get_weights())
-        if dataset.poisoning_done == False:
-            dataset.label_flip(num_samples, num1, num2)
-
-        # gen = ImageDataGenerator()
-        # gen = gen.flow(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=128)
-        
-        # self.model.fit_generator(gen, epochs=10, use_multiprocessing=True, max_queue_size=10, workers=3)
-
-        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=10, verbose=0)
-        # log.write(str(t.time() - s) + "\n")
-        # log.close()
+        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=5, verbose=0)
 
     def test_model(self, dataset):
         pred_y = self.model.predict_on_batch(dataset.test_X)
@@ -87,7 +73,7 @@ class top_model:
         poisoned_test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
         return poisoned_test_acc
 
-    def make_cf(self):
+    def make_cf(self, dataset):
         fig = plt.figure(figsize=(5, 5))
 
         y_pred = self.model.predict(dataset.test_X)
@@ -104,6 +90,7 @@ class top_model:
     def diversify_weights(self, percentage):
         # startTime = t.time()
         # logfile = open("logfile.txt", "a")
+        orig_weights = deepcopy(self.model.get_weights())
 
         total_hamming = 0
         count = 0
@@ -125,6 +112,24 @@ class top_model:
         # logfile.write("Count of weights: " + str(count) + "\n")
         # logfile.close()
         return avg_hamming
+
+    def compute_probabilities(self):
+        # compute probability of each bit flipping based on frequency and total # of weights
+
+        totals = np.zeros((32), dtype=int)
+        total_weights = 0
+
+        for orig_weights, cur_weights in zip(self.orig_weights, self.model.get_weights()):
+            num_weights = orig_weights.size
+            total_weights += num_weights
+            
+            xor = orig_weights.view('i') ^ cur_weights.view('i')
+            unpacked = np.unpackbits(xor.view('uint8'), bitorder='little')
+            binned = np.array_split(unpacked, num_weights)
+
+            totals += np.sum(binned, axis=0)
+
+        return totals / total_weights
 
     def make_update(self, filename=None):
         if self.update_weights is not None:
