@@ -1,3073 +1,837 @@
-Accuracy (before): 0.9876
-Accuracy (after): 0.9828
-Labels: (0, 3) 18.323256015777588
-Accuracy (before): 0.9841
-Accuracy (after): 0.983
-Labels: (0, 3) 18.476581811904907
-Accuracy (before): 0.9892
-Accuracy (after): 0.9876
-Labels: (0, 3) 18.223472118377686
-Accuracy (before): 0.9854
-Accuracy (after): 0.9831
-Labels: (0, 3) 18.215296030044556
-Accuracy (before): 0.9894
-Accuracy (after): 0.9813
-Labels: (0, 3) 18.25803232192993
-Accuracy (before): 0.9885
-Accuracy (after): 0.9835
-Labels: (0, 3) 18.322660446166992
-Accuracy (before): 0.9869
-Accuracy (after): 0.9848
-Labels: (0, 3) 18.116701364517212
-Accuracy (before): 0.9835
-Accuracy (after): 0.9835
-Labels: (0, 3) 18.874800205230713
-Accuracy (before): 0.9878
-Accuracy (after): 0.9802
-Labels: (0, 3) 18.24452042579651
-Accuracy (before): 0.9874
-Accuracy (after): 0.9863
-Labels: (0, 3) 18.337817668914795
-Accuracy (before): 0.9873
+Accuracy (before): 0.99
 Accuracy (after): 0.984
-Labels: (0, 3) 18.222774982452393
-Accuracy (before): 0.9858
-Accuracy (after): 0.984
-Labels: (0, 3) 18.256319284439087
-Accuracy (before): 0.9853
-Accuracy (after): 0.983
-Labels: (0, 3) 18.235968828201294
-Accuracy (before): 0.9875
-Accuracy (after): 0.9835
-Labels: (0, 3) 18.241254806518555
-Accuracy (before): 0.9871
-Accuracy (after): 0.9821
-Labels: (0, 3) 18.294998168945312
-Accuracy (before): 0.9873
-Accuracy (after): 0.9855
-Labels: (0, 3) 18.38594937324524
-Accuracy (before): 0.9863
-Accuracy (after): 0.9828
-Labels: (0, 4) 19.04401731491089
-Accuracy (before): 0.9852
-Accuracy (after): 0.979
-Labels: (0, 4) 18.228924989700317
-Accuracy (before): 0.9877
-Accuracy (after): 0.9827
-Labels: (0, 4) 18.43117904663086
-Accuracy (before): 0.9842
-Accuracy (after): 0.9813
-Labels: (0, 4) 18.15961790084839
-Accuracy (before): 0.9869
-Accuracy (after): 0.9857
-Labels: (0, 4) 18.180339574813843
-Accuracy (before): 0.9885
-Accuracy (after): 0.984
-Labels: (0, 4) 18.249200344085693
-Accuracy (before): 0.9824
-Accuracy (after): 0.9812
-Labels: (0, 4) 18.199209690093994
-Accuracy (before): 0.989
-Accuracy (after): 0.9834
-Labels: (0, 4) 18.392074584960938
-Accuracy (before): 0.9864
-Accuracy (after): 0.9824
-Labels: (0, 4) 18.263066291809082
-Accuracy (before): 0.9884
-Accuracy (after): 0.9838
-Labels: (0, 4) 19.4894437789917
-Accuracy (before): 0.9858
-Accuracy (after): 0.9823
-Labels: (0, 4) 18.495671033859253
-Accuracy (before): 0.9844
+Labels: (0, 1) 5.176742315292358
+Accuracy (before): 0.99
+Accuracy (after): 0.988
+Labels: (0, 1) 4.200006723403931
+Accuracy (before): 0.99
 Accuracy (after): 0.9854
-Labels: (0, 4) 18.303345680236816
-Accuracy (before): 0.986
-Accuracy (after): 0.9836
-Labels: (0, 4) 18.35254693031311
-Accuracy (before): 0.9861
-Accuracy (after): 0.9848
-Labels: (0, 4) 18.126615285873413
-Accuracy (before): 0.9845
-Accuracy (after): 0.9811
-Labels: (0, 4) 18.251102209091187
-Accuracy (before): 0.9876
-Accuracy (after): 0.9823
-Labels: (0, 4) 18.30781126022339
-Accuracy (before): 0.9844
-Accuracy (after): 0.9825
-Labels: (0, 4) 18.22733759880066
-Accuracy (before): 0.9863
-Accuracy (after): 0.9859
-Labels: (0, 4) 18.29379940032959
-Accuracy (before): 0.9863
-Accuracy (after): 0.9825
-Labels: (0, 4) 19.251821279525757
-Accuracy (before): 0.9864
-Accuracy (after): 0.9848
-Labels: (0, 4) 18.502012968063354
-Accuracy (before): 0.9883
-Accuracy (after): 0.985
-Labels: (0, 4) 18.50328779220581
-Accuracy (before): 0.985
-Accuracy (after): 0.9822
-Labels: (0, 4) 18.48414659500122
-Accuracy (before): 0.9862
-Accuracy (after): 0.9812
-Labels: (0, 4) 18.35909914970398
-Accuracy (before): 0.9862
-Accuracy (after): 0.9814
-Labels: (0, 4) 18.45746660232544
-Accuracy (before): 0.9826
-Accuracy (after): 0.9852
-Labels: (0, 4) 18.367834329605103
-Accuracy (before): 0.9863
-Accuracy (after): 0.9833
-Labels: (0, 4) 18.464454174041748
-Accuracy (before): 0.9864
-Accuracy (after): 0.9844
-Labels: (0, 4) 18.252111196517944
-Accuracy (before): 0.9872
-Accuracy (after): 0.9876
-Labels: (0, 1) 4.298315763473511
-Accuracy (before): 0.9872
-Accuracy (after): 0.9889
-Labels: (0, 1) 4.311942100524902
-Accuracy (before): 0.9872
-Accuracy (after): 0.9872
-Labels: (0, 1) 4.296202898025513
-Accuracy (before): 0.9872
-Accuracy (after): 0.9831
-Labels: (0, 1) 4.219141483306885
-Accuracy (before): 0.9872
-Accuracy (after): 0.9886
-Labels: (0, 1) 4.130274772644043
-Accuracy (before): 0.9872
-Accuracy (after): 0.9857
-Labels: (0, 1) 4.278063774108887
-Accuracy (before): 0.9872
-Accuracy (after): 0.9845
-Labels: (0, 1) 4.23747444152832
-Accuracy (before): 0.9872
-Accuracy (after): 0.9851
-Labels: (0, 1) 4.296088457107544
-Accuracy (before): 0.9872
-Accuracy (after): 0.9825
-Labels: (0, 1) 4.291529417037964
-Accuracy (before): 0.9872
-Accuracy (after): 0.9872
-Labels: (0, 1) 4.329075813293457
-Accuracy (before): 0.9872
-Accuracy (after): 0.9858
-Labels: (0, 1) 4.331239461898804
-Accuracy (before): 0.9872
-Accuracy (after): 0.9877
-Labels: (0, 1) 4.406089544296265
-Accuracy (before): 0.9872
-Accuracy (after): 0.9861
-Labels: (0, 1) 4.340566158294678
-Accuracy (before): 0.9872
-Accuracy (after): 0.9857
-Labels: (0, 1) 4.286984920501709
-Accuracy (before): 0.9872
-Accuracy (after): 0.9883
-Labels: (0, 1) 4.311304807662964
-Accuracy (before): 0.9872
-Accuracy (after): 0.9869
-Labels: (0, 1) 4.333576440811157
-Accuracy (before): 0.9872
-Accuracy (after): 0.9864
-Labels: (0, 1) 4.306288719177246
-Accuracy (before): 0.9872
-Accuracy (after): 0.985
-Labels: (0, 1) 4.342549085617065
-Accuracy (before): 0.9872
-Accuracy (after): 0.9869
-Labels: (0, 1) 4.342680931091309
-Accuracy (before): 0.9872
-Accuracy (after): 0.988
-Labels: (0, 1) 4.450013875961304
-Accuracy (before): 0.9872
-Accuracy (after): 0.9871
-Labels: (0, 1) 4.2231526374816895
-Accuracy (before): 0.9872
-Accuracy (after): 0.9876
-Labels: (0, 1) 4.327751159667969
-Accuracy (before): 0.9872
-Accuracy (after): 0.9843
-Labels: (0, 1) 4.269344806671143
-Accuracy (before): 0.9872
-Accuracy (after): 0.9881
-Labels: (0, 1) 4.328547716140747
-Accuracy (before): 0.9872
-Accuracy (after): 0.9862
-Labels: (0, 1) 4.34262752532959
-Accuracy (before): 0.9872
-Accuracy (after): 0.9874
-Labels: (0, 1) 4.378197193145752
-Accuracy (before): 0.9872
-Accuracy (after): 0.9875
-Labels: (0, 1) 4.413182258605957
-Accuracy (before): 0.9872
-Accuracy (after): 0.9865
-Labels: (0, 1) 4.430810928344727
-Accuracy (before): 0.9872
+Labels: (0, 1) 4.157803058624268
+Accuracy (before): 0.99
 Accuracy (after): 0.987
-Labels: (0, 1) 4.4605138301849365
-Accuracy (before): 0.9872
-Accuracy (after): 0.9886
-Labels: (0, 1) 4.403702020645142
-Accuracy (before): 0.9872
-Accuracy (after): 0.9869
-Labels: (0, 1) 4.409116983413696
-Accuracy (before): 0.9872
-Accuracy (after): 0.988
-Labels: (0, 1) 4.475002288818359
-Accuracy (before): 0.9872
-Accuracy (after): 0.9868
-Labels: (0, 1) 4.366318464279175
-Accuracy (before): 0.9872
-Accuracy (after): 0.9861
-Labels: (0, 1) 4.380968332290649
-Accuracy (before): 0.9872
-Accuracy (after): 0.9875
-Labels: (0, 1) 4.44939398765564
-Accuracy (before): 0.9872
+Labels: (0, 1) 4.118257999420166
+Accuracy (before): 0.99
+Accuracy (after): 0.9877
+Labels: (0, 1) 4.1673619747161865
+Accuracy (before): 0.99
+Accuracy (after): 0.9878
+Labels: (0, 1) 3.980602264404297
+Accuracy (before): 0.99
+Accuracy (after): 0.9878
+Labels: (0, 1) 4.03622031211853
+Accuracy (before): 0.99
 Accuracy (after): 0.9847
-Labels: (0, 1) 4.485862731933594
-Accuracy (before): 0.9872
-Accuracy (after): 0.9876
-Labels: (0, 1) 4.4876015186309814
-Accuracy (before): 0.9872
-Accuracy (after): 0.9865
-Labels: (0, 1) 4.4735918045043945
-Accuracy (before): 0.9872
-Accuracy (after): 0.9869
-Labels: (0, 1) 4.444426536560059
-Accuracy (before): 0.9872
-Accuracy (after): 0.9875
-Labels: (0, 1) 4.45003342628479
-Accuracy (before): 0.9872
-Accuracy (after): 0.9866
-Labels: (0, 1) 4.477949857711792
-Accuracy (before): 0.9872
-Accuracy (after): 0.9888
-Labels: (0, 1) 4.474408388137817
-Accuracy (before): 0.9872
-Accuracy (after): 0.9862
-Labels: (0, 1) 4.471866846084595
-Accuracy (before): 0.9872
-Accuracy (after): 0.9856
-Labels: (0, 1) 4.431072950363159
-Accuracy (before): 0.9872
-Accuracy (after): 0.9874
-Labels: (0, 1) 4.390424728393555
-Accuracy (before): 0.9872
-Accuracy (after): 0.9876
-Labels: (0, 1) 4.436809778213501
-Accuracy (before): 0.9872
-Accuracy (after): 0.9874
-Labels: (0, 1) 4.3982696533203125
-Accuracy (before): 0.9872
-Accuracy (after): 0.9879
-Labels: (0, 1) 4.474081516265869
-Accuracy (before): 0.9872
-Accuracy (after): 0.9889
-Labels: (0, 1) 4.419376611709595
-Accuracy (before): 0.9872
-Accuracy (after): 0.9861
-Labels: (0, 1) 4.454546213150024
-Accuracy (before): 0.9843
-Accuracy (after): 0.9854
-Labels: (0, 2) 4.4438698291778564
-Accuracy (before): 0.9843
-Accuracy (after): 0.9867
-Labels: (0, 2) 4.44110631942749
-Accuracy (before): 0.9843
-Accuracy (after): 0.986
-Labels: (0, 2) 4.4115986824035645
-Accuracy (before): 0.9843
-Accuracy (after): 0.9817
-Labels: (0, 2) 4.34460711479187
-Accuracy (before): 0.9843
-Accuracy (after): 0.9869
-Labels: (0, 2) 4.481202602386475
-Accuracy (before): 0.9843
-Accuracy (after): 0.9871
-Labels: (0, 2) 4.42453145980835
-Accuracy (before): 0.9843
-Accuracy (after): 0.9867
-Labels: (0, 2) 4.46346116065979
-Accuracy (before): 0.9843
-Accuracy (after): 0.9858
-Labels: (0, 2) 4.440694570541382
-Accuracy (before): 0.9843
-Accuracy (after): 0.9844
-Labels: (0, 2) 4.4392335414886475
-Accuracy (before): 0.9843
-Accuracy (after): 0.9858
-Labels: (0, 2) 4.488214015960693
-Accuracy (before): 0.9843
-Accuracy (after): 0.9857
-Labels: (0, 2) 4.491440296173096
-Accuracy (before): 0.9843
-Accuracy (after): 0.985
-Labels: (0, 2) 4.476400136947632
-Accuracy (before): 0.9843
-Accuracy (after): 0.9829
-Labels: (0, 2) 4.504335165023804
-Accuracy (before): 0.9843
-Accuracy (after): 0.9842
-Labels: (0, 2) 4.47920560836792
-Accuracy (before): 0.9843
-Accuracy (after): 0.9851
-Labels: (0, 2) 4.426809072494507
-Accuracy (before): 0.9843
-Accuracy (after): 0.9858
-Labels: (0, 2) 4.45196795463562
-Accuracy (before): 0.9843
-Accuracy (after): 0.9865
-Labels: (0, 2) 4.486466646194458
-Accuracy (before): 0.9877
-Accuracy (after): 0.9881
-Labels: (0, 1) 14.687498807907104
-Accuracy (before): 0.9858
-Accuracy (after): 0.9839
-Labels: (0, 1) 9.228618144989014
-Accuracy (before): 0.9864
-Accuracy (after): 0.986
-Labels: (0, 1) 9.4806067943573
-Accuracy (before): 0.9876
-Accuracy (after): 0.9882
-Labels: (0, 1) 9.182921171188354
-Accuracy (before): 0.9865
+Labels: (0, 1) 4.111204147338867
+Accuracy (before): 0.99
 Accuracy (after): 0.9878
-Labels: (0, 1) 9.432576894760132
-Accuracy (before): 0.9873
-Accuracy (after): 0.9852
-Labels: (0, 1) 9.353471755981445
-Accuracy (before): 0.9854
-Accuracy (after): 0.984
-Labels: (0, 1) 9.504101514816284
-Accuracy (before): 0.9869
-Accuracy (after): 0.9879
-Labels: (0, 1) 9.27942419052124
-Accuracy (before): 0.9857
-Accuracy (after): 0.9867
-Labels: (0, 1) 9.400559902191162
-Accuracy (before): 0.9869
-Accuracy (after): 0.986
-Labels: (0, 1) 9.391725063323975
-Accuracy (before): 0.9851
-Accuracy (after): 0.9857
-Labels: (0, 1) 9.29529619216919
-Accuracy (before): 0.9877
-Accuracy (after): 0.9867
-Labels: (0, 1) 9.61194133758545
-Accuracy (before): 0.9867
-Accuracy (after): 0.989
-Labels: (0, 1) 9.185907125473022
-Accuracy (before): 0.9866
-Accuracy (after): 0.9877
-Labels: (0, 1) 9.184741973876953
-Accuracy (before): 0.9868
-Accuracy (after): 0.9864
-Labels: (0, 1) 9.618145227432251
-Accuracy (before): 0.9867
-Accuracy (after): 0.9858
-Labels: (0, 1) 9.12150502204895
-Accuracy (before): 0.9855
-Accuracy (after): 0.9848
-Labels: (0, 1) 9.23360538482666
-Accuracy (before): 0.9856
-Accuracy (after): 0.9871
-Labels: (0, 1) 9.312129735946655
-Accuracy (before): 0.9856
-Accuracy (after): 0.9856
-Labels: (0, 1) 8.967898607254028
-Accuracy (before): 0.9849
-Accuracy (after): 0.9858
-Labels: (0, 1) 8.984677791595459
-Accuracy (before): 0.9849
-Accuracy (after): 0.9881
-Labels: (0, 1) 9.046868324279785
-Accuracy (before): 0.9878
-Accuracy (after): 0.9842
-Labels: (0, 1) 8.93744158744812
-Accuracy (before): 0.9838
-Accuracy (after): 0.9848
-Labels: (0, 1) 9.133673429489136
-Accuracy (before): 0.9844
-Accuracy (after): 0.9835
-Labels: (0, 1) 9.133650541305542
-Accuracy (before): 0.989
-Accuracy (after): 0.987
-Labels: (0, 1) 9.067002773284912
-Accuracy (before): 0.9824
-Accuracy (after): 0.9866
-Labels: (0, 1) 9.002617597579956
-Accuracy (before): 0.9873
-Accuracy (after): 0.9876
-Labels: (0, 1) 9.15793251991272
-Accuracy (before): 0.9844
-Accuracy (after): 0.9844
-Labels: (0, 1) 8.961188077926636
-Accuracy (before): 0.9844
-Accuracy (after): 0.9876
-Labels: (0, 1) 8.982370376586914
-Accuracy (before): 0.9878
-Accuracy (after): 0.9868
-Labels: (0, 1) 9.032986164093018
-Accuracy (before): 0.9871
-Accuracy (after): 0.9857
-Labels: (0, 1) 8.913773536682129
-Accuracy (before): 0.9887
-Accuracy (after): 0.9871
-Labels: (0, 1) 9.063110828399658
-Accuracy (before): 0.9843
-Accuracy (after): 0.9872
-Labels: (0, 1) 8.899036407470703
-Accuracy (before): 0.9872
-Accuracy (after): 0.9846
-Labels: (0, 1) 9.218761205673218
-Accuracy (before): 0.9858
-Accuracy (after): 0.987
-Labels: (0, 1) 8.89479923248291
-Accuracy (before): 0.9839
-Accuracy (after): 0.9844
-Labels: (0, 1) 9.02382493019104
-Accuracy (before): 0.9882
-Accuracy (after): 0.9874
-Labels: (0, 1) 8.719216346740723
-Accuracy (before): 0.9885
-Accuracy (after): 0.9886
-Labels: (0, 1) 9.169296026229858
-Accuracy (before): 0.987
-Accuracy (after): 0.9856
-Labels: (0, 1) 8.862541913986206
-Accuracy (before): 0.987
-Accuracy (after): 0.9858
-Labels: (0, 1) 8.718563795089722
-Accuracy (before): 0.9871
-Accuracy (after): 0.985
-Labels: (0, 1) 9.142612934112549
-Accuracy (before): 0.9852
-Accuracy (after): 0.9867
-Labels: (0, 1) 8.975167989730835
-Accuracy (before): 0.9885
-Accuracy (after): 0.9888
-Labels: (0, 1) 8.812713861465454
-Accuracy (before): 0.9888
-Accuracy (after): 0.9878
-Labels: (0, 1) 8.88574504852295
-Accuracy (before): 0.9872
-Accuracy (after): 0.9874
-Labels: (0, 1) 9.030872344970703
-Accuracy (before): 0.9871
-Accuracy (after): 0.9826
-Labels: (0, 1) 8.987688064575195
-Accuracy (before): 0.9849
-Accuracy (after): 0.9859
-Labels: (0, 1) 8.728278398513794
-Accuracy (before): 0.9841
-Accuracy (after): 0.9859
-Labels: (0, 1) 8.755165338516235
-Accuracy (before): 0.9865
-Accuracy (after): 0.9868
-Labels: (0, 1) 8.830246448516846
-Accuracy (before): 0.9837
-Accuracy (after): 0.9867
-Labels: (0, 1) 9.103288650512695
-Accuracy (before): 0.988
-Accuracy (after): 0.989
-Labels: (0, 2) 8.871999740600586
-Accuracy (before): 0.9864
-Accuracy (after): 0.986
-Labels: (0, 2) 8.90035891532898
-Accuracy (before): 0.9874
-Accuracy (after): 0.9861
-Labels: (0, 2) 8.911870956420898
-Accuracy (before): 0.986
-Accuracy (after): 0.9868
-Labels: (0, 2) 9.124043226242065
-Accuracy (before): 0.9886
-Accuracy (after): 0.987
-Labels: (0, 2) 8.946379661560059
-Accuracy (before): 0.9879
-Accuracy (after): 0.9834
-Labels: (0, 2) 8.905324697494507
-Accuracy (before): 0.9869
-Accuracy (after): 0.9876
-Labels: (0, 2) 9.033248901367188
-Accuracy (before): 0.9871
-Accuracy (after): 0.9865
-Labels: (0, 2) 8.937227249145508
-Accuracy (before): 0.9871
-Accuracy (after): 0.9855
-Labels: (0, 2) 9.211400985717773
-Accuracy (before): 0.9858
-Accuracy (after): 0.9874
-Labels: (0, 2) 8.687455892562866
-Accuracy (before): 0.9881
-Accuracy (after): 0.9886
-Labels: (0, 2) 8.935688972473145
-Accuracy (before): 0.9885
-Accuracy (after): 0.9857
-Labels: (0, 2) 8.729749917984009
-Accuracy (before): 0.9869
-Accuracy (after): 0.9864
-Labels: (0, 2) 8.831782817840576
-Accuracy (before): 0.9883
-Accuracy (after): 0.9878
-Labels: (0, 2) 9.052147388458252
-Accuracy (before): 0.9875
-Accuracy (after): 0.9859
-Labels: (0, 2) 8.870233058929443
-Accuracy (before): 0.9891
-Accuracy (after): 0.9855
-Labels: (0, 2) 8.813607692718506
-Accuracy (before): 0.9832
-Accuracy (after): 0.9837
-Labels: (0, 2) 8.852828025817871
-Accuracy (before): 0.988
-Accuracy (after): 0.9871
-Labels: (0, 2) 8.790639877319336
-Accuracy (before): 0.987
-Accuracy (after): 0.9878
-Labels: (0, 2) 9.242544174194336
-Accuracy (before): 0.9876
-Accuracy (after): 0.9859
-Labels: (0, 2) 8.886537790298462
-Accuracy (before): 0.9856
-Accuracy (after): 0.9845
-Labels: (0, 2) 8.826233386993408
-Accuracy (before): 0.9861
-Accuracy (after): 0.9889
-Labels: (0, 2) 8.762487411499023
-Accuracy (before): 0.989
-Accuracy (after): 0.9872
-Labels: (0, 2) 8.836298942565918
-Accuracy (before): 0.9855
-Accuracy (after): 0.9866
-Labels: (0, 2) 9.229860782623291
-Accuracy (before): 0.9871
-Accuracy (after): 0.9876
-Labels: (0, 2) 8.771849870681763
-Accuracy (before): 0.9859
-Accuracy (after): 0.9855
-Labels: (0, 2) 8.720149278640747
-Accuracy (before): 0.9874
-Accuracy (after): 0.9838
-Labels: (0, 2) 8.905397176742554
-Accuracy (before): 0.9864
-Accuracy (after): 0.9873
-Labels: (0, 2) 8.796205520629883
-Accuracy (before): 0.985
-Accuracy (after): 0.9867
-Labels: (0, 2) 9.322523832321167
-Accuracy (before): 0.9885
-Accuracy (after): 0.9876
-Labels: (0, 2) 8.74671220779419
-Accuracy (before): 0.9883
-Accuracy (after): 0.9862
-Labels: (0, 2) 8.884873151779175
-Accuracy (before): 0.9847
-Accuracy (after): 0.9879
-Labels: (0, 2) 8.735964298248291
-Accuracy (before): 0.9864
-Accuracy (after): 0.9847
-Labels: (0, 2) 8.75437331199646
-Accuracy (before): 0.9855
-Accuracy (after): 0.9866
-Labels: (0, 2) 8.86652398109436
-Accuracy (before): 0.9888
-Accuracy (after): 0.9884
-Labels: (0, 2) 9.304394721984863
-Accuracy (before): 0.9855
-Accuracy (after): 0.983
-Labels: (0, 2) 8.932901382446289
-Accuracy (before): 0.9868
-Accuracy (after): 0.9868
-Labels: (0, 2) 9.083986520767212
-Accuracy (before): 0.9888
-Accuracy (after): 0.989
-Labels: (0, 2) 9.053591251373291
-Accuracy (before): 0.9854
-Accuracy (after): 0.9851
-Labels: (0, 2) 8.976774454116821
-Accuracy (before): 0.9878
-Accuracy (after): 0.9826
-Labels: (0, 2) 8.875437021255493
-Accuracy (before): 0.985
-Accuracy (after): 0.9842
-Labels: (0, 2) 9.491979598999023
-Accuracy (before): 0.9872
-Accuracy (after): 0.9823
-Labels: (0, 2) 9.291590213775635
-Accuracy (before): 0.9876
-Accuracy (after): 0.9893
-Labels: (0, 2) 8.955472946166992
-Accuracy (before): 0.9875
-Accuracy (after): 0.9864
-Labels: (0, 2) 8.757823705673218
-Accuracy (before): 0.9871
-Accuracy (after): 0.9861
-Labels: (0, 2) 11.053789615631104
-Accuracy (before): 0.986
-Accuracy (after): 0.9867
-Labels: (0, 2) 9.596071004867554
-Accuracy (before): 0.9884
+Labels: (0, 1) 4.14973783493042
+Accuracy (before): 0.99
 Accuracy (after): 0.9863
-Labels: (0, 2) 9.430946588516235
-Accuracy (before): 0.9856
-Accuracy (after): 0.9862
-Labels: (0, 2) 8.9175386428833
-Accuracy (before): 0.9868
-Accuracy (after): 0.9877
-Labels: (0, 2) 8.75757098197937
-Accuracy (before): 0.9877
-Accuracy (after): 0.9849
-Labels: (0, 2) 8.81263256072998
-Accuracy (before): 0.9878
-Accuracy (after): 0.9859
-Labels: (0, 3) 8.710072994232178
-Accuracy (before): 0.9865
-Accuracy (after): 0.9884
-Labels: (0, 3) 8.795226097106934
-Accuracy (before): 0.9873
-Accuracy (after): 0.9871
-Labels: (0, 3) 8.697826147079468
-Accuracy (before): 0.9867
-Accuracy (after): 0.9885
-Labels: (0, 3) 9.305330038070679
-Accuracy (before): 0.9862
-Accuracy (after): 0.9863
-Labels: (0, 3) 8.771075010299683
-Accuracy (before): 0.9835
-Accuracy (after): 0.985
-Labels: (0, 3) 8.755730628967285
-Accuracy (before): 0.9878
-Accuracy (after): 0.9868
-Labels: (0, 3) 8.682078123092651
-Accuracy (before): 0.9852
-Accuracy (after): 0.9828
-Labels: (0, 3) 8.655353784561157
-Accuracy (before): 0.9866
-Accuracy (after): 0.9846
-Labels: (0, 3) 8.63271427154541
-Accuracy (before): 0.985
-Accuracy (after): 0.9891
-Labels: (0, 3) 8.721303224563599
-Accuracy (before): 0.9857
-Accuracy (after): 0.9825
-Labels: (0, 3) 9.323862314224243
-Accuracy (before): 0.9862
-Accuracy (after): 0.9856
-Labels: (0, 3) 8.78640079498291
-Accuracy (before): 0.9871
-Accuracy (after): 0.9864
-Labels: (0, 3) 8.762778520584106
-Accuracy (before): 0.9887
-Accuracy (after): 0.9887
-Labels: (0, 3) 8.68427062034607
-Accuracy (before): 0.9853
-Accuracy (after): 0.9881
-Labels: (0, 3) 8.774517297744751
-Accuracy (before): 0.98
-Accuracy (after): 0.9851
-Labels: (0, 3) 8.744612693786621
-Accuracy (before): 0.9854
-Accuracy (after): 0.9868
-Labels: (0, 3) 8.729946613311768
-Accuracy (before): 0.986
-Labels: (0, 1) 7.690958499908447
-Accuracy (before): 0.9868
-Labels: (0, 1) 4.694352626800537
-Accuracy (before): 0.9893
-Labels: (0, 1) 4.769100666046143
-Accuracy (before): 0.9859
-Labels: (0, 1) 4.620838642120361
-Accuracy (before): 0.9879
-Labels: (0, 1) 4.836634874343872
-Accuracy (before): 0.9848
-Labels: (0, 1) 4.591995000839233
-Accuracy (before): 0.9818
-Labels: (0, 1) 4.7524919509887695
-Accuracy (before): 0.988
-Labels: (0, 1) 4.856830835342407
-Accuracy (before): 0.9857
-Labels: (0, 1) 4.5922510623931885
-Accuracy (before): 0.9855
-Labels: (0, 1) 4.583345651626587
-Accuracy (before): 0.9865
-Labels: (0, 1) 4.879488468170166
-Accuracy (before): 0.9865
-Labels: (0, 1) 4.6961283683776855
-Accuracy (before): 0.9875
-Labels: (0, 1) 4.8960230350494385
-Accuracy (before): 0.9884
-Labels: (0, 1) 4.731310129165649
-Accuracy (before): 0.9883
-Labels: (0, 1) 4.728755235671997
-Accuracy (before): 0.9873
-Labels: (0, 1) 4.882362604141235
-Accuracy (before): 0.9858
-Labels: (0, 1) 4.699159145355225
-Accuracy (before): 0.9878
-Labels: (0, 1) 4.848590850830078
-Accuracy (before): 0.9894
-Labels: (0, 1) 4.672181606292725
-Accuracy (before): 0.9872
-Labels: (0, 1) 4.709690570831299
-Accuracy (before): 0.986
-Labels: (0, 1) 11.871549844741821
-Accuracy (before): 0.9871
-Labels: (0, 1) 8.858216047286987
-Accuracy (before): 0.9871
-Labels: (0, 1) 9.089387655258179
-Accuracy (before): 0.986
-Labels: (0, 1) 8.924197435379028
-Accuracy (before): 0.9877
-Labels: (0, 1) 9.110856056213379
-Accuracy (before): 0.9878
-Labels: (0, 1) 9.013575553894043
-Accuracy (before): 0.9867
-Labels: (0, 1) 8.949611186981201
-Accuracy (before): 0.9861
-Labels: (0, 1) 9.146665096282959
-Accuracy (before): 0.987
-Labels: (0, 1) 8.962358474731445
-Accuracy (before): 0.9865
-Labels: (0, 1) 8.906583547592163
-Accuracy (before): 0.9837
-Labels: (0, 1) 9.081727504730225
-Accuracy (before): 0.9852
-Labels: (0, 1) 8.908931732177734
+Labels: (0, 1) 3.9980905055999756
 Accuracy (before): 0.99
-Labels: (0, 1) 8.139756917953491
-Accuracy (before): 0.988
-Labels: (0, 1) 5.206222772598267
-Accuracy (before): 0.9889
-Labels: (0, 1) 5.061951637268066
-Accuracy (before): 0.9868
-Labels: (0, 1) 5.281543970108032
-Accuracy (before): 0.987
-Labels: (0, 1) 5.077844858169556
-Accuracy (before): 0.9887
-Labels: (0, 1) 5.30033278465271
-Accuracy (before): 0.9852
-Labels: (0, 1) 5.175235986709595
-Accuracy (before): 0.9867
-Labels: (0, 1) 5.376180648803711
-Accuracy (before): 0.9897
-Labels: (0, 1) 5.1790313720703125
-Accuracy (before): 0.9863
-Labels: (0, 1) 5.170628070831299
-Accuracy (before): 0.9879
-Labels: (0, 1) 5.395248651504517
-Accuracy (before): 0.9891
-Labels: (0, 1) 5.1292197704315186
-Accuracy (before): 0.9904
-Labels: (0, 1) 5.311418056488037
-Accuracy (before): 0.9855
-Labels: (0, 1) 5.118349313735962
-Accuracy (before): 0.9862
-Labels: (0, 1) 5.151752710342407
-Accuracy (before): 0.988
-Labels: (0, 1) 5.393887042999268
-Accuracy (before): 0.9857
-Labels: (0, 1) 5.148584842681885
-Accuracy (before): 0.9883
-Labels: (0, 1) 5.3994855880737305
-Accuracy (before): 0.9864
-Labels: (0, 1) 5.157709836959839
-Accuracy (before): 0.9898
-Labels: (0, 1) 5.1448118686676025
-Accuracy (before): 0.9885
-Labels: (0, 1) 5.367384195327759
-Accuracy (before): 0.9872
-Labels: (0, 1) 5.1479408740997314
-Accuracy (before): 0.9867
-Labels: (0, 1) 5.15681529045105
-Accuracy (before): 0.9868
-Labels: (0, 1) 5.393406629562378
-Accuracy (before): 0.9874
-Labels: (0, 1) 5.160111904144287
-Accuracy (before): 0.9885
-Labels: (0, 1) 5.180116415023804
-Accuracy (before): 0.9865
-Labels: (0, 1) 5.429894924163818
-Accuracy (before): 0.9868
-Labels: (0, 1) 5.180680513381958
-Accuracy (before): 0.9887
-Labels: (0, 1) 5.1632819175720215
-Accuracy (before): 0.9874
-Labels: (0, 1) 5.3964598178863525
-Accuracy (before): 0.9884
-Labels: (0, 1) 5.141763210296631
-Accuracy (before): 0.9881
-Labels: (0, 1) 5.171867370605469
-Accuracy (before): 0.9852
-Labels: (0, 1) 5.494173526763916
-Accuracy (before): 0.9873
-Labels: (0, 1) 5.158579349517822
-Accuracy (before): 0.989
-Labels: (0, 1) 5.1712963581085205
-Accuracy (before): 0.9867
-Labels: (0, 1) 5.174380779266357
-Accuracy (before): 0.9876
-Labels: (0, 1) 5.471037864685059
-
-Accuracy (before): 0.9856
-Labels: (0, 1) 8.004935503005981
-Accuracy (before): 0.9873
-Labels: (0, 1) 5.176345348358154
-Accuracy (before): 0.9874
-Labels: (0, 1) 4.978238582611084
-Accuracy (before): 0.9867
-Labels: (0, 1) 5.22968053817749
-Accuracy (before): 0.985
-Labels: (0, 1) 4.946245431900024
-Accuracy (before): 0.9862
-Labels: (0, 1) 5.186552286148071
-Accuracy (before): 0.9875
-Labels: (0, 1) 4.9805991649627686
-Accuracy (before): 0.9862
-Labels: (0, 1) 5.173759460449219
-Accuracy (before): 0.9874
-Labels: (0, 1) 5.02709174156189
-Accuracy (before): 0.9867
-Labels: (0, 1) 4.997023344039917
-Accuracy (before): 0.9889
-Labels: (0, 1) 5.296101808547974
-Accuracy (before): 0.9897
-Labels: (0, 1) 5.011079788208008
-Accuracy (before): 0.9857
-Labels: (0, 1) 5.194019556045532
-Accuracy (before): 0.9873
-Labels: (0, 1) 5.031242370605469
-Accuracy (before): 0.9852
-Labels: (0, 1) 5.032988548278809
-
-Accuracy (before): 0.9864
-Labels: (0, 1) 7.86867094039917
-Accuracy (before): 0.9864
-Labels: (0, 1) 4.973055362701416
-Accuracy (before): 0.9887
-Labels: (0, 1) 4.8224828243255615
-Accuracy (before): 0.9882
-Labels: (0, 1) 4.995975971221924
-Accuracy (before): 0.9886
-Labels: (0, 1) 4.85450291633606
-Accuracy (before): 0.9863
-Labels: (0, 1) 4.857435464859009
-Accuracy (before): 0.9888
-Labels: (0, 1) 5.057009220123291
-Accuracy (before): 0.9898
-Labels: (0, 1) 4.859055042266846
-Accuracy (before): 0.9892
-Labels: (0, 1) 5.094299077987671
-Accuracy (before): 0.9864
-Labels: (0, 1) 4.896596431732178
-Accuracy (before): 0.9863
-Labels: (0, 1) 5.079256534576416
-Accuracy (before): 0.9861
-Labels: (0, 1) 4.823234796524048
-Accuracy (before): 0.989
-Labels: (0, 1) 5.053175687789917
-Accuracy (before): 0.9898
-Labels: (0, 1) 4.88254451751709
-Accuracy (before): 0.988
-Labels: (0, 1) 5.049074649810791
-Accuracy (before): 0.9886
-Labels: (0, 1) 4.809010744094849
-Accuracy (before): 0.99
-Labels: (0, 1) 4.850293397903442
-Accuracy (before): 0.9885
-Labels: (0, 1) 5.082134246826172
-Accuracy (before): 0.9868
-Labels: (0, 1) 4.862847805023193
-
-20 epochs
-Accuracy (before): 0.9897
-Labels: (0, 1) 11.62057638168335
-Accuracy (before): 0.9878
-Labels: (0, 1) 8.864027500152588
-Accuracy (before): 0.9887
-Labels: (0, 1) 8.722341299057007
-Accuracy (before): 0.9895
-Labels: (0, 1) 8.95357894897461
-Accuracy (before): 0.9891
-Labels: (0, 1) 8.682265758514404
-Accuracy (before): 0.9906
-Labels: (0, 1) 8.802596092224121
-Accuracy (before): 0.9849
-Labels: (0, 1) 8.95151424407959
-Accuracy (before): 0.9887
-Labels: (0, 1) 8.711518049240112
-Accuracy (before): 0.9894
-Labels: (0, 1) 8.837408781051636
-Accuracy (before): 0.9898
-Labels: (0, 1) 8.798433303833008
-Accuracy (before): 0.9874
-Labels: (0, 1) 8.951802253723145
-Accuracy (before): 0.9892
-Labels: (0, 1) 8.886836051940918
-Accuracy (before): 0.989
-Labels: (0, 1) 8.974281072616577
-Accuracy (before): 0.9895
-Labels: (0, 1) 8.783951044082642
-Accuracy (before): 0.9885
-Labels: (0, 1) 9.096580982208252
-Accuracy (before): 0.9896
-Labels: (0, 1) 8.900806665420532
-Accuracy (before): 0.9895
-Labels: (0, 1) 8.708067417144775
-Accuracy (before): 0.9889
-Labels: (0, 1) 8.931803703308105
-Accuracy (before): 0.9887
-Labels: (0, 1) 8.658122777938843
-Accuracy (before): 0.9898
-Labels: (0, 1) 9.008995771408081
-Accuracy (before): 0.9906
-Labels: (0, 1) 8.808040618896484
-Accuracy (before): 0.9882
-Labels: (0, 1) 8.645559310913086
-Accuracy (before): 0.9869
-Labels: (0, 1) 9.147177934646606
-Accuracy (before): 0.9867
-Labels: (0, 1) 8.654406785964966
-Accuracy (before): 0.9884
-Labels: (0, 1) 8.716191053390503
-Accuracy (before): 0.9915
-Labels: (0, 1) 8.947273969650269
-Accuracy (before): 0.9886
-Labels: (0, 1) 8.788178443908691
-Accuracy (before): 0.988
-Labels: (0, 1) 8.811131000518799
-Accuracy (before): 0.9884
-Labels: (0, 1) 9.050355434417725
-Accuracy (before): 0.9906
-Labels: (0, 1) 8.864963293075562
-Accuracy (before): 0.9898
-Labels: (0, 1) 8.780693531036377
-Accuracy (before): 0.9899
-Labels: (0, 1) 9.112504482269287
-Accuracy (before): 0.9881
-Labels: (0, 1) 8.792990922927856
-Accuracy (before): 0.9872
-Labels: (0, 1) 8.763516426086426
-Accuracy (before): 0.9896
-Labels: (0, 1) 9.195260524749756
-Accuracy (before): 0.988
-Labels: (0, 1) 8.751165866851807
-
-
-Accuracy (before): 0.9879
-Labels: (0, 1) 8.75429630279541
-Accuracy (before): 0.9906
-Labels: (0, 1) 5.962085008621216
-Accuracy (before): 0.989
-Labels: (0, 1) 5.80789041519165
-Accuracy (before): 0.9898
-Labels: (0, 1) 6.028160095214844
-Accuracy (before): 0.9874
-Labels: (0, 1) 5.801422119140625
-Accuracy (before): 0.9879
-Labels: (0, 1) 5.8870744705200195
-Accuracy (before): 0.9886
-Labels: (0, 1) 5.785288333892822
-Accuracy (before): 0.9864
-Labels: (0, 1) 5.969362497329712
-Accuracy (before): 0.9899
-Labels: (0, 1) 5.830657482147217
-Accuracy (before): 0.9883
-Labels: (0, 1) 5.835150718688965
-Accuracy (before): 0.9883
-Labels: (0, 1) 5.823326110839844
-Accuracy (before): 0.9871
-Labels: (0, 1) 6.148024559020996
-Accuracy (before): 0.9894
-Labels: (0, 1) 5.748802661895752
-Accuracy (before): 0.9893
-Labels: (0, 1) 5.989191055297852
-Accuracy (before): 0.9893
-Labels: (0, 1) 5.744527816772461
-Accuracy (before): 0.9876
-Labels: (0, 1) 6.041539430618286
-Accuracy (before): 0.9881
-Labels: (0, 1) 5.774715900421143
-Accuracy (before): 0.9895
-Labels: (0, 1) 5.981880187988281
-Accuracy (before): 0.9886
-Labels: (0, 1) 5.663818597793579
-Accuracy (before): 0.9895
-Labels: (0, 1) 5.964077949523926
-Accuracy (before): 0.9877
-Labels: (0, 1) 5.6771559715271
-Accuracy (before): 0.988
-Labels: (0, 1) 5.711172819137573
-Accuracy (before): 0.9892
-Labels: (0, 1) 5.933774948120117
-Accuracy (before): 0.9889
-Labels: (0, 1) 5.82380747795105
-Accuracy (before): 0.9879
-Labels: (0, 1) 6.170440435409546
-Accuracy (before): 0.9887
-Labels: (0, 1) 5.78818678855896
-Accuracy (before): 0.9877
-Labels: (0, 1) 5.689253568649292
-Accuracy (before): 0.9888
-Labels: (0, 1) 5.919121742248535
-Accuracy (before): 0.988
-Labels: (0, 1) 5.738738059997559
-Accuracy (before): 0.9853
-Labels: (0, 1) 5.770277500152588
-Accuracy (before): 0.9905
-Labels: (0, 1) 6.030071973800659
-Accuracy (before): 0.9891
-Labels: (0, 1) 5.758869886398315
-Accuracy (before): 0.9887
-Labels: (0, 1) 5.6862688064575195
-Accuracy (before): 0.9892
-Labels: (0, 1) 6.025606632232666
-Accuracy (before): 0.9862
-Labels: (0, 1) 5.674696683883667
-Accuracy (before): 0.9893
-Labels: (0, 1) 5.7290074825286865
-Accuracy (before): 0.9899
-Labels: (0, 1) 6.096736669540405
-Accuracy (before): 0.9897
-Labels: (0, 1) 5.733764886856079
-Accuracy (before): 0.9885
-Labels: (0, 1) 5.69891095161438
-Accuracy (before): 0.9874
-Labels: (0, 1) 6.036522388458252
-Accuracy (before): 0.9904
-Labels: (0, 1) 5.677320241928101
-Accuracy (before): 0.9893
-Labels: (0, 1) 5.777416944503784
-Accuracy (before): 0.9899
-Labels: (0, 1) 5.775899887084961
-Accuracy (before): 0.9892
-Labels: (0, 1) 6.069116830825806
-Accuracy (before): 0.9876
-Labels: (0, 1) 5.645358324050903
-Accuracy (before): 0.9872
-Labels: (0, 1) 5.661789655685425
-Accuracy (before): 0.9895
-Labels: (0, 1) 5.689462661743164
-
-
-dropout on conv, 20 epochs
-Accuracy (before): 0.989
-Labels: (0, 1) 13.668142557144165
-Accuracy (before): 0.9905
-Labels: (0, 1) 10.858819961547852
-Accuracy (before): 0.9892
-Labels: (0, 1) 10.668429613113403
-Accuracy (before): 0.9894
-Labels: (0, 1) 10.909838676452637
-Accuracy (before): 0.9873
-Labels: (0, 1) 10.710777521133423
-Accuracy (before): 0.9875
-Labels: (0, 1) 10.829996824264526
-Accuracy (before): 0.9884
-Labels: (0, 1) 10.634070634841919
-Accuracy (before): 0.9895
-Labels: (0, 1) 10.876943826675415
-Accuracy (before): 0.9885
-Labels: (0, 1) 10.7307608127594
-Accuracy (before): 0.9887
-Labels: (0, 1) 10.978687047958374
-Accuracy (before): 0.9907
-Labels: (0, 1) 10.768848419189453
-Accuracy (before): 0.99
-Labels: (0, 1) 10.99557876586914
-Accuracy (before): 0.9901
-Labels: (0, 1) 10.708851337432861
-Accuracy (before): 0.9879
-Labels: (0, 1) 10.899682760238647
-Accuracy (before): 0.99
-Labels: (0, 1) 10.677603006362915
-Accuracy (before): 0.9911
-Labels: (0, 1) 10.912508726119995
-Accuracy (before): 0.9891
-Labels: (0, 1) 10.800474882125854
-Accuracy (before): 0.9901
-Labels: (0, 1) 10.927984237670898
-Accuracy (before): 0.9895
-Labels: (0, 1) 10.754019260406494
-Accuracy (before): 0.9892
-Labels: (0, 1) 10.956046104431152
-Accuracy (before): 0.9869
-Labels: (0, 1) 10.775665998458862
-Accuracy (before): 0.9892
-Labels: (0, 1) 10.71708083152771
-
-
-Accuracy (before): 0.9912
-Accuracy (after): 0.9898
-Labels: (0, 1) 14.621463775634766
-Accuracy (before): 0.9878
-Accuracy (after): 0.9864
-Labels: (0, 1) 11.754098176956177
-Accuracy (before): 0.9888
-Accuracy (after): 0.9874
-Labels: (0, 1) 11.638787031173706
-Accuracy (before): 0.9858
-Accuracy (after): 0.9892
-Labels: (0, 1) 11.897607803344727
-Accuracy (before): 0.9862
-Accuracy (after): 0.9884
-Labels: (0, 1) 11.860872507095337
-Accuracy (before): 0.9883
-Accuracy (after): 0.9887
-Labels: (0, 1) 11.693619728088379
-Accuracy (before): 0.9881
-Accuracy (after): 0.9894
-Labels: (0, 1) 11.870906591415405
-Accuracy (before): 0.9883
-Accuracy (after): 0.9874
-Labels: (0, 1) 11.686219692230225
-Accuracy (before): 0.9884
 Accuracy (after): 0.9896
-Labels: (0, 1) 11.911176919937134
-Accuracy (before): 0.988
-Accuracy (after): 0.9904
-Labels: (0, 1) 11.678521871566772
-Accuracy (before): 0.9887
-Accuracy (after): 0.9886
-Labels: (0, 1) 11.869518995285034
-Accuracy (before): 0.9884
-Accuracy (after): 0.9875
-Labels: (0, 1) 11.697788000106812
-Accuracy (before): 0.9886
-Accuracy (after): 0.9896
-Labels: (0, 1) 11.939337730407715
-Accuracy (before): 0.9882
-Accuracy (after): 0.9897
-Labels: (0, 1) 11.677602529525757
-Accuracy (before): 0.9871
-Accuracy (after): 0.9864
-Labels: (0, 1) 11.720942735671997
-Accuracy (before): 0.9899
-Accuracy (after): 0.9907
-Labels: (0, 1) 13.908252239227295
-Accuracy (before): 0.9865
-Accuracy (after): 0.9904
-Labels: (0, 1) 11.067520380020142
-Accuracy (before): 0.989
-Accuracy (after): 0.989
-Labels: (0, 1) 10.899360656738281
-Accuracy (before): 0.989
-Accuracy (after): 0.9898
-Labels: (0, 1) 11.137230157852173
-Accuracy (before): 0.988
-Accuracy (after): 0.9893
-Labels: (0, 1) 11.108495235443115
-Accuracy (before): 0.9884
-Accuracy (after): 0.9902
-Labels: (0, 1) 11.030264139175415
-Accuracy (before): 0.9872
-Accuracy (after): 0.9884
-Labels: (0, 1) 11.256014823913574
-Accuracy (before): 0.991
-Accuracy (after): 0.9904
-Labels: (0, 1) 11.007684469223022
-Accuracy (before): 0.9895
-Accuracy (after): 0.9893
-Labels: (0, 1) 11.211215734481812
-Accuracy (before): 0.9816
-Accuracy (after): 0.9836
-Labels: (0, 1) 10.892073154449463
-Accuracy (before): 0.9883
-Accuracy (after): 0.9902
-Labels: (0, 2) 11.225912094116211
-Accuracy (before): 0.9858
-Accuracy (after): 0.987
-Labels: (0, 2) 11.052300691604614
-Accuracy (before): 0.991
-Accuracy (after): 0.9904
-Labels: (0, 2) 11.29334282875061
-Accuracy (before): 0.9885
-Accuracy (after): 0.9897
-Labels: (0, 2) 11.054380416870117
-Accuracy (before): 0.9876
-Accuracy (after): 0.991
-Labels: (0, 2) 11.150596380233765
-Accuracy (before): 0.9895
-Accuracy (after): 0.99
-Labels: (0, 2) 11.306127786636353
-Accuracy (before): 0.9874
-Accuracy (after): 0.9893
-Labels: (0, 2) 11.078842163085938
-Accuracy (before): 0.9901
-Accuracy (after): 0.9904
-Labels: (0, 2) 11.300808429718018
-Accuracy (before): 0.9876
-Accuracy (after): 0.9875
-Labels: (0, 2) 10.998458862304688
-Accuracy (before): 0.9894
-Accuracy (after): 0.9903
-Labels: (0, 2) 11.423357725143433
-Accuracy (before): 0.9882
-Accuracy (after): 0.9907
-Labels: (0, 3) 11.094330072402954
-Accuracy (before): 0.9888
-Accuracy (after): 0.9901
-Labels: (0, 3) 11.097281694412231
-Accuracy (before): 0.9896
-Accuracy (after): 0.9929
-Labels: (0, 3) 11.266902685165405
-Accuracy (before): 0.988
-Accuracy (after): 0.9887
-Labels: (0, 3) 10.988481521606445
-Accuracy (before): 0.9908
-Accuracy (after): 0.9906
-Labels: (0, 3) 10.997637748718262
-Accuracy (before): 0.9877
-Accuracy (after): 0.9862
-Labels: (0, 3) 11.334376096725464
-Accuracy (before): 0.9882
-Accuracy (after): 0.9899
-Labels: (0, 3) 11.077222108840942
-Accuracy (before): 0.9893
-Accuracy (after): 0.9888
-Labels: (0, 1) 13.811362981796265
-Accuracy (before): 0.9888
-Accuracy (after): 0.9886
-Labels: (0, 1) 10.906083822250366
-Accuracy (before): 0.9859
-Accuracy (after): 0.9872
-Labels: (0, 1) 10.707180738449097
-Accuracy (before): 0.9879
-Accuracy (after): 0.987
-
-Labels: (0, 1) 13.845173835754395
-Accuracy (before): 0.9875
-Accuracy (after): 0.9818
-Labels: (0, 1) 10.955876111984253
-Accuracy (before): 0.9882
-Accuracy (after): 0.9891
-Labels: (0, 1) 11.068244934082031
-Accuracy (before): 0.9863
-Accuracy (after): 0.9862
-Labels: (0, 1) 11.000602722167969
-Accuracy (before): 0.9888
-Accuracy (after): 0.9886
-Labels: (0, 1) 10.93585205078125
-Accuracy (before): 0.9869
-Accuracy (after): 0.9845
-Labels: (0, 1) 11.266421556472778
-Accuracy (before): 0.9893
-Accuracy (after): 0.9878
-Labels: (0, 1) 10.932476043701172
-Accuracy (before): 0.9888
-Accuracy (after): 0.9874
-Labels: (0, 1) 11.166115283966064
-Accuracy (before): 0.9896
-Accuracy (after): 0.9899
-Labels: (0, 1) 10.983605861663818
-Accuracy (before): 0.9898
-Accuracy (after): 0.9886
-Labels: (0, 2) 11.13450813293457
-Accuracy (before): 0.989
-Accuracy (after): 0.9627
-Labels: (0, 2) 10.916307926177979
-Accuracy (before): 0.9905
-Accuracy (after): 0.9851
-Labels: (0, 2) 11.133699655532837
-Accuracy (before): 0.9886
-Accuracy (after): 0.9892
-Labels: (0, 2) 10.964797735214233
-Accuracy (before): 0.9876
-Accuracy (after): 0.9878
-Labels: (0, 2) 10.996188879013062
-Accuracy (before): 0.9892
-Accuracy (after): 0.9866
-Labels: (0, 2) 11.18212080001831
-Accuracy (before): 0.9856
-Accuracy (after): 0.9877
-Labels: (0, 2) 11.002664566040039
-Accuracy (before): 0.9891
-Accuracy (after): 0.9888
-Labels: (0, 2) 11.412384033203125
-Accuracy (before): 0.9901
-Accuracy (after): 0.9884
-Labels: (0, 2) 10.958343744277954
-Accuracy (before): 0.9888
-Accuracy (after): 0.9909
-Labels: (0, 2) 11.20025372505188
-Accuracy (before): 0.9895
+Labels: (0, 1) 4.041629076004028
+Accuracy (before): 0.99
 Accuracy (after): 0.9883
-Labels: (0, 3) 11.005248308181763
-Accuracy (before): 0.987
-Accuracy (after): 0.9872
-Labels: (0, 3) 10.963732719421387
-Accuracy (before): 0.989
-Accuracy (after): 0.9891
-Labels: (0, 3) 11.26010251045227
-Accuracy (before): 0.9886
-Accuracy (after): 0.9888
-Labels: (0, 3) 10.992211818695068
-Accuracy (before): 0.9889
-Accuracy (after): 0.9863
-Labels: (0, 3) 10.949861526489258
-Accuracy (before): 0.9872
-Accuracy (after): 0.9884
-Labels: (0, 3) 11.273568868637085
-Accuracy (before): 0.9893
-Accuracy (after): 0.988
-Labels: (0, 3) 10.968866348266602
-Accuracy (before): 0.9881
-Accuracy (after): 0.9868
-Labels: (0, 3) 11.153380393981934
-Accuracy (before): 0.9893
-Accuracy (after): 0.9879
-Labels: (0, 3) 11.028750658035278
-Accuracy (before): 0.9896
-Accuracy (after): 0.9881
-Labels: (0, 3) 10.991966009140015
-Accuracy (before): 0.9889
-Accuracy (after): 0.9861
-Labels: (0, 4) 10.997935771942139
-Accuracy (before): 0.9904
-Accuracy (after): 0.9874
-Labels: (0, 4) 11.359517097473145
-Accuracy (before): 0.988
-Accuracy (after): 0.9876
-Labels: (0, 4) 11.053296327590942
-Accuracy (before): 0.989
-Accuracy (after): 0.9884
-Labels: (0, 4) 10.995839595794678
-Accuracy (before): 0.986
-Accuracy (after): 0.9878
-Labels: (0, 4) 11.303258180618286
-Accuracy (before): 0.9888
-Accuracy (after): 0.9902
-Labels: (0, 4) 10.949646234512329
-Accuracy (before): 0.9888
-Accuracy (after): 0.9869
-Labels: (0, 4) 10.964062213897705
-Accuracy (before): 0.9889
-Accuracy (after): 0.9896
-Labels: (0, 4) 11.3287193775177
-Accuracy (before): 0.9886
-Accuracy (after): 0.9873
-Labels: (0, 4) 10.98552393913269
-Accuracy (before): 0.9906
-Accuracy (after): 0.989
-Labels: (0, 4) 10.977858781814575
-Accuracy (before): 0.9864
-Accuracy (after): 0.9864
-Labels: (0, 5) 11.040991067886353
-Accuracy (before): 0.9895
-Accuracy (after): 0.9875
-Labels: (0, 5) 11.414659261703491
-Accuracy (before): 0.9869
-Accuracy (after): 0.9702
-Labels: (0, 5) 11.01660442352295
-Accuracy (before): 0.9879
-Accuracy (after): 0.9849
-Labels: (0, 5) 10.998995542526245
-Accuracy (before): 0.9894
-Accuracy (after): 0.9873
-Labels: (0, 5) 11.261435747146606
-Accuracy (before): 0.9863
-Accuracy (after): 0.9876
-Labels: (0, 5) 11.024826765060425
-Accuracy (before): 0.9893
-Accuracy (after): 0.9878
-Labels: (0, 5) 11.024468660354614
-Accuracy (before): 0.9851
-Accuracy (after): 0.9862
-Labels: (0, 5) 10.950908899307251
-Accuracy (before): 0.9876
-Accuracy (after): 0.9385
-Labels: (0, 5) 10.93661117553711
-Accuracy (before): 0.9875
-Accuracy (after): 0.9892
-Labels: (0, 5) 11.52263879776001
-Accuracy (before): 0.9892
-Accuracy (after): 0.9863
-Labels: (0, 6) 11.050001859664917
-Accuracy (before): 0.9893
-Accuracy (after): 0.9896
-Labels: (0, 6) 10.936257600784302
-Accuracy (before): 0.9884
-Accuracy (after): 0.9899
-Labels: (0, 6) 11.054233312606812
-Accuracy (before): 0.9903
-Accuracy (after): 0.9903
-Labels: (0, 6) 11.491346597671509
-Accuracy (before): 0.9883
-Accuracy (after): 0.9856
-Labels: (0, 6) 10.9918532371521
-Accuracy (before): 0.9893
-Accuracy (after): 0.9876
-Labels: (0, 6) 10.915840864181519
-Accuracy (before): 0.9878
-Accuracy (after): 0.9857
-Labels: (0, 6) 10.881803750991821
-Accuracy (before): 0.9894
-Accuracy (after): 0.9849
-Labels: (0, 6) 11.386887788772583
-Accuracy (before): 0.9886
+Labels: (0, 1) 4.0405755043029785
+Accuracy (before): 0.99
+Accuracy (after): 0.9883
+Labels: (0, 1) 4.162156105041504
+Accuracy (before): 0.99
+Accuracy (after): 0.9867
+Labels: (0, 1) 4.024661540985107
+Accuracy (before): 0.99
 Accuracy (after): 0.987
-Labels: (0, 6) 10.870967864990234
-Accuracy (before): 0.9899
+Labels: (0, 1) 4.032964468002319
+Accuracy (before): 0.99
+Accuracy (after): 0.9864
+Labels: (0, 1) 4.039274215698242
+Accuracy (before): 0.99
+Accuracy (after): 0.986
+Labels: (0, 1) 3.974452257156372
+Accuracy (before): 0.99
+Accuracy (after): 0.9863
+Labels: (0, 1) 4.01715612411499
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 1) 4.04512619972229
+Accuracy (before): 0.99
+Accuracy (after): 0.9887
+Labels: (0, 1) 4.064083099365234
+Accuracy (before): 0.99
+Accuracy (after): 0.9881
+Labels: (0, 1) 4.1804187297821045
+Accuracy (before): 0.99
 Accuracy (after): 0.9873
-Labels: (0, 6) 10.945555686950684
-Accuracy (before): 0.9891
-Accuracy (after): 0.9899
-Labels: (0, 7) 10.966417074203491
-Accuracy (before): 0.9894
-Accuracy (after): 0.9842
-Labels: (0, 7) 10.826311826705933
-Accuracy (before): 0.9879
+Labels: (0, 1) 4.1442437171936035
+Accuracy (before): 0.99
+Accuracy (after): 0.9868
+Labels: (0, 1) 4.08046293258667
+Accuracy (before): 0.99
+Accuracy (after): 0.9866
+Labels: (0, 1) 4.0990424156188965
+Accuracy (before): 0.99
+Accuracy (after): 0.9876
+Labels: (0, 1) 4.057749271392822
+Accuracy (before): 0.99
+Accuracy (after): 0.9873
+Labels: (0, 2) 4.10134744644165
+Accuracy (before): 0.99
+Accuracy (after): 0.9848
+Labels: (0, 2) 4.09062647819519
+Accuracy (before): 0.99
+Accuracy (after): 0.987
+Labels: (0, 2) 4.067850828170776
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 2) 4.077820539474487
+Accuracy (before): 0.99
 Accuracy (after): 0.9832
-Labels: (0, 7) 11.450989007949829
-Accuracy (before): 0.9871
-Accuracy (after): 0.9862
-Labels: (0, 7) 10.907546520233154
-Accuracy (before): 0.9901
-Accuracy (after): 0.989
-Labels: (0, 7) 10.88423466682434
-Accuracy (before): 0.986
-Accuracy (after): 0.985
-Labels: (0, 7) 10.775459289550781
-Accuracy (before): 0.9905
-Accuracy (after): 0.9895
-Labels: (0, 7) 10.802723407745361
-Accuracy (before): 0.989
-Accuracy (after): 0.9878
-Labels: (0, 7) 11.253026485443115
-Accuracy (before): 0.9881
-Accuracy (after): 0.9886
-Labels: (0, 7) 10.761956214904785
-Accuracy (before): 0.9908
-Accuracy (after): 0.9891
-Labels: (0, 7) 10.647111892700195
-Accuracy (before): 0.9883
-Accuracy (after): 0.9872
-Labels: (0, 8) 10.772945880889893
-Accuracy (before): 0.9882
-Accuracy (after): 0.9864
-Labels: (0, 8) 10.70719051361084
-Accuracy (before): 0.9861
-Accuracy (after): 0.9844
-Labels: (0, 8) 11.445151567459106
-Accuracy (before): 0.989
-Accuracy (after): 0.9861
-Labels: (0, 8) 10.821895122528076
-Accuracy (before): 0.9889
-Accuracy (after): 0.9845
-Labels: (0, 8) 10.808250427246094
-Accuracy (before): 0.9897
-Accuracy (after): 0.9862
-Labels: (0, 8) 10.769062757492065
-Accuracy (before): 0.9896
-Accuracy (after): 0.9866
-Labels: (0, 8) 10.821025848388672
-Accuracy (before): 0.9879
-Accuracy (after): 0.9755
-Labels: (0, 8) 11.402201890945435
-Accuracy (before): 0.9876
-Accuracy (after): 0.9885
-Labels: (0, 8) 10.964354276657104
-Accuracy (before): 0.985
-Accuracy (after): 0.9177
-Labels: (0, 8) 10.892585277557373
-Accuracy (before): 0.9895
-Accuracy (after): 0.9905
-Labels: (0, 9) 10.739764928817749
-Accuracy (before): 0.9877
-Accuracy (after): 0.9871
-Labels: (0, 9) 10.877476215362549
-Accuracy (before): 0.9883
-Accuracy (after): 0.9878
-Labels: (0, 9) 10.78850507736206
-Accuracy (before): 0.987
-Accuracy (after): 0.9885
-Labels: (0, 9) 11.440843343734741
-Accuracy (before): 0.9885
-Accuracy (after): 0.9884
-Labels: (0, 9) 10.876626014709473
-Accuracy (before): 0.9884
-Accuracy (after): 0.989
-Labels: (0, 9) 10.53665804862976
-Accuracy (before): 0.9893
-Accuracy (after): 0.9912
-Labels: (0, 9) 10.835872650146484
-Accuracy (before): 0.9875
-Accuracy (after): 0.9896
-Labels: (0, 9) 10.5998375415802
-Accuracy (before): 0.9874
-Accuracy (after): 0.9873
-Labels: (0, 9) 10.685950517654419
-Accuracy (before): 0.9897
-Accuracy (after): 0.99
-Labels: (0, 9) 11.34797978401184
-Accuracy (before): 0.9872
-Accuracy (after): 0.9885
-Labels: (1, 2) 10.896851778030396
-Accuracy (before): 0.9866
-Accuracy (after): 0.9882
-Labels: (1, 2) 10.833106279373169
-Accuracy (before): 0.9894
-Accuracy (after): 0.9888
-Labels: (1, 2) 10.742989778518677
-Accuracy (before): 0.9863
-Accuracy (after): 0.988
-Labels: (1, 2) 10.849870681762695
-Accuracy (before): 0.989
-Accuracy (after): 0.9895
-Labels: (1, 2) 10.776429891586304
-Accuracy (before): 0.9899
-Accuracy (after): 0.99
-Labels: (1, 2) 11.34232783317566
-Accuracy (before): 0.9908
-Accuracy (after): 0.9873
-Labels: (1, 2) 10.96265721321106
-Accuracy (before): 0.9851
-Accuracy (after): 0.9845
-Labels: (1, 2) 10.884371280670166
-Accuracy (before): 0.9882
-Accuracy (after): 0.988
-Labels: (1, 2) 10.728604793548584
-Accuracy (before): 0.9893
-Accuracy (after): 0.9882
-Labels: (1, 2) 10.790592670440674
-Accuracy (before): 0.987
-Accuracy (after): 0.9876
-Labels: (1, 3) 10.706610202789307
-Accuracy (before): 0.9887
-Accuracy (after): 0.9855
-Labels: (1, 3) 10.655029535293579
-Accuracy (before): 0.9882
-Accuracy (after): 0.9898
-Labels: (1, 3) 11.560399532318115
-Accuracy (before): 0.9875
-Accuracy (after): 0.9868
-Labels: (1, 3) 10.815304040908813
-Accuracy (before): 0.9906
-Accuracy (after): 0.9909
-Labels: (1, 3) 10.855448484420776
-Accuracy (before): 0.9868
-Accuracy (after): 0.9875
-Labels: (1, 3) 10.731323003768921
-Accuracy (before): 0.9825
-Accuracy (after): 0.9859
-Labels: (1, 3) 10.535757541656494
-Accuracy (before): 0.9904
-Accuracy (after): 0.9879
-Labels: (1, 3) 10.663243293762207
-Accuracy (before): 0.9897
-Accuracy (after): 0.9895
-Labels: (1, 3) 10.818518161773682
-Accuracy (before): 0.9875
-Accuracy (after): 0.9301
-Labels: (1, 3) 11.541648149490356
-Accuracy (before): 0.9875
-Accuracy (after): 0.9855
-Labels: (1, 4) 10.78409719467163
-Accuracy (before): 0.9896
-Accuracy (after): 0.9891
-Labels: (1, 4) 10.92313551902771
-Accuracy (before): 0.9878
-Accuracy (after): 0.9868
-Labels: (1, 4) 10.921579122543335
-Accuracy (before): 0.9893
-Accuracy (after): 0.9777
-Labels: (1, 4) 10.968110084533691
-Accuracy (before): 0.9881
-Accuracy (after): 0.9893
-Labels: (1, 4) 11.009958267211914
-Accuracy (before): 0.9885
-Accuracy (after): 0.9803
-Labels: (1, 4) 10.871848344802856
-Accuracy (before): 0.9878
-Accuracy (after): 0.9902
-Labels: (1, 4) 11.689709663391113
-Accuracy (before): 0.9907
-Accuracy (after): 0.9884
-Labels: (1, 4) 11.019143104553223
-
-
-Accuracy (before): 0.9917
-Accuracy (after): 0.9893
-Labels: (0, 1) 5.062342643737793
-Accuracy (before): 0.9917
-Accuracy (after): 0.9811
-Labels: (0, 1) 5.004538059234619
-Accuracy (before): 0.9917
-Accuracy (after): 0.988
-Labels: (0, 1) 5.069072484970093
-Accuracy (before): 0.9917
-Accuracy (after): 0.9895
-Labels: (0, 1) 5.067875385284424
-Accuracy (before): 0.9917
-Accuracy (after): 0.9871
-Labels: (0, 1) 4.976077079772949
-Accuracy (before): 0.9917
-Accuracy (after): 0.9892
-Labels: (0, 1) 5.023195028305054
-Accuracy (before): 0.9917
-Accuracy (after): 0.9885
-Labels: (0, 1) 4.966764688491821
-Accuracy (before): 0.9917
-Accuracy (after): 0.9879
-Labels: (0, 1) 5.035160064697266
-Accuracy (before): 0.9917
-Accuracy (after): 0.9884
-Labels: (0, 1) 5.047796249389648
-Accuracy (before): 0.9917
-Accuracy (after): 0.9872
-Labels: (0, 1) 4.997761964797974
-Accuracy (before): 0.987
-Accuracy (after): 0.9847
-Labels: (0, 2) 4.940460205078125
-Accuracy (before): 0.987
-Accuracy (after): 0.8931
-Labels: (0, 2) 5.080596446990967
-Accuracy (before): 0.987
-Accuracy (after): 0.9877
-Labels: (0, 2) 5.124199628829956
-Accuracy (before): 0.987
-Accuracy (after): 0.9847
-Labels: (0, 2) 4.97173285484314
-Accuracy (before): 0.987
-Accuracy (after): 0.9827
-Labels: (0, 2) 4.978086471557617
-Accuracy (before): 0.987
-Accuracy (after): 0.9829
-Labels: (0, 2) 5.009667873382568
-Accuracy (before): 0.987
-Accuracy (after): 0.9853
-Labels: (0, 2) 5.023401737213135
-Accuracy (before): 0.987
-Accuracy (after): 0.9857
-Labels: (0, 2) 5.069179058074951
-Accuracy (before): 0.987
-Accuracy (after): 0.9862
-Labels: (0, 2) 5.026363372802734
-Accuracy (before): 0.987
-Accuracy (after): 0.987
-Labels: (0, 2) 4.943324327468872
-Accuracy (before): 0.9907
-Accuracy (after): 0.9862
-Labels: (0, 3) 5.102991819381714
-Accuracy (before): 0.9907
-Accuracy (after): 0.9836
-Labels: (0, 3) 5.082308053970337
-Accuracy (before): 0.9907
-Accuracy (after): 0.9861
-Labels: (0, 3) 5.0516517162323
-Accuracy (before): 0.9907
-Accuracy (after): 0.9861
-Labels: (0, 3) 5.042294025421143
-Accuracy (before): 0.9907
-Accuracy (after): 0.9875
-Labels: (0, 3) 5.102473735809326
-Accuracy (before): 0.9907
-Accuracy (after): 0.9844
-Labels: (0, 3) 5.108662843704224
-Accuracy (before): 0.9907
-Accuracy (after): 0.9875
-Labels: (0, 3) 5.039837837219238
-Accuracy (before): 0.9907
-Accuracy (after): 0.9894
-Labels: (0, 3) 5.136593818664551
-Accuracy (before): 0.9907
-Accuracy (after): 0.987
-Labels: (0, 3) 5.0860936641693115
-Accuracy (before): 0.9907
-Accuracy (after): 0.9869
-Labels: (0, 3) 5.014105319976807
-Accuracy (before): 0.9911
-Accuracy (after): 0.9882
-Labels: (0, 4) 4.980234622955322
-Accuracy (before): 0.9911
-Accuracy (after): 0.9881
-Labels: (0, 4) 5.053567409515381
-Accuracy (before): 0.9911
-Accuracy (after): 0.9854
-Labels: (0, 4) 5.0417609214782715
-Accuracy (before): 0.9911
-Accuracy (after): 0.9887
-Labels: (0, 4) 4.929230451583862
-Accuracy (before): 0.9911
-Accuracy (after): 0.9808
-Labels: (0, 4) 5.043339014053345
-Accuracy (before): 0.9911
-Accuracy (after): 0.9892
-Labels: (0, 4) 5.082129001617432
-Accuracy (before): 0.9911
-Accuracy (after): 0.9867
-Labels: (0, 4) 5.0703465938568115
-Accuracy (before): 0.9911
-Accuracy (after): 0.9867
-Labels: (0, 4) 5.083778619766235
-Accuracy (before): 0.9911
-Accuracy (after): 0.9875
-Labels: (0, 4) 5.040781259536743
-Accuracy (before): 0.9911
-Accuracy (after): 0.9775
-Labels: (0, 4) 5.067636251449585
-Accuracy (before): 0.9882
-Accuracy (after): 0.9861
-Labels: (0, 5) 5.115747928619385
-Accuracy (before): 0.9882
-Accuracy (after): 0.9869
-Labels: (0, 5) 5.044530153274536
-Accuracy (before): 0.9882
-Accuracy (after): 0.9818
-Labels: (0, 5) 5.150077819824219
-Accuracy (before): 0.9882
-Accuracy (after): 0.9869
-Labels: (0, 5) 5.1509363651275635
-Accuracy (before): 0.9882
-Accuracy (after): 0.9886
-Labels: (0, 5) 5.125966787338257
-Accuracy (before): 0.9882
-Accuracy (after): 0.989
-Labels: (0, 5) 5.083930253982544
-Accuracy (before): 0.9882
-Accuracy (after): 0.9848
-Labels: (0, 5) 5.134569883346558
-Accuracy (before): 0.9882
-Accuracy (after): 0.9793
-Labels: (0, 5) 5.11396050453186
-Accuracy (before): 0.9882
-Accuracy (after): 0.9851
-Labels: (0, 5) 5.1352410316467285
-Accuracy (before): 0.9882
-Accuracy (after): 0.9876
-Labels: (0, 5) 5.102336168289185
-Accuracy (before): 0.9915
-Accuracy (after): 0.9898
-Labels: (0, 6) 5.134780406951904
-Accuracy (before): 0.9915
-Accuracy (after): 0.9858
-Labels: (0, 6) 5.08250880241394
-Accuracy (before): 0.9915
-Accuracy (after): 0.9881
-Labels: (0, 6) 5.083369731903076
-Accuracy (before): 0.9915
-Accuracy (after): 0.9878
-Labels: (0, 6) 5.118199586868286
-
-
-Accuracy (before): 0.9881
-Accuracy (after): 0.9813
-Labels: (0, 1) 5.102300643920898
-Accuracy (before): 0.9881
-Accuracy (after): 0.9757
-Labels: (0, 1) 4.8834850788116455
-Accuracy (before): 0.9881
-Accuracy (after): 0.9705
-Labels: (0, 1) 4.8693366050720215
-Accuracy (before): 0.9881
-Accuracy (after): 0.9844
-Labels: (0, 1) 4.920319557189941
-Accuracy (before): 0.9881
-Accuracy (after): 0.907
-Labels: (0, 1) 4.884155988693237
-Accuracy (before): 0.9881
-Accuracy (after): 0.9819
-Labels: (0, 1) 4.881298303604126
-Accuracy (before): 0.9881
-Accuracy (after): 0.982
-Labels: (0, 1) 4.813000679016113
-Accuracy (before): 0.9881
-Accuracy (after): 0.9848
-Labels: (0, 1) 4.8665454387664795
-Accuracy (before): 0.9881
-Accuracy (after): 0.9834
-Labels: (0, 1) 4.935654163360596
-Accuracy (before): 0.9881
-Accuracy (after): 0.9842
-Labels: (0, 1) 4.818576812744141
-Accuracy (before): 0.9882
-Accuracy (after): 0.8923
-Labels: (0, 2) 4.82235312461853
-Accuracy (before): 0.9882
-Accuracy (after): 0.9876
-Labels: (0, 2) 4.888395547866821
-Accuracy (before): 0.9882
-Accuracy (after): 0.9866
-Labels: (0, 2) 4.849728345870972
-Accuracy (before): 0.9882
-Accuracy (after): 0.9882
-Labels: (0, 2) 4.822764873504639
-Accuracy (before): 0.9882
-Accuracy (after): 0.9041
-Labels: (0, 2) 4.827836275100708
-Accuracy (before): 0.9882
-Accuracy (after): 0.9845
-Labels: (0, 2) 4.794916868209839
-Accuracy (before): 0.9882
-Accuracy (after): 0.9867
-Labels: (0, 2) 4.831035852432251
-Accuracy (before): 0.9882
-Accuracy (after): 0.8908
-Labels: (0, 2) 4.84456729888916
-Accuracy (before): 0.9882
-Accuracy (after): 0.9874
-Labels: (0, 2) 4.8542094230651855
-Accuracy (before): 0.9882
-Accuracy (after): 0.9821
-Labels: (0, 2) 4.852213621139526
-Accuracy (before): 0.988
-Accuracy (after): 0.9775
-Labels: (0, 1) 14.827682495117188
-Accuracy (before): 0.988
-Accuracy (after): 0.9812
-Labels: (0, 1) 14.585082292556763
-Accuracy (before): 0.988
-Accuracy (after): 0.9774
-Labels: (0, 1) 14.52375316619873
-Accuracy (before): 0.988
-Accuracy (after): 0.9786
-Labels: (0, 1) 14.514754056930542
-Accuracy (before): 0.988
-Accuracy (after): 0.9825
-Labels: (0, 1) 14.592684745788574
-Accuracy (before): 0.988
-Accuracy (after): 0.9802
-Labels: (0, 1) 14.525954246520996
-Accuracy (before): 0.988
-Accuracy (after): 0.9815
-Labels: (0, 1) 14.505515813827515
-Accuracy (before): 0.988
+Labels: (0, 2) 3.997307777404785
+Accuracy (before): 0.99
 Accuracy (after): 0.9776
-Labels: (0, 1) 14.594599962234497
-Accuracy (before): 0.988
-Accuracy (after): 0.9773
-Labels: (0, 1) 14.570190906524658
-Accuracy (before): 0.988
-Accuracy (after): 0.9785
-Labels: (0, 1) 14.56688380241394
-Accuracy (before): 0.9857
-Accuracy (after): 0.9809
-Labels: (0, 2) 14.597930192947388
-Accuracy (before): 0.9857
-Accuracy (after): 0.9829
-Labels: (0, 2) 14.590916872024536
-Accuracy (before): 0.9857
-Accuracy (after): 0.9802
-Labels: (0, 2) 14.511972904205322
-Accuracy (before): 0.9857
-Accuracy (after): 0.979
-Labels: (0, 2) 14.556781768798828
-Accuracy (before): 0.9857
-Accuracy (after): 0.9807
-Labels: (0, 2) 14.808322668075562
-Accuracy (before): 0.9857
-Accuracy (after): 0.974
-Labels: (0, 2) 14.833765506744385
-Accuracy (before): 0.9857
-Accuracy (after): 0.9798
-Labels: (0, 2) 14.815336227416992
-Accuracy (before): 0.9857
-Accuracy (after): 0.9796
-Labels: (0, 2) 14.8828866481781
-Accuracy (before): 0.9857
-Accuracy (after): 0.9823
-Labels: (0, 2) 14.615715026855469
-Accuracy (before): 0.9857
-Accuracy (after): 0.9766
-Labels: (0, 2) 14.59652304649353
-Accuracy (before): 0.9908
-Accuracy (after): 0.9805
-Labels: (0, 3) 14.57350492477417
-Accuracy (before): 0.9908
-Accuracy (after): 0.98
-Labels: (0, 3) 14.578295946121216
-Accuracy (before): 0.9908
-Accuracy (after): 0.98
-Labels: (0, 3) 14.568663358688354
-Accuracy (before): 0.9908
-Accuracy (after): 0.9798
-Labels: (0, 3) 14.524268865585327
-Accuracy (before): 0.9908
-Accuracy (after): 0.9765
-Labels: (0, 3) 14.562721490859985
-Accuracy (before): 0.9908
-Accuracy (after): 0.977
-Labels: (0, 3) 14.618552446365356
-Accuracy (before): 0.9908
-Accuracy (after): 0.9837
-Labels: (0, 3) 14.468267440795898
-Accuracy (before): 0.9908
-Accuracy (after): 0.9742
-Labels: (0, 3) 14.578005313873291
-Accuracy (before): 0.9908
-Accuracy (after): 0.9835
-Labels: (0, 3) 14.606053829193115
-
-
-
-Accuracy (before): 0.9901
-Accuracy (after): 0.9904
-Labels: (0, 1) 13.832829236984253
-Accuracy (before): 0.9895
-Accuracy (after): 0.9882
-Labels: (0, 1) 10.969860553741455
-Accuracy (before): 0.9896
-Accuracy (after): 0.9906
-Labels: (0, 1) 10.826301336288452
-Accuracy (before): 0.9877
-Accuracy (after): 0.9885
-Labels: (0, 1) 11.086077690124512
-Accuracy (before): 0.9886
-Accuracy (after): 0.9875
-Labels: (0, 1) 11.06414794921875
-Accuracy (before): 0.9896
-Accuracy (after): 0.9909
-Labels: (0, 1) 10.904093027114868
-Accuracy (before): 0.9891
-Accuracy (after): 0.9897
-Labels: (0, 1) 11.13023567199707
-Accuracy (before): 0.9878
-Accuracy (after): 0.9866
-Labels: (0, 1) 10.899295091629028
-Accuracy (before): 0.9911
-Accuracy (after): 0.9908
-Labels: (0, 1) 11.07626485824585
-Accuracy (before): 0.9873
-Accuracy (after): 0.9873
-Labels: (0, 1) 10.94406771659851
-Accuracy (before): 0.9894
-Accuracy (after): 0.9881
-Labels: (0, 2) 11.144623756408691
-Accuracy (before): 0.9885
-Accuracy (after): 0.9902
-Labels: (0, 2) 10.914281129837036
-Accuracy (before): 0.987
-Accuracy (after): 0.9909
-Labels: (0, 2) 11.119841575622559
-Accuracy (before): 0.9884
-Accuracy (after): 0.9893
-Labels: (0, 2) 10.940934181213379
-Accuracy (before): 0.9898
-Accuracy (after): 0.9915
-Labels: (0, 2) 10.954655885696411
-Accuracy (before): 0.9882
-Accuracy (after): 0.9883
-Labels: (0, 2) 11.241000413894653
-Accuracy (before): 0.9889
-Accuracy (after): 0.9881
-Labels: (0, 2) 10.917637586593628
-Accuracy (before): 0.9894
-Accuracy (after): 0.9892
-Labels: (0, 2) 11.155354738235474
-Accuracy (before): 0.9874
-Accuracy (after): 0.9866
-Labels: (0, 2) 10.91430926322937
-Accuracy (before): 0.9891
-Accuracy (after): 0.9884
-Labels: (0, 2) 11.250244617462158
-Accuracy (before): 0.988
-Accuracy (after): 0.9901
-Labels: (0, 3) 10.899085998535156
-Accuracy (before): 0.9854
-Accuracy (after): 0.9899
-Labels: (0, 3) 10.922314882278442
-Accuracy (before): 0.989
-Accuracy (after): 0.9903
-Labels: (0, 3) 11.234108686447144
-Accuracy (before): 0.9881
-Accuracy (after): 0.9864
-Labels: (0, 3) 10.95052695274353
-Accuracy (before): 0.9884
-Accuracy (after): 0.9885
-Labels: (0, 3) 11.004988193511963
-Accuracy (before): 0.988
-Accuracy (after): 0.9886
-Labels: (0, 3) 11.186858177185059
-Accuracy (before): 0.9883
-Accuracy (after): 0.9893
-Labels: (0, 3) 10.953961610794067
-Accuracy (before): 0.9876
-Accuracy (after): 0.9882
-Labels: (0, 3) 11.232964754104614
-Accuracy (before): 0.9888
-Accuracy (after): 0.9896
-Labels: (0, 3) 10.997567176818848
-Accuracy (before): 0.9872
-Accuracy (after): 0.9893
-Labels: (0, 3) 10.971796989440918
-Accuracy (before): 0.9898
-Accuracy (after): 0.988
-Labels: (0, 4) 10.955150365829468
-Accuracy (before): 0.9873
-Accuracy (after): 0.9867
-Labels: (0, 4) 11.336475610733032
-Accuracy (before): 0.9887
-Accuracy (after): 0.989
-Labels: (0, 4) 11.042337417602539
-Accuracy (before): 0.9887
-Accuracy (after): 0.9906
-Labels: (0, 4) 11.056071281433105
-Accuracy (before): 0.9892
-Accuracy (after): 0.9898
-Labels: (0, 4) 11.330042839050293
-Accuracy (before): 0.9868
-Accuracy (after): 0.9872
-Labels: (0, 4) 11.024950504302979
-Accuracy (before): 0.9888
-Accuracy (after): 0.9886
-Labels: (0, 4) 10.960451126098633
-Accuracy (before): 0.9884
-Accuracy (after): 0.9873
-Labels: (0, 4) 11.233500242233276
-Accuracy (before): 0.9883
-Accuracy (after): 0.989
-Labels: (0, 4) 10.920243740081787
-Accuracy (before): 0.9884
-Accuracy (after): 0.9892
-Labels: (0, 4) 11.01219892501831
-Accuracy (before): 0.9883
-Accuracy (after): 0.9908
-Labels: (0, 5) 10.903342962265015
-Accuracy (before): 0.9909
-Accuracy (after): 0.9916
-Labels: (0, 5) 11.333465337753296
-Accuracy (before): 0.9883
-Accuracy (after): 0.99
-Labels: (0, 5) 11.005921125411987
-Accuracy (before): 0.989
-Accuracy (after): 0.9893
-Labels: (0, 5) 11.020839929580688
-Accuracy (before): 0.9894
-Accuracy (after): 0.9899
-Labels: (0, 5) 11.415079832077026
-Accuracy (before): 0.9873
-Accuracy (after): 0.9875
-Labels: (0, 5) 11.028034210205078
-Accuracy (before): 0.9875
-Accuracy (after): 0.9899
-Labels: (0, 5) 10.974700927734375
-Accuracy (before): 0.9885
-Accuracy (after): 0.9893
-Labels: (0, 5) 10.89886212348938
-Accuracy (before): 0.9897
-Accuracy (after): 0.9874
-Labels: (0, 5) 11.018584489822388
-Accuracy (before): 0.9897
-Accuracy (after): 0.9893
-Labels: (0, 5) 11.298248052597046
-Accuracy (before): 0.9888
-Accuracy (after): 0.9894
-Labels: (0, 6) 10.97230863571167
-Accuracy (before): 0.9896
-Accuracy (after): 0.9901
-Labels: (0, 6) 10.971131324768066
-Accuracy (before): 0.9901
-Accuracy (after): 0.9904
-Labels: (0, 6) 10.920085191726685
-Accuracy (before): 0.9881
-Accuracy (after): 0.9908
-Labels: (0, 6) 11.402012825012207
-Accuracy (before): 0.9868
-Accuracy (after): 0.987
-Labels: (0, 6) 10.93604326248169
-Accuracy (before): 0.9893
-Accuracy (after): 0.9881
-Labels: (0, 6) 10.964143514633179
-Accuracy (before): 0.9902
-Accuracy (after): 0.9901
-Labels: (0, 6) 10.946602821350098
-Accuracy (before): 0.9886
-Accuracy (after): 0.9894
-Labels: (0, 6) 11.394004344940186
-Accuracy (before): 0.9883
-Accuracy (after): 0.9908
-Labels: (0, 6) 11.01384949684143
-Accuracy (before): 0.9892
-Accuracy (after): 0.9899
-Labels: (0, 6) 10.94474482536316
-
-
-Accuracy (before): 0.9887
-Accuracy (after): 0.9902
-Labels: (0, 1) 15.337749004364014
-Accuracy (before): 0.9883
-Accuracy (after): 0.9886
-Labels: (0, 1) 12.410711765289307
-Accuracy (before): 0.9888
-Accuracy (after): 0.9897
-Labels: (0, 1) 12.302881479263306
-Accuracy (before): 0.9883
-Accuracy (after): 0.9888
-Labels: (0, 1) 12.51198935508728
-Accuracy (before): 0.9889
-Accuracy (after): 0.9884
-Labels: (0, 1) 12.456748723983765
-Accuracy (before): 0.9891
+Labels: (0, 2) 4.014413356781006
+Accuracy (before): 0.99
+Accuracy (after): 0.9851
+Labels: (0, 2) 4.052840232849121
+Accuracy (before): 0.99
+Accuracy (after): 0.983
+Labels: (0, 2) 4.046350002288818
+Accuracy (before): 0.99
+Accuracy (after): 0.9821
+Labels: (0, 2) 4.0193586349487305
+Accuracy (before): 0.99
+Accuracy (after): 0.9861
+Labels: (0, 2) 4.125717639923096
+Accuracy (before): 0.99
+Accuracy (after): 0.9857
+Labels: (0, 2) 4.075090408325195
+Accuracy (before): 0.99
+Accuracy (after): 0.9834
+Labels: (0, 2) 4.070931911468506
+Accuracy (before): 0.99
 Accuracy (after): 0.9862
-Labels: (0, 1) 12.30611252784729
-Accuracy (before): 0.9902
-Accuracy (after): 0.9854
-Labels: (0, 1) 12.495115280151367
-Accuracy (before): 0.9899
-Accuracy (after): 0.9875
-Labels: (0, 1) 12.33159327507019
-Accuracy (before): 0.9867
-Accuracy (after): 0.987
-Labels: (0, 1) 12.512362957000732
-Accuracy (before): 0.9901
-Accuracy (after): 0.9875
-Labels: (0, 1) 12.313887119293213
-Accuracy (before): 0.9889
-Accuracy (after): 0.9886
-Labels: (0, 2) 12.484069585800171
-Accuracy (before): 0.9878
-Accuracy (after): 0.9881
-Labels: (0, 2) 12.285138368606567
-Accuracy (before): 0.9862
-Accuracy (after): 0.986
-Labels: (0, 2) 12.52716851234436
-Accuracy (before): 0.9876
-Accuracy (after): 0.988
-Labels: (0, 2) 12.296987056732178
-Accuracy (before): 0.9868
-Accuracy (after): 0.9884
-Labels: (0, 2) 12.323372840881348
-Accuracy (before): 0.9865
-Accuracy (after): 0.9877
-Labels: (0, 2) 12.496183156967163
-Accuracy (before): 0.989
-Accuracy (after): 0.9861
-Labels: (0, 2) 12.303330898284912
-Accuracy (before): 0.9881
-Accuracy (after): 0.9876
-Labels: (0, 2) 12.560286283493042
-Accuracy (before): 0.9877
-Accuracy (after): 0.9864
-Labels: (0, 2) 12.39970588684082
-Accuracy (before): 0.9897
-Accuracy (after): 0.988
-Labels: (0, 2) 12.571838140487671
-Accuracy (before): 0.987
-Accuracy (after): 0.989
-Labels: (0, 3) 12.377950429916382
-Accuracy (before): 0.9892
-Accuracy (after): 0.9895
-Labels: (0, 3) 12.347645282745361
-Accuracy (before): 0.9893
-Accuracy (after): 0.9866
-Labels: (0, 3) 12.588950872421265
-Accuracy (before): 0.9888
-Accuracy (after): 0.9874
-Labels: (0, 3) 12.358072757720947
-Accuracy (before): 0.9884
-Accuracy (after): 0.9815
-Labels: (0, 3) 12.334481716156006
-Accuracy (before): 0.9866
-Accuracy (after): 0.9872
-Labels: (0, 3) 12.616901874542236
-Accuracy (before): 0.9897
-Accuracy (after): 0.9868
-Labels: (0, 3) 12.354945421218872
-Accuracy (before): 0.9869
-Accuracy (after): 0.9869
-Labels: (0, 3) 12.625612020492554
-Accuracy (before): 0.9893
-Accuracy (after): 0.9894
-Labels: (0, 3) 12.323599576950073
-Accuracy (before): 0.989
-Accuracy (after): 0.9869
-Labels: (0, 3) 12.321733236312866
-Accuracy (before): 0.9895
-Accuracy (after): 0.9857
-Labels: (0, 4) 12.34341049194336
-Accuracy (before): 0.986
-Accuracy (after): 0.988
-Labels: (0, 4) 12.643425703048706
-Accuracy (before): 0.9893
-Accuracy (after): 0.9851
-Labels: (0, 4) 12.38697862625122
-Accuracy (before): 0.9889
-Accuracy (after): 0.9839
-Labels: (0, 4) 12.356744766235352
-Accuracy (before): 0.989
-Accuracy (after): 0.9886
-Labels: (0, 4) 12.610066413879395
-Accuracy (before): 0.9879
-Accuracy (after): 0.9874
-Labels: (0, 4) 12.324484586715698
-Accuracy (before): 0.9895
-Accuracy (after): 0.9871
-Labels: (0, 4) 12.364137172698975
-Accuracy (before): 0.9894
-Accuracy (after): 0.9866
-Labels: (0, 4) 12.668726682662964
-Accuracy (before): 0.9864
-Accuracy (after): 0.9887
-Labels: (0, 4) 12.323610305786133
-Accuracy (before): 0.9887
-Accuracy (after): 0.9857
-Labels: (0, 4) 12.266633987426758
-Accuracy (before): 0.9888
-Accuracy (after): 0.9899
-Labels: (0, 5) 12.3576180934906
-Accuracy (before): 0.9871
-Accuracy (after): 0.9866
-Labels: (0, 5) 12.7158043384552
-Accuracy (before): 0.9881
+Labels: (0, 2) 4.032940626144409
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (0, 2) 4.049790620803833
+Accuracy (before): 0.99
+Accuracy (after): 0.982
+Labels: (0, 2) 4.1008827686309814
+Accuracy (before): 0.99
 Accuracy (after): 0.9882
-Labels: (0, 5) 12.386129379272461
-Accuracy (before): 0.9876
-Accuracy (after): 0.9868
-Labels: (0, 5) 12.446990728378296
-Accuracy (before): 0.9897
-Accuracy (after): 0.9897
-Labels: (0, 5) 12.71408486366272
-Accuracy (before): 0.9891
-Accuracy (after): 0.9868
-Labels: (0, 5) 12.367317914962769
-Accuracy (before): 0.9897
-Accuracy (after): 0.9891
-Labels: (0, 5) 12.34492802619934
-Accuracy (before): 0.9878
-Accuracy (after): 0.988
-Labels: (0, 5) 12.344362258911133
-Accuracy (before): 0.9879
-Accuracy (after): 0.9888
-Labels: (0, 5) 12.443643808364868
-Accuracy (before): 0.9858
-Accuracy (after): 0.9869
-Labels: (0, 5) 12.725245952606201
-Accuracy (before): 0.9871
-Accuracy (after): 0.9861
-Labels: (0, 6) 12.393858432769775
-Accuracy (before): 0.988
-Accuracy (after): 0.9889
-Labels: (0, 6) 12.348503112792969
-
-
-Accuracy (before): 0.9877
-Accuracy (after): 0.9841
-Labels: (0, 1) 18.098937511444092
-Accuracy (before): 0.9887
-Accuracy (after): 0.9848
-Labels: (0, 1) 15.408236026763916
-Accuracy (before): 0.9893
-Accuracy (after): 0.984
-Labels: (0, 1) 15.166970252990723
-Accuracy (before): 0.9858
-Accuracy (after): 0.9802
-Labels: (0, 1) 15.286389589309692
-Accuracy (before): 0.9885
-Accuracy (after): 0.9851
-Labels: (0, 1) 15.3788902759552
-Accuracy (before): 0.9885
-Accuracy (after): 0.9792
-Labels: (0, 1) 15.219517946243286
-Accuracy (before): 0.9877
-Accuracy (after): 0.9861
-Labels: (0, 1) 15.406700849533081
-Accuracy (before): 0.9888
-Accuracy (after): 0.9855
-Labels: (0, 1) 15.230955123901367
-Accuracy (before): 0.9869
-Accuracy (after): 0.9851
-Labels: (0, 1) 15.37358570098877
-Accuracy (before): 0.9839
-Accuracy (after): 0.9823
-Labels: (0, 1) 15.164158582687378
-Accuracy (before): 0.9855
-Accuracy (after): 0.9867
-Labels: (0, 2) 15.551608085632324
-Accuracy (before): 0.9899
-Accuracy (after): 0.987
-Labels: (0, 2) 15.336710453033447
-Accuracy (before): 0.9889
-Accuracy (after): 0.9841
-Labels: (0, 2) 15.343099594116211
-Accuracy (before): 0.9886
-Accuracy (after): 0.9859
-Labels: (0, 2) 14.972338199615479
-Accuracy (before): 0.9885
-Accuracy (after): 0.9835
-Labels: (0, 2) 14.839892864227295
-Accuracy (before): 0.9877
-Accuracy (after): 0.9797
-Labels: (0, 2) 15.306645631790161
-Accuracy (before): 0.9877
-Accuracy (after): 0.9797
-Labels: (0, 2) 14.926858901977539
-Accuracy (before): 0.9892
-Accuracy (after): 0.9856
-Labels: (0, 2) 15.11926531791687
-Accuracy (before): 0.9885
-Accuracy (after): 0.9843
-Labels: (0, 2) 14.80594778060913
-Accuracy (before): 0.9893
-Accuracy (after): 0.986
-Labels: (0, 2) 15.082136154174805
-Accuracy (before): 0.9875
-Accuracy (after): 0.9854
-Labels: (0, 3) 14.802777767181396
-Accuracy (before): 0.9876
-Accuracy (after): 0.9841
-Labels: (0, 3) 14.80973482131958
-Accuracy (before): 0.989
-Accuracy (after): 0.9845
-Labels: (0, 3) 15.104513883590698
-Accuracy (before): 0.9879
-Accuracy (after): 0.9845
-Labels: (0, 3) 14.886372566223145
-Accuracy (before): 0.9883
-Accuracy (after): 0.9851
-Labels: (0, 3) 14.937191247940063
-Accuracy (before): 0.9885
+Labels: (0, 2) 4.05966854095459
+Accuracy (before): 0.99
+Accuracy (after): 0.9864
+Labels: (0, 2) 4.062404155731201
+Accuracy (before): 0.99
 Accuracy (after): 0.9846
-Labels: (0, 3) 15.23306679725647
-Accuracy (before): 0.9868
-Accuracy (after): 0.984
-Labels: (0, 3) 14.814353466033936
-Accuracy (before): 0.9886
-Accuracy (after): 0.9845
-Labels: (0, 3) 15.32436490058899
-Accuracy (before): 0.9888
-Accuracy (after): 0.9883
-Labels: (0, 3) 15.008812427520752
+Labels: (0, 2) 4.000006437301636
+Accuracy (before): 0.99
+Accuracy (after): 0.985
+Labels: (0, 2) 4.015516042709351
+Accuracy (before): 0.99
+Accuracy (after): 0.9866
+Labels: (0, 2) 4.028968095779419
+Accuracy (before): 0.99
+Accuracy (after): 0.9869
+Labels: (0, 2) 4.06518030166626
+Accuracy (before): 0.99
+Accuracy (after): 0.9855
+Labels: (0, 2) 4.0811448097229
+Accuracy (before): 0.99
+Accuracy (after): 0.9843
+Labels: (0, 2) 4.104578495025635
+Accuracy (before): 0.99
+Accuracy (after): 0.9836
+Labels: (0, 2) 4.021224737167358
+Accuracy (before): 0.99
+Accuracy (after): 0.9827
+Labels: (0, 2) 4.171380519866943
 Accuracy (before): 0.99
 Accuracy (after): 0.9848
-Labels: (0, 3) 14.86020040512085
-Accuracy (before): 0.991
-Accuracy (after): 0.9859
-Labels: (0, 4) 15.06963062286377
-Accuracy (before): 0.9895
-Accuracy (after): 0.9787
-Labels: (0, 4) 15.214538812637329
-Accuracy (before): 0.9893
-Accuracy (after): 0.984
-Labels: (0, 4) 14.758816719055176
-Accuracy (before): 0.9894
-Accuracy (after): 0.987
-Labels: (0, 4) 14.87647008895874
-Accuracy (before): 0.9893
-Accuracy (after): 0.9828
-Labels: (0, 4) 15.211986303329468
-Accuracy (before): 0.9867
-Accuracy (after): 0.9811
-Labels: (0, 4) 14.769468545913696
-Accuracy (before): 0.9888
-Accuracy (after): 0.9826
-Labels: (0, 4) 14.756457805633545
-Accuracy (before): 0.9878
-Accuracy (after): 0.9862
-Labels: (0, 4) 15.067083597183228
-Accuracy (before): 0.9872
-Accuracy (after): 0.9858
-Labels: (0, 4) 14.818323135375977
-Accuracy (before): 0.9885
-Accuracy (after): 0.9857
-Labels: (0, 4) 14.759390592575073
-Accuracy (before): 0.9888
-Accuracy (after): 0.9833
-Labels: (0, 5) 14.776991844177246
-Accuracy (before): 0.9889
-Accuracy (after): 0.9847
-Labels: (0, 5) 15.138692617416382
-Accuracy (before): 0.9892
-Accuracy (after): 0.9832
-Labels: (0, 5) 14.874226093292236
+Labels: (0, 3) 4.145854473114014
 Accuracy (before): 0.99
-Accuracy (after): 0.9871
-Labels: (0, 5) 14.8514986038208
-Accuracy (before): 0.9883
 Accuracy (after): 0.9858
-Labels: (0, 5) 15.154657363891602
-Accuracy (before): 0.9875
-Accuracy (after): 0.983
-Labels: (0, 5) 15.002867460250854
-Accuracy (before): 0.9881
-Accuracy (after): 0.9838
-Labels: (0, 5) 14.878967523574829
-Accuracy (before): 0.9896
+Labels: (0, 3) 4.032416343688965
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (0, 3) 4.010998010635376
+Accuracy (before): 0.99
+Accuracy (after): 0.9866
+Labels: (0, 3) 4.098320007324219
+Accuracy (before): 0.99
+Accuracy (after): 0.9844
+Labels: (0, 3) 4.076463222503662
+Accuracy (before): 0.99
+Accuracy (after): 0.9876
+Labels: (0, 3) 4.021739959716797
+Accuracy (before): 0.99
+Accuracy (after): 0.987
+Labels: (0, 3) 4.1170618534088135
+Accuracy (before): 0.99
+Accuracy (after): 0.9849
+Labels: (0, 3) 4.177597522735596
+Accuracy (before): 0.99
+Accuracy (after): 0.9861
+Labels: (0, 3) 4.0341761112213135
+Accuracy (before): 0.99
+Accuracy (after): 0.9849
+Labels: (0, 3) 4.138644218444824
+Accuracy (before): 0.99
 Accuracy (after): 0.9873
-Labels: (0, 5) 14.812198638916016
-Accuracy (before): 0.9885
-Accuracy (after): 0.9835
-Labels: (0, 5) 14.739249229431152
-Accuracy (before): 0.9884
-Accuracy (after): 0.9877
-Labels: (0, 5) 15.212033987045288
-Accuracy (before): 0.9897
-Accuracy (after): 0.9848
-Labels: (0, 6) 15.039618730545044
-Accuracy (before): 0.9883
-Accuracy (after): 0.9829
-Labels: (0, 6) 14.85884952545166
-Accuracy (before): 0.9876
-Accuracy (after): 0.9828
-Labels: (0, 6) 14.802985191345215
-Accuracy (before): 0.9878
-Accuracy (after): 0.9835
-Labels: (0, 6) 15.328958511352539
-Accuracy (before): 0.9895
-Accuracy (after): 0.9827
-Labels: (0, 6) 14.853715658187866
-Accuracy (before): 0.9867
-Accuracy (after): 0.9833
-Labels: (0, 6) 14.807135820388794
-Accuracy (before): 0.9893
-Accuracy (after): 0.9842
-Labels: (0, 6) 14.82701301574707
-Accuracy (before): 0.9877
-Accuracy (after): 0.9856
-Labels: (0, 6) 15.206888437271118
-Accuracy (before): 0.9892
-Accuracy (after): 0.9877
-Labels: (0, 6) 14.884355545043945
-Accuracy (before): 0.9895
-Accuracy (after): 0.9854
-Labels: (0, 6) 14.950957298278809
-Accuracy (before): 0.9911
-Accuracy (after): 0.9868
-Labels: (0, 7) 14.861737728118896
-Accuracy (before): 0.9899
-Accuracy (after): 0.9831
-Labels: (0, 7) 14.801939725875854
-Accuracy (before): 0.9891
-Accuracy (after): 0.9861
-Labels: (0, 7) 15.28831672668457
-Accuracy (before): 0.9882
-Accuracy (after): 0.9869
-Labels: (0, 7) 14.915554285049438
-Accuracy (before): 0.9888
-Accuracy (after): 0.9866
-Labels: (0, 7) 14.831542730331421
-Accuracy (before): 0.9902
-Accuracy (after): 0.9875
-Labels: (0, 7) 14.899116277694702
-Accuracy (before): 0.9904
-Accuracy (after): 0.985
-Labels: (0, 7) 14.996855974197388
-Accuracy (before): 0.9882
-Accuracy (after): 0.9864
-Labels: (0, 7) 15.346372842788696
-Accuracy (before): 0.9876
-Accuracy (after): 0.9862
-Labels: (0, 7) 14.840068101882935
-Accuracy (before): 0.9888
-Accuracy (after): 0.9808
-Labels: (0, 7) 14.855628252029419
-Accuracy (before): 0.9883
-Accuracy (after): 0.9831
-Labels: (0, 8) 14.85498046875
-Accuracy (before): 0.9863
-Accuracy (after): 0.9823
-Labels: (0, 8) 14.784123182296753
-Accuracy (before): 0.9892
-Accuracy (after): 0.9816
-Labels: (0, 8) 15.340456485748291
-Accuracy (before): 0.9882
-Accuracy (after): 0.9849
-Labels: (0, 8) 14.905748844146729
-Accuracy (before): 0.9884
-Accuracy (after): 0.9814
-Labels: (0, 8) 14.851168394088745
-Accuracy (before): 0.9892
-Accuracy (after): 0.9827
-Labels: (0, 8) 14.768800497055054
-Accuracy (before): 0.9882
-Accuracy (after): 0.9864
-Labels: (0, 8) 14.945556879043579
-Accuracy (before): 0.9898
-Accuracy (after): 0.9841
-Labels: (0, 8) 15.310327291488647
-Accuracy (before): 0.9887
-Accuracy (after): 0.9847
-Labels: (0, 8) 14.78441047668457
-Accuracy (before): 0.9881
-Accuracy (after): 0.9825
-Labels: (0, 8) 14.7926025390625
-Accuracy (before): 0.9883
-Accuracy (after): 0.9831
-Labels: (0, 9) 14.935477018356323
-Accuracy (before): 0.9898
-Accuracy (after): 0.9835
-Labels: (0, 9) 14.82486605644226
-Accuracy (before): 0.9896
-Accuracy (after): 0.9849
-Labels: (0, 9) 14.743832111358643
-Accuracy (before): 0.9889
-Accuracy (after): 0.9871
-Labels: (0, 9) 15.434827089309692
-Accuracy (before): 0.9871
-Accuracy (after): 0.982
-Labels: (0, 9) 14.79530954360962
-Accuracy (before): 0.9845
-Accuracy (after): 0.9847
-Labels: (0, 9) 14.839985370635986
-Accuracy (before): 0.9857
-Accuracy (after): 0.9858
-Labels: (0, 1) 13.630996942520142
-Accuracy (before): 0.9904
-Accuracy (after): 0.9808
-Labels: (0, 1) 10.667162656784058
-Accuracy (before): 0.9886
-Accuracy (after): 0.9848
-Labels: (0, 1) 10.57819652557373
-Accuracy (before): 0.9895
-Accuracy (after): 0.9853
-Labels: (0, 1) 10.758700370788574
-Accuracy (before): 0.9867
-Accuracy (after): 0.9843
-Labels: (0, 1) 10.681978702545166
-Accuracy (before): 0.9904
-Accuracy (after): 0.9857
-Labels: (0, 1) 10.421538591384888
-Accuracy (before): 0.9905
-Accuracy (after): 0.9827
-Labels: (0, 1) 10.628234148025513
-Accuracy (before): 0.9859
-Accuracy (after): 0.987
-Labels: (0, 1) 10.44124150276184
-Accuracy (before): 0.9875
-Accuracy (after): 0.9802
-Labels: (0, 1) 10.572667360305786
-Accuracy (before): 0.9887
-Accuracy (after): 0.9853
-Labels: (0, 1) 10.329205751419067
-Accuracy (before): 0.9885
-Accuracy (after): 0.9864
-Labels: (0, 2) 10.580110311508179
-Accuracy (before): 0.9895
-Accuracy (after): 0.9875
-Labels: (0, 2) 10.40938425064087
-Accuracy (before): 0.9885
-Accuracy (after): 0.9853
-Labels: (0, 2) 10.621653318405151
-Accuracy (before): 0.9897
-Accuracy (after): 0.986
-Labels: (0, 2) 10.345940589904785
-Accuracy (before): 0.9889
-Accuracy (after): 0.9832
-Labels: (0, 2) 10.3158700466156
-Accuracy (before): 0.9895
-Accuracy (after): 0.9869
-Labels: (0, 2) 10.609768152236938
-Accuracy (before): 0.9865
-Accuracy (after): 0.985
-Labels: (0, 2) 10.326825857162476
-Accuracy (before): 0.9886
-Accuracy (after): 0.9853
-Labels: (0, 2) 10.515795707702637
-Accuracy (before): 0.9908
-Accuracy (after): 0.9862
-Labels: (0, 2) 10.386436700820923
-Accuracy (before): 0.9912
-Accuracy (after): 0.9829
-Labels: (0, 2) 10.54047179222107
-Accuracy (before): 0.9876
-Accuracy (after): 0.9867
-Labels: (0, 3) 10.301655530929565
-Accuracy (before): 0.9875
-Accuracy (after): 0.9833
-Labels: (0, 3) 10.338234424591064
-Accuracy (before): 0.9886
-Accuracy (after): 0.9843
-Labels: (0, 3) 10.65471863746643
-Accuracy (before): 0.9846
-Accuracy (after): 0.9841
-Labels: (0, 3) 10.329391479492188
-Accuracy (before): 0.9885
-Accuracy (after): 0.9854
-Labels: (0, 3) 10.356322765350342
-Accuracy (before): 0.9882
-Accuracy (after): 0.9868
-Labels: (0, 3) 10.536708354949951
-Accuracy (before): 0.9871
-Accuracy (after): 0.9839
-Labels: (0, 3) 10.252423286437988
-Accuracy (before): 0.9882
-Accuracy (after): 0.9839
-Labels: (0, 3) 10.634581089019775
-Accuracy (before): 0.9889
-Accuracy (after): 0.985
-Labels: (0, 3) 10.284593105316162
-Accuracy (before): 0.9903
-Accuracy (after): 0.9861
-Labels: (0, 3) 10.348146200180054
-Accuracy (before): 0.988
-Accuracy (after): 0.9849
-Labels: (0, 4) 10.292781591415405
-Accuracy (before): 0.9891
-Accuracy (after): 0.9862
-Labels: (0, 4) 10.649463653564453
-Accuracy (before): 0.9851
-Accuracy (after): 0.9819
-Labels: (0, 4) 10.404630661010742
-Accuracy (before): 0.9898
-Accuracy (after): 0.9869
-Labels: (0, 4) 10.314135551452637
-Accuracy (before): 0.9893
-Accuracy (after): 0.9832
-Labels: (0, 4) 10.657470941543579
-Accuracy (before): 0.988
-Accuracy (after): 0.9849
-Labels: (0, 4) 10.371920347213745
-Accuracy (before): 0.9886
-Accuracy (after): 0.983
-Labels: (0, 4) 10.372156381607056
-Accuracy (before): 0.9889
-Accuracy (after): 0.9834
-Labels: (0, 4) 10.682070970535278
-Accuracy (before): 0.9896
-Accuracy (after): 0.9823
-Labels: (0, 4) 10.316455841064453
-Accuracy (before): 0.9884
-Accuracy (after): 0.9834
-Labels: (0, 4) 10.310874700546265
-Accuracy (before): 0.9871
-Accuracy (after): 0.9837
-Labels: (0, 5) 10.298343181610107
-Accuracy (before): 0.9876
-Accuracy (after): 0.9817
-Labels: (0, 5) 10.672629356384277
-Accuracy (before): 0.9869
-Accuracy (after): 0.9842
-Labels: (0, 5) 10.345167636871338
-Accuracy (before): 0.9867
-Accuracy (after): 0.9809
-Labels: (0, 5) 10.280179738998413
-Accuracy (before): 0.9891
-Accuracy (after): 0.9866
-Labels: (0, 5) 10.751999139785767
-Accuracy (before): 0.988
-Accuracy (after): 0.9848
-Labels: (0, 5) 10.288946151733398
-Accuracy (before): 0.987
-Accuracy (after): 0.9841
-Labels: (0, 5) 10.371535301208496
-Accuracy (before): 0.9881
-Accuracy (after): 0.9772
-Labels: (0, 5) 10.261844873428345
-Accuracy (before): 0.9889
-Accuracy (after): 0.982
-Labels: (0, 5) 10.337391376495361
-Accuracy (before): 0.9873
-Accuracy (after): 0.9818
-Labels: (0, 5) 10.70009446144104
-Accuracy (before): 0.9858
-Accuracy (after): 0.9845
-Labels: (0, 6) 10.360681056976318
-Accuracy (before): 0.9882
-Accuracy (after): 0.9779
-Labels: (0, 6) 10.304910659790039
-Accuracy (before): 0.9863
-Accuracy (after): 0.9816
-Labels: (0, 6) 10.304855823516846
-Accuracy (before): 0.9888
-Accuracy (after): 0.9904
-Labels: (0, 1) 12.726191520690918
-Accuracy (before): 0.9891
-Accuracy (after): 0.9898
-Labels: (0, 1) 12.729116916656494
-Accuracy (before): 0.9893
-Accuracy (after): 0.9889
-Labels: (0, 1) 12.839504957199097
-Accuracy (before): 0.9874
-Accuracy (after): 0.9902
-Labels: (0, 1) 12.939116716384888
-Accuracy (before): 0.9882
-Accuracy (after): 0.9871
-Labels: (0, 1) 9.266684532165527
-Accuracy (before): 0.989
-Accuracy (after): 0.9891
-Labels: (0, 1) 9.298467636108398
+Labels: (0, 3) 4.094776391983032
 Accuracy (before): 0.99
-Accuracy (after): 0.9893
-Labels: (0, 1) 9.518648386001587
-Accuracy (before): 0.9882
-Accuracy (after): 0.9897
-Labels: (0, 1) 9.499785900115967
-Accuracy (before): 0.9889
-Accuracy (after): 0.989
-Labels: (0, 1) 9.057373762130737
-Accuracy (before): 0.9876
-Accuracy (after): 0.9893
-Labels: (0, 1) 9.159229755401611
-Accuracy (before): 0.988
-Accuracy (after): 0.9912
-Labels: (0, 1) 9.33768105506897
-Accuracy (before): 0.9881
-Accuracy (after): 0.9902
-Labels: (0, 1) 9.354800939559937
-Accuracy (before): 0.9862
-Accuracy (after): 0.9884
-Labels: (0, 1) 9.19473147392273
-Accuracy (before): 0.987
-Accuracy (after): 0.9866
-Labels: (0, 1) 9.35382342338562
-Accuracy (before): 0.9877
-Accuracy (after): 0.9884
-Labels: (0, 1) 9.556779623031616
-Accuracy (before): 0.9897
-Accuracy (after): 0.989
-Labels: (0, 1) 9.615090608596802
-Accuracy (before): 0.9892
-Accuracy (after): 0.9902
-Labels: (0, 1) 9.261489391326904
-Accuracy (before): 0.9901
-Accuracy (after): 0.99
-Labels: (0, 1) 9.355870485305786
-Accuracy (before): 0.989
-Accuracy (after): 0.9896
-Labels: (0, 1) 9.47089958190918
-Accuracy (before): 0.9885
-Accuracy (after): 0.9902
-Labels: (0, 1) 9.578494787216187
-Accuracy (before): 0.9876
-Accuracy (after): 0.989
-Labels: (0, 1) 9.107560157775879
-Accuracy (before): 0.9871
-Accuracy (after): 0.9885
-Labels: (0, 1) 9.189971685409546
-Accuracy (before): 0.9877
-Accuracy (after): 0.9905
-Labels: (0, 1) 9.289946556091309
-Accuracy (before): 0.9873
-Accuracy (after): 0.9876
-Labels: (0, 1) 9.374049663543701
-Accuracy (before): 0.9876
-Accuracy (after): 0.99
-Labels: (0, 1) 9.181696653366089
-Accuracy (before): 0.9907
-Accuracy (after): 0.9912
-Labels: (0, 1) 9.388235092163086
-Accuracy (before): 0.9872
-Accuracy (after): 0.9881
-Labels: (0, 1) 9.474242210388184
-Accuracy (before): 0.9899
-Accuracy (after): 0.9896
-Labels: (0, 1) 9.442617654800415
-Accuracy (before): 0.9889
-Accuracy (after): 0.9888
-Labels: (0, 1) 8.979989528656006
-Accuracy (before): 0.9891
-Accuracy (after): 0.9893
-Labels: (0, 1) 9.206958532333374
-Accuracy (before): 0.9883
-Accuracy (after): 0.9895
-Labels: (0, 1) 9.35050344467163
-Accuracy (before): 0.9872
-Accuracy (after): 0.9891
-Labels: (0, 1) 9.406598091125488
-Accuracy (before): 0.9874
-Accuracy (after): 0.9882
-Labels: (0, 1) 9.200689554214478
-Accuracy (before): 0.9889
-Accuracy (after): 0.988
-Labels: (0, 1) 9.422476053237915
+Accuracy (after): 0.9853
+Labels: (0, 3) 4.110056161880493
 Accuracy (before): 0.99
-Accuracy (after): 0.9895
-Labels: (0, 1) 9.484490394592285
-Accuracy (before): 0.9881
-Accuracy (after): 0.9872
-Labels: (0, 1) 9.775835037231445
-Accuracy (before): 0.9907
-Accuracy (after): 0.9897
-Labels: (0, 1) 9.124027013778687
-Accuracy (before): 0.9883
-Accuracy (after): 0.99
-Labels: (0, 1) 9.173482656478882
-Accuracy (before): 0.9885
-Accuracy (after): 0.9896
-Labels: (0, 1) 9.264757871627808
-Accuracy (before): 0.9879
-Accuracy (after): 0.9898
-Labels: (0, 1) 9.580287456512451
-Accuracy (before): 0.9883
-Accuracy (after): 0.9905
-Labels: (0, 1) 9.280455112457275
-Accuracy (before): 0.9877
-Accuracy (after): 0.986
-Labels: (0, 1) 9.509000778198242
-Accuracy (before): 0.9904
-Accuracy (after): 0.9881
-Labels: (0, 1) 9.531214237213135
-Accuracy (before): 0.9873
-Accuracy (after): 0.988
-Labels: (0, 1) 10.02094554901123
-Accuracy (before): 0.9857
-Accuracy (after): 0.9878
-Labels: (0, 1) 9.159131526947021
-Accuracy (before): 0.9886
-Accuracy (after): 0.9877
-Labels: (0, 1) 9.183696508407593
-Accuracy (before): 0.989
-Accuracy (after): 0.9879
-Labels: (0, 1) 9.289410591125488
-Accuracy (before): 0.9885
-Accuracy (after): 0.9908
-Labels: (0, 1) 9.74282169342041
-Accuracy (before): 0.9876
-Accuracy (after): 0.9872
-Labels: (0, 1) 9.3228759765625
-Accuracy (before): 0.9874
-Accuracy (after): 0.9875
-Labels: (0, 1) 9.415963649749756
-Accuracy (before): 0.9889
-Accuracy (after): 0.9889
-Labels: (0, 1) 9.558172941207886
-Accuracy (before): 0.9889
-Accuracy (after): 0.9897
-Labels: (0, 1) 9.770221710205078
-Accuracy (before): 0.9879
-Accuracy (after): 0.9885
-Labels: (0, 1) 9.146602392196655
-Accuracy (before): 0.9888
-Accuracy (after): 0.9891
-Labels: (0, 1) 9.233526229858398
-Accuracy (before): 0.9886
-Accuracy (after): 0.9887
-Labels: (0, 1) 9.296307802200317
-Accuracy (before): 0.9894
-Accuracy (after): 0.9896
-Labels: (0, 1) 9.596224069595337
-Accuracy (before): 0.9901
-Accuracy (after): 0.9886
-Labels: (0, 1) 9.199586629867554
-Accuracy (before): 0.9892
-Accuracy (after): 0.9906
-Labels: (0, 1) 9.22545051574707
-Accuracy (before): 0.9876
-Accuracy (after): 0.9874
-Labels: (0, 1) 9.306948184967041
-Accuracy (before): 0.9883
-Accuracy (after): 0.9892
-Labels: (0, 1) 9.566287279129028
-Accuracy (before): 0.9884
-Accuracy (after): 0.9893
-Labels: (0, 1) 9.274671792984009
-Accuracy (before): 0.9874
-Accuracy (after): 0.9887
-Labels: (0, 1) 9.420150756835938
-Accuracy (before): 0.9882
-Accuracy (after): 0.9895
-Labels: (0, 1) 9.473870515823364
-Accuracy (before): 0.9856
-Accuracy (after): 0.987
-Labels: (0, 1) 10.01671576499939
-Accuracy (before): 0.9889
-Accuracy (after): 0.9888
-Labels: (0, 1) 9.04736614227295
-Accuracy (before): 0.9889
-Accuracy (after): 0.9885
-Labels: (0, 1) 9.263620376586914
-Accuracy (before): 0.9907
-Accuracy (after): 0.99
-Labels: (0, 1) 9.296008348464966
-Accuracy (before): 0.9891
-Accuracy (after): 0.9891
-Labels: (0, 1) 9.553593873977661
-Accuracy (before): 0.9893
-Accuracy (after): 0.989
-Labels: (0, 1) 9.313132286071777
-Accuracy (before): 0.9889
-Accuracy (after): 0.9893
-Labels: (0, 1) 9.512079238891602
-Accuracy (before): 0.9885
-Accuracy (after): 0.9871
-Labels: (0, 1) 9.556536674499512
-Accuracy (before): 0.9894
-Accuracy (after): 0.9879
-Labels: (0, 1) 9.86264705657959
-Accuracy (before): 0.989
-Accuracy (after): 0.9885
-Labels: (0, 1) 9.299209833145142
-Accuracy (before): 0.9897
-Accuracy (after): 0.9903
-Labels: (0, 1) 9.255460977554321
-Accuracy (before): 0.9897
-Accuracy (after): 0.9892
-Labels: (0, 1) 9.323225021362305
-Accuracy (before): 0.9891
-Accuracy (after): 0.99
-Labels: (0, 1) 9.673579692840576
-Accuracy (before): 0.9898
-Accuracy (after): 0.9899
-Labels: (0, 1) 9.355955362319946
-Accuracy (before): 0.9886
-Accuracy (after): 0.9895
-Labels: (0, 1) 9.512323379516602
-Accuracy (before): 0.9903
-Accuracy (after): 0.9907
-Labels: (0, 1) 9.546902894973755
-Accuracy (before): 0.9896
-Accuracy (after): 0.9896
-Labels: (0, 1) 9.945674419403076
-Accuracy (before): 0.9892
-Accuracy (after): 0.9901
-Labels: (0, 1) 9.03262186050415
-Accuracy (before): 0.989
-Accuracy (after): 0.9904
-Labels: (0, 1) 9.3116614818573
-Accuracy (before): 0.9895
-Accuracy (after): 0.9903
-Labels: (0, 1) 9.342853307723999
-Accuracy (before): 0.9859
-Accuracy (after): 0.9887
-Labels: (0, 1) 9.157907247543335
-Accuracy (before): 0.9882
-Accuracy (after): 0.9881
-Labels: (0, 1) 9.699328660964966
-Accuracy (before): 0.9853
-Accuracy (after): 0.9888
-Labels: (0, 1) 9.232584953308105
-Accuracy (before): 0.9884
-Accuracy (after): 0.9892
-Labels: (0, 1) 9.316856622695923
-Accuracy (before): 0.9856
-Accuracy (after): 0.9884
-Labels: (0, 1) 9.49042797088623
-Accuracy (before): 0.9885
-Accuracy (after): 0.9901
-Labels: (0, 1) 9.756806373596191
-Accuracy (before): 0.9894
-Accuracy (after): 0.9917
-Labels: (0, 1) 9.523390531539917
-Accuracy (before): 0.9891
-Accuracy (after): 0.9896
-Labels: (0, 1) 9.667623043060303
-Accuracy (before): 0.9887
-Accuracy (after): 0.9901
-Labels: (0, 1) 9.188634634017944
-Accuracy (before): 0.9879
-Accuracy (after): 0.9876
-Labels: (0, 1) 10.310668706893921
-Accuracy (before): 0.9906
-Accuracy (after): 0.9897
-Labels: (0, 1) 9.248348474502563
-Accuracy (before): 0.9898
-Accuracy (after): 0.9908
-Labels: (0, 1) 9.456948518753052
-Accuracy (before): 0.9892
-Accuracy (after): 0.9884
-Labels: (0, 1) 9.281200885772705
-Accuracy (before): 0.9911
-Accuracy (after): 0.9881
-Labels: (0, 1) 9.734348058700562
-Accuracy (before): 0.9874
-Accuracy (after): 0.9901
-Labels: (0, 1) 9.26982569694519
-Accuracy (before): 0.9888
 Accuracy (after): 0.9868
-Labels: (0, 1) 9.40669560432434
-Accuracy (before): 0.9896
-Accuracy (after): 0.9862
-Labels: (0, 2) 9.633019924163818
-Accuracy (before): 0.9891
-Accuracy (after): 0.99
-Labels: (0, 1) 9.749911308288574
-Accuracy (before): 0.9872
-Accuracy (after): 0.9885
-Labels: (0, 2) 9.732618808746338
-Accuracy (before): 0.9892
-Accuracy (after): 0.9894
-Labels: (0, 2) 9.982459545135498
-Accuracy (before): 0.9882
-Accuracy (after): 0.9898
-Labels: (0, 2) 9.12765121459961
-Accuracy (before): 0.9862
-Accuracy (after): 0.9823
-Labels: (0, 2) 9.373480081558228
-Accuracy (before): 0.9882
-Accuracy (after): 0.9909
-Labels: (0, 2) 10.208549976348877
-Accuracy (before): 0.9891
-Accuracy (after): 0.9887
-Labels: (0, 2) 9.486508846282959
-Accuracy (before): 0.9875
-Accuracy (after): 0.9897
-Labels: (0, 2) 9.477513313293457
-Accuracy (before): 0.9891
-Accuracy (after): 0.9892
-Labels: (0, 2) 9.631624698638916
-Accuracy (before): 0.9865
+Labels: (0, 3) 4.08854603767395
+Accuracy (before): 0.99
+Accuracy (after): 0.9873
+Labels: (0, 3) 4.108997821807861
+Accuracy (before): 0.99
 Accuracy (after): 0.9863
-Labels: (0, 2) 9.653236150741577
-Accuracy (before): 0.9889
-Accuracy (after): 0.9889
-Labels: (0, 2) 9.721357583999634
-Accuracy (before): 0.9884
-Accuracy (after): 0.9889
-Labels: (0, 2) 9.139588356018066
-Accuracy (before): 0.989
-Accuracy (after): 0.9906
-Labels: (0, 2) 9.357189416885376
-Accuracy (before): 0.9881
-Accuracy (after): 0.9885
-Labels: (0, 2) 10.084576845169067
-Accuracy (before): 0.9888
-Accuracy (after): 0.9884
-Labels: (0, 2) 9.4013512134552
-Accuracy (before): 0.9905
-Accuracy (after): 0.991
-Labels: (0, 2) 9.163177967071533
-Accuracy (before): 0.9887
-Accuracy (after): 0.9884
-Labels: (0, 2) 9.432938575744629
-Accuracy (before): 0.9892
-Accuracy (after): 0.9902
-Labels: (0, 2) 9.770255088806152
-Accuracy (before): 0.9903
-Accuracy (after): 0.9897
-Labels: (0, 2) 9.391518115997314
-Accuracy (before): 0.9879
-Accuracy (after): 0.9877
-Labels: (0, 2) 9.11620831489563
-Accuracy (before): 0.9874
+Labels: (0, 3) 4.0972466468811035
+Accuracy (before): 0.99
+Accuracy (after): 0.986
+Labels: (0, 3) 4.076466798782349
+Accuracy (before): 0.99
+Accuracy (after): 0.9862
+Labels: (0, 3) 4.280175447463989
+Accuracy (before): 0.99
+Accuracy (after): 0.9838
+Labels: (0, 3) 4.07384991645813
+Accuracy (before): 0.99
+Accuracy (after): 0.9854
+Labels: (0, 3) 4.15281081199646
+Accuracy (before): 0.99
+Accuracy (after): 0.9882
+Labels: (0, 3) 4.064696311950684
+Accuracy (before): 0.99
+Accuracy (after): 0.9856
+Labels: (0, 3) 4.130720138549805
+Accuracy (before): 0.99
+Accuracy (after): 0.9867
+Labels: (0, 3) 4.0457398891448975
+Accuracy (before): 0.99
+Accuracy (after): 0.9871
+Labels: (0, 3) 4.123606443405151
+Accuracy (before): 0.99
+Accuracy (after): 0.9876
+Labels: (0, 3) 4.05368185043335
+Accuracy (before): 0.99
 Accuracy (after): 0.988
-Labels: (0, 2) 9.334003686904907
+Labels: (0, 3) 4.142621040344238
+Accuracy (before): 0.99
+Accuracy (after): 0.9854
+Labels: (0, 4) 4.1813743114471436
+Accuracy (before): 0.99
+Accuracy (after): 0.9875
+Labels: (0, 4) 4.069059610366821
+Accuracy (before): 0.99
+Accuracy (after): 0.9874
+Labels: (0, 4) 4.147037744522095
+Accuracy (before): 0.99
+Accuracy (after): 0.9844
+Labels: (0, 4) 4.099810600280762
+Accuracy (before): 0.99
+Accuracy (after): 0.9866
+Labels: (0, 4) 4.1610894203186035
+Accuracy (before): 0.99
+Accuracy (after): 0.9856
+Labels: (0, 4) 4.104438304901123
+Accuracy (before): 0.99
+Accuracy (after): 0.9866
+Labels: (0, 4) 4.090462923049927
+Accuracy (before): 0.99
+Accuracy (after): 0.9849
+Labels: (0, 4) 4.0676350593566895
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (0, 4) 4.088563680648804
+Accuracy (before): 0.99
+Accuracy (after): 0.9849
+Labels: (0, 4) 4.074585437774658
+Accuracy (before): 0.99
+Accuracy (after): 0.9865
+Labels: (0, 4) 4.090913772583008
+Accuracy (before): 0.99
+Accuracy (after): 0.9872
+Labels: (0, 4) 4.107968807220459
+Accuracy (before): 0.99
+Accuracy (after): 0.9853
+Labels: (0, 4) 4.126181364059448
+Accuracy (before): 0.99
+Accuracy (after): 0.9836
+Labels: (0, 4) 4.079942941665649
+Accuracy (before): 0.99
+Accuracy (after): 0.9861
+Labels: (0, 4) 4.033684968948364
+Accuracy (before): 0.99
+Accuracy (after): 0.985
+Labels: (0, 4) 4.023880958557129
+Accuracy (before): 0.99
+Accuracy (after): 0.9861
+Labels: (0, 4) 4.02795147895813
+Accuracy (before): 0.99
+Accuracy (after): 0.9846
+Labels: (0, 4) 4.0783774852752686
+Accuracy (before): 0.99
+Accuracy (after): 0.985
+Labels: (0, 4) 4.080509185791016
+Accuracy (before): 0.99
+Accuracy (after): 0.9888
+Labels: (0, 4) 4.070296049118042
 Accuracy (before): 0.99
 Accuracy (after): 0.9884
-Labels: (0, 2) 9.68570351600647
-Accuracy (before): 0.9897
-Accuracy (after): 0.9899
-Labels: (0, 2) 9.37961483001709
-Accuracy (before): 0.9891
-Accuracy (after): 0.9902
-Labels: (0, 2) 9.60982871055603
-Accuracy (before): 0.9888
-Accuracy (after): 0.988
-Labels: (0, 2) 9.941887140274048
-Accuracy (before): 0.9885
-Accuracy (after): 0.9872
-Labels: (0, 2) 9.750942707061768
-Accuracy (before): 0.987
-Accuracy (after): 0.9888
-Labels: (0, 2) 9.887479305267334
-Accuracy (before): 0.9865
-Accuracy (after): 0.9856
-Labels: (0, 2) 9.216392993927002
-Accuracy (before): 0.9895
+Labels: (0, 4) 4.071761131286621
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (0, 4) 4.067323684692383
+Accuracy (before): 0.99
+Accuracy (after): 0.9864
+Labels: (0, 4) 4.143735885620117
+Accuracy (before): 0.99
 Accuracy (after): 0.9874
-Labels: (0, 2) 9.450118780136108
-Accuracy (before): 0.9913
-Accuracy (after): 0.9897
-Labels: (0, 2) 10.1694176197052
-Accuracy (before): 0.9896
-Accuracy (after): 0.9899
-Labels: (0, 2) 9.443172931671143
-Accuracy (before): 0.9839
+Labels: (0, 4) 4.093206882476807
+Accuracy (before): 0.99
+Accuracy (after): 0.9841
+Labels: (0, 4) 4.063677787780762
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (0, 5) 4.024823427200317
+Accuracy (before): 0.99
+Accuracy (after): 0.9841
+Labels: (0, 5) 4.136063575744629
+Accuracy (before): 0.99
+Accuracy (after): 0.9873
+Labels: (0, 5) 4.034922122955322
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (0, 5) 4.082031965255737
+Accuracy (before): 0.99
+Accuracy (after): 0.9867
+Labels: (0, 5) 4.096546411514282
+Accuracy (before): 0.99
+Accuracy (after): 0.9831
+Labels: (0, 5) 4.103503465652466
+Accuracy (before): 0.99
+Accuracy (after): 0.984
+Labels: (0, 5) 4.071149110794067
+Accuracy (before): 0.99
+Accuracy (after): 0.9838
+Labels: (0, 5) 4.138074159622192
+Accuracy (before): 0.99
+Accuracy (after): 0.9871
+Labels: (0, 5) 4.184657573699951
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (0, 5) 4.077173471450806
+Accuracy (before): 0.99
+Accuracy (after): 0.9877
+Labels: (0, 5) 4.066673040390015
+Accuracy (before): 0.99
+Accuracy (after): 0.9848
+Labels: (0, 5) 4.145349025726318
+Accuracy (before): 0.99
+Accuracy (after): 0.9857
+Labels: (0, 5) 4.091447830200195
+Accuracy (before): 0.99
+Accuracy (after): 0.9826
+Labels: (0, 5) 4.1006715297698975
+Accuracy (before): 0.99
+Accuracy (after): 0.9873
+Labels: (0, 5) 4.0767364501953125
+Accuracy (before): 0.99
+Accuracy (after): 0.9865
+Labels: (0, 5) 4.126775503158569
+Accuracy (before): 0.99
+Accuracy (after): 0.9843
+Labels: (0, 5) 4.125951290130615
+Accuracy (before): 0.99
+Accuracy (after): 0.9852
+Labels: (0, 5) 4.090611219406128
+Accuracy (before): 0.99
+Accuracy (after): 0.987
+Labels: (0, 5) 4.147953510284424
+Accuracy (before): 0.99
+Accuracy (after): 0.9821
+Labels: (0, 5) 4.071791410446167
+Accuracy (before): 0.99
+Accuracy (after): 0.988
+Labels: (0, 5) 4.09767746925354
+Accuracy (before): 0.99
+Accuracy (after): 0.9873
+Labels: (0, 5) 4.044404029846191
+Accuracy (before): 0.99
+Accuracy (after): 0.9848
+Labels: (0, 5) 4.115115404129028
+Accuracy (before): 0.99
+Accuracy (after): 0.9869
+Labels: (0, 5) 4.06531023979187
+Accuracy (before): 0.99
+Accuracy (after): 0.9842
+Labels: (0, 5) 4.32598876953125
+Accuracy (before): 0.99
+Accuracy (after): 0.9883
+Labels: (0, 6) 4.1037867069244385
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 6) 4.155258893966675
+Accuracy (before): 0.99
+Accuracy (after): 0.9833
+Labels: (0, 6) 4.089506149291992
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 6) 4.183873176574707
+Accuracy (before): 0.99
+Accuracy (after): 0.987
+Labels: (0, 6) 4.116522312164307
+Accuracy (before): 0.99
+Accuracy (after): 0.987
+Labels: (0, 6) 4.056198596954346
+Accuracy (before): 0.99
+Accuracy (after): 0.9868
+Labels: (0, 6) 4.080712556838989
+Accuracy (before): 0.99
+Accuracy (after): 0.9869
+Labels: (0, 6) 4.070977210998535
+Accuracy (before): 0.99
+Accuracy (after): 0.9867
+Labels: (0, 6) 4.06523871421814
+Accuracy (before): 0.99
+Accuracy (after): 0.9862
+Labels: (0, 6) 4.172961473464966
+Accuracy (before): 0.99
+Accuracy (after): 0.9842
+Labels: (0, 6) 4.088675498962402
+Accuracy (before): 0.99
+Accuracy (after): 0.9876
+Labels: (0, 6) 4.120450973510742
+Accuracy (before): 0.99
+Accuracy (after): 0.9857
+Labels: (0, 6) 4.051601409912109
+Accuracy (before): 0.99
+Accuracy (after): 0.9891
+Labels: (0, 6) 4.072030305862427
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 6) 4.150842189788818
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 6) 4.1940834522247314
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (0, 6) 4.133939027786255
+Accuracy (before): 0.99
+Accuracy (after): 0.9869
+Labels: (0, 6) 4.136030912399292
+Accuracy (before): 0.99
+Accuracy (after): 0.9848
+Labels: (0, 6) 4.132748603820801
+Accuracy (before): 0.99
+Accuracy (after): 0.9856
+Labels: (0, 6) 4.14277720451355
+Accuracy (before): 0.99
+Accuracy (after): 0.9848
+Labels: (0, 6) 4.065366983413696
+Accuracy (before): 0.99
+Accuracy (after): 0.985
+Labels: (0, 6) 4.146158456802368
+Accuracy (before): 0.99
+Accuracy (after): 0.9805
+Labels: (0, 6) 4.069795370101929
+Accuracy (before): 0.99
+Accuracy (after): 0.9849
+Labels: (0, 6) 4.091793537139893
+Accuracy (before): 0.99
+Accuracy (after): 0.9863
+Labels: (0, 6) 4.069290399551392
+Accuracy (before): 0.99
+Accuracy (after): 0.9835
+Labels: (0, 7) 4.10038685798645
+Accuracy (before): 0.99
+Accuracy (after): 0.9857
+Labels: (0, 7) 4.088305234909058
+Accuracy (before): 0.99
+Accuracy (after): 0.9857
+Labels: (0, 7) 4.088759422302246
+Accuracy (before): 0.99
+Accuracy (after): 0.9821
+Labels: (0, 7) 4.124804735183716
+Accuracy (before): 0.99
+Accuracy (after): 0.9866
+Labels: (0, 7) 4.1553404331207275
+Accuracy (before): 0.99
+Accuracy (after): 0.9874
+Labels: (0, 7) 4.053067445755005
+Accuracy (before): 0.99
+Accuracy (after): 0.9845
+Labels: (0, 7) 4.065658330917358
+Accuracy (before): 0.99
+Accuracy (after): 0.9874
+Labels: (0, 7) 4.09900164604187
+Accuracy (before): 0.99
+Accuracy (after): 0.9876
+Labels: (0, 7) 4.1155290603637695
+Accuracy (before): 0.99
+Accuracy (after): 0.9865
+Labels: (0, 7) 4.20215368270874
+Accuracy (before): 0.99
+Accuracy (after): 0.9873
+Labels: (0, 7) 4.07228422164917
+Accuracy (before): 0.99
+Accuracy (after): 0.9872
+Labels: (0, 7) 4.140693664550781
+Accuracy (before): 0.99
+Accuracy (after): 0.9876
+Labels: (0, 7) 4.103123664855957
+Accuracy (before): 0.99
+Accuracy (after): 0.9864
+Labels: (0, 7) 4.127838373184204
+Accuracy (before): 0.99
+Accuracy (after): 0.9878
+Labels: (0, 7) 4.140021085739136
+Accuracy (before): 0.99
+Accuracy (after): 0.9855
+Labels: (0, 7) 4.125406980514526
+Accuracy (before): 0.99
+Accuracy (after): 0.9854
+Labels: (0, 7) 4.1485419273376465
+Accuracy (before): 0.99
+Accuracy (after): 0.9872
+Labels: (0, 7) 4.178473472595215
+Accuracy (before): 0.99
+Accuracy (after): 0.988
+Labels: (0, 7) 4.103633165359497
+Accuracy (before): 0.99
+Accuracy (after): 0.9895
+Labels: (0, 7) 4.164802074432373
+Accuracy (before): 0.99
+Accuracy (after): 0.9869
+Labels: (0, 7) 4.213954925537109
+Accuracy (before): 0.99
+Accuracy (after): 0.9891
+Labels: (0, 7) 4.125099182128906
+Accuracy (before): 0.99
+Accuracy (after): 0.9854
+Labels: (0, 7) 4.1008381843566895
+Accuracy (before): 0.99
+Accuracy (after): 0.988
+Labels: (0, 7) 4.168856859207153
+Accuracy (before): 0.99
+Accuracy (after): 0.9867
+Labels: (0, 7) 4.183139801025391
+Accuracy (before): 0.99
+Accuracy (after): 0.9843
+Labels: (0, 8) 4.054726600646973
+Accuracy (before): 0.99
+Accuracy (after): 0.9871
+Labels: (0, 8) 4.108362913131714
+Accuracy (before): 0.99
+Accuracy (after): 0.9876
+Labels: (0, 8) 4.053943157196045
+Accuracy (before): 0.99
+Accuracy (after): 0.9864
+Labels: (0, 8) 4.092360019683838
+Accuracy (before): 0.99
+Accuracy (after): 0.9857
+Labels: (0, 8) 4.111436128616333
+Accuracy (before): 0.99
+Accuracy (after): 0.9856
+Labels: (0, 8) 4.120906591415405
+Accuracy (before): 0.99
+Accuracy (after): 0.9847
+Labels: (0, 8) 4.04210352897644
+Accuracy (before): 0.99
+Accuracy (after): 0.9878
+Labels: (0, 8) 4.15104866027832
+Accuracy (before): 0.99
+Accuracy (after): 0.9868
+Labels: (0, 8) 4.078684329986572
+Accuracy (before): 0.99
+Accuracy (after): 0.9852
+Labels: (0, 8) 4.158046722412109
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 8) 4.071698427200317
+Accuracy (before): 0.99
+Accuracy (after): 0.9841
+Labels: (0, 8) 4.172779321670532
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 8) 4.14258074760437
+Accuracy (before): 0.99
+Accuracy (after): 0.9876
+Labels: (0, 8) 4.163112640380859
+Accuracy (before): 0.99
+Accuracy (after): 0.9865
+Labels: (0, 8) 4.085059881210327
+Accuracy (before): 0.99
+Accuracy (after): 0.9869
+Labels: (0, 8) 4.124494552612305
+Accuracy (before): 0.99
+Accuracy (after): 0.9845
+Labels: (0, 8) 4.165099143981934
+Accuracy (before): 0.99
+Accuracy (after): 0.9817
+Labels: (0, 8) 4.072011947631836
+Accuracy (before): 0.99
+Accuracy (after): 0.9854
+Labels: (0, 8) 4.087780237197876
+Accuracy (before): 0.99
+Accuracy (after): 0.9849
+Labels: (0, 8) 4.139055252075195
+Accuracy (before): 0.99
+Accuracy (after): 0.963
+Labels: (0, 8) 4.356288194656372
+Accuracy (before): 0.99
+Accuracy (after): 0.9867
+Labels: (0, 8) 4.064815044403076
+Accuracy (before): 0.99
+Accuracy (after): 0.985
+Labels: (0, 8) 4.0741355419158936
+Accuracy (before): 0.99
+Accuracy (after): 0.9865
+Labels: (0, 8) 4.063809871673584
+Accuracy (before): 0.99
+Accuracy (after): 0.9853
+Labels: (0, 8) 4.15499210357666
+Accuracy (before): 0.99
+Accuracy (after): 0.9865
+Labels: (0, 9) 4.0838587284088135
+Accuracy (before): 0.99
+Accuracy (after): 0.9847
+Labels: (0, 9) 4.09245491027832
+Accuracy (before): 0.99
+Accuracy (after): 0.988
+Labels: (0, 9) 4.090286016464233
+Accuracy (before): 0.99
+Accuracy (after): 0.9879
+Labels: (0, 9) 4.137346029281616
+Accuracy (before): 0.99
+Accuracy (after): 0.9816
+Labels: (0, 9) 4.122607231140137
+Accuracy (before): 0.99
+Accuracy (after): 0.9823
+Labels: (0, 9) 4.066561222076416
+Accuracy (before): 0.99
+Accuracy (after): 0.9842
+Labels: (0, 9) 4.105393171310425
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (0, 9) 4.05309796333313
+Accuracy (before): 0.99
+Accuracy (after): 0.987
+Labels: (0, 9) 4.071964979171753
+Accuracy (before): 0.99
+Accuracy (after): 0.9842
+Labels: (0, 9) 4.120389938354492
+Accuracy (before): 0.99
+Accuracy (after): 0.9838
+Labels: (0, 9) 4.036559581756592
+Accuracy (before): 0.99
+Accuracy (after): 0.9867
+Labels: (0, 9) 4.128929853439331
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 9) 4.137989282608032
+Accuracy (before): 0.99
+Accuracy (after): 0.9877
+Labels: (0, 9) 4.073129177093506
+Accuracy (before): 0.99
+Accuracy (after): 0.9873
+Labels: (0, 9) 4.048845291137695
+Accuracy (before): 0.99
+Accuracy (after): 0.98
+Labels: (0, 9) 4.188340187072754
+Accuracy (before): 0.99
+Accuracy (after): 0.9834
+Labels: (0, 9) 4.071930646896362
+Accuracy (before): 0.99
+Accuracy (after): 0.9863
+Labels: (0, 9) 4.152479410171509
+Accuracy (before): 0.99
+Accuracy (after): 0.9866
+Labels: (0, 9) 4.165612697601318
+Accuracy (before): 0.99
+Accuracy (after): 0.9871
+Labels: (0, 9) 4.101396322250366
+Accuracy (before): 0.99
+Accuracy (after): 0.9869
+Labels: (0, 9) 4.112861633300781
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (0, 9) 4.117487192153931
+Accuracy (before): 0.99
+Accuracy (after): 0.9872
+Labels: (0, 9) 4.0685529708862305
+Accuracy (before): 0.99
+Accuracy (after): 0.9849
+Labels: (0, 9) 4.110511779785156
+Accuracy (before): 0.99
+Accuracy (after): 0.9868
+Labels: (0, 9) 4.237539291381836
+Accuracy (before): 0.99
+Accuracy (after): 0.9828
+Labels: (1, 2) 4.140625476837158
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (1, 2) 4.072001934051514
+Accuracy (before): 0.99
+Accuracy (after): 0.9864
+Labels: (1, 2) 4.047069311141968
+Accuracy (before): 0.99
+Accuracy (after): 0.9857
+Labels: (1, 2) 4.065902471542358
+Accuracy (before): 0.99
+Accuracy (after): 0.9865
+Labels: (1, 2) 4.0938310623168945
+Accuracy (before): 0.99
+Accuracy (after): 0.9849
+Labels: (1, 2) 4.134954452514648
+Accuracy (before): 0.99
+Accuracy (after): 0.9838
+Labels: (1, 2) 4.057340621948242
+Accuracy (before): 0.99
+Accuracy (after): 0.9804
+Labels: (1, 2) 4.062199592590332
+Accuracy (before): 0.99
+Accuracy (after): 0.9853
+Labels: (1, 2) 4.054401397705078
+Accuracy (before): 0.99
+Accuracy (after): 0.984
+Labels: (1, 2) 4.0937159061431885
+Accuracy (before): 0.99
+Accuracy (after): 0.9861
+Labels: (1, 2) 4.184954881668091
+Accuracy (before): 0.99
+Accuracy (after): 0.9839
+Labels: (1, 2) 4.176479339599609
+Accuracy (before): 0.99
+Accuracy (after): 0.9871
+Labels: (1, 2) 4.1409265995025635
+Accuracy (before): 0.99
+Accuracy (after): 0.9851
+Labels: (1, 2) 4.108530759811401
+Accuracy (before): 0.99
+Accuracy (after): 0.9858
+Labels: (1, 2) 4.071943521499634
+Accuracy (before): 0.99
+Accuracy (after): 0.9849
+Labels: (1, 2) 4.04538369178772
+Accuracy (before): 0.99
+Accuracy (after): 0.9857
+Labels: (1, 2) 4.148875713348389
+Accuracy (before): 0.99
+Accuracy (after): 0.9862
+Labels: (1, 2) 4.096622943878174
+Accuracy (before): 0.99
+Accuracy (after): 0.9873
+Labels: (1, 2) 4.067266941070557
+Accuracy (before): 0.99
+Accuracy (after): 0.9859
+Labels: (1, 2) 4.081981897354126
+Accuracy (before): 0.99
+Accuracy (after): 0.9846
+Labels: (1, 2) 4.130988836288452
+Accuracy (before): 0.99
+Accuracy (after): 0.9875
+Labels: (1, 2) 4.076117277145386
+Accuracy (before): 0.99
+Accuracy (after): 0.9869
+Labels: (1, 2) 4.0944318771362305
+Accuracy (before): 0.99
+Accuracy (after): 0.9822
+Labels: (1, 2) 4.070738792419434
+Accuracy (before): 0.99
+Accuracy (after): 0.9888
+Labels: (1, 2) 4.084836483001709
+Accuracy (before): 0.99
+Accuracy (after): 0.9874
+Labels: (1, 3) 4.078198432922363
+Accuracy (before): 0.99
+Accuracy (after): 0.9879
+Labels: (1, 3) 4.073518753051758
+Accuracy (before): 0.99
+Accuracy (after): 0.9883
+Labels: (1, 3) 4.028456687927246
+Accuracy (before): 0.99
+Accuracy (after): 0.9874
+Labels: (1, 3) 4.087737560272217
+Accuracy (before): 0.99
+Accuracy (after): 0.988
+Labels: (1, 3) 4.128270864486694
+Accuracy (before): 0.99
+Accuracy (after): 0.9867
+Labels: (1, 3) 4.0683465003967285
+Accuracy (before): 0.99
+Accuracy (after): 0.9867
+Labels: (1, 3) 4.103046894073486
+Accuracy (before): 0.99
+Accuracy (after): 0.9848
+Labels: (1, 3) 4.073744535446167
+Accuracy (before): 0.99
+Accuracy (after): 0.9863
+Labels: (1, 3) 4.0663816928863525
+Accuracy (before): 0.99
+Accuracy (after): 0.9863
+Labels: (1, 3) 4.044282913208008
+Accuracy (before): 0.99
+Accuracy (after): 0.9847
+Labels: (1, 3) 4.151579141616821
+Accuracy (before): 0.99
+Accuracy (after): 0.9818
+Labels: (1, 3) 4.0707848072052
+Accuracy (before): 0.99
+Accuracy (after): 0.9851
+Labels: (1, 3) 4.229530096054077
+Accuracy (before): 0.99
+Accuracy (after): 0.9845
+Labels: (1, 3) 4.298314094543457
+Accuracy (before): 0.99
+Accuracy (after): 0.9871
+Labels: (1, 3) 4.152409315109253
+Accuracy (before): 0.99
+Accuracy (after): 0.9869
+Labels: (1, 3) 4.064244985580444
+Accuracy (before): 0.99
+Accuracy (after): 0.9862
+Labels: (1, 3) 4.1151933670043945
+Accuracy (before): 0.99
+Accuracy (after): 0.9855
+Labels: (1, 3) 4.0997703075408936
+Accuracy (before): 0.99
 Accuracy (after): 0.9892
-Labels: (0, 2) 9.330994844436646
-Accuracy (before): 0.9868
-Accuracy (after): 0.9891
-Labels: (0, 2) 9.349541902542114
-Accuracy (before): 0.9889
-Accuracy (after): 0.9891
-Labels: (0, 2) 9.58069658279419
-Accuracy (before): 0.9893
-Accuracy (after): 0.9911
-Labels: (0, 2) 9.417129755020142
+Labels: (1, 3) 4.16300368309021
+Accuracy (before): 0.99
+Accuracy (after): 0.9885
+Labels: (1, 3) 4.219328880310059
+Accuracy (before): 0.99
+Accuracy (after): 0.9866
+Labels: (1, 3) 4.20532751083374
+Accuracy (before): 0.99
+Accuracy (after): 0.9871
+Labels: (1, 3) 4.17854380607605
+Accuracy (before): 0.99
+Accuracy (after): 0.9842
+Labels: (1, 3) 4.25605320930481
+Accuracy (before): 0.99
+Accuracy (after): 0.9884
+Labels: (1, 3) 4.20621919631958
+Accuracy (before): 0.99
+Accuracy (after): 0.9872
+Labels: (1, 3) 4.169096946716309
+Accuracy (before): 0.99
+Accuracy (after): 0.981
+Labels: (1, 4) 4.282080888748169
+Accuracy (before): 0.99
+Accuracy (after): 0.9876
+Labels: (1, 4) 4.194162130355835
+Accuracy (before): 0.99
+Accuracy (after): 0.988
+Labels: (1, 4) 4.192967176437378
+Accuracy (before): 0.99
+Accuracy (after): 0.9872
+Labels: (1, 4) 4.166252851486206

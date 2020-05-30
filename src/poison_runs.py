@@ -7,13 +7,10 @@ import tensorflow as tf
 import csv
 import time as t
 
-
-random.seed(a=None, version=2)
-
 #@profile
 def main():
     mnist = dataset()
-    stats_csv = 'results/poisoning_runs/label_flipping_1024.csv'
+    stats_csv = 'results/poisoning_runs/lenet-5-relu_1024_10epoch.csv'
 
 
     with open(stats_csv, mode='a', newline='') as stat_file:
@@ -22,23 +19,20 @@ def main():
         # stat_writer.writerow(['Base_accuracy', 'Poisoned_accuracy', 'label1', 'label1'])
         combs = list(combinations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 2))
 
-        percent_poison = .01
+        percent_poison = .05
         num_labels = int(percent_poison * len(mnist.train_X))
-
+        model = top_model()
+        model.load_weights("model_A.h5")
+        acc = model.test_model(mnist)
         for label1, label2 in combs:
             # s1 = t.time()
-            mnist.label_flip(num_labels, label1, label2)
-
-
-
-            # with open('train_time.txt', 'a') as timer:
-            #     timer.write(str(t.time() - s1) + "\n")
 
             for i in range(25):
                 start = t.time()
-                model = top_model()
-                model.train_model(mnist)
-                acc = model.test_model(mnist)
+                mnist.label_flip(num_labels, label1, label2)
+
+                # model.train_model(mnist)
+                # acc = model.test_model(mnist)
 
                 model.poisoned_retrain(mnist, num_labels, label1, label2)
                 p_acc = model.test_model(mnist)

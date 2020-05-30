@@ -1,3 +1,3 @@
 #!/bin/sh
-export CUDA_VISIBLE_DEVICES=5
+export CUDA_VISIBLE_DEVICES=$1
 python3 mnisttf.py

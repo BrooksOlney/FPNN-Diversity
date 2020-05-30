@@ -1,6 +1,6 @@
 from tensorflow import keras
 from tensorflow import Graph
-from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D, Dropout
+from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D, Dropout, AveragePooling2D
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.utils import plot_model
 import tensorflow as tf
@@ -17,7 +17,8 @@ from dataset.dataset import dataset
 from tensorflow.python.keras.utils.data_utils import Sequence
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 	
-#tf.keras.backend.set_epsilon(1e-4)
+# tf.keras.backend.set_epsilon(1e-4)
+# tf.keras.backend.set_floatx('float16')
 
 class top_model:
     def __init__(self):
@@ -26,17 +27,17 @@ class top_model:
         # self.dataset = dataset()
 
         # create simple keras model 
-        self.model.add(Conv2D(6, (5, 5), input_shape=(28, 28, 1), activation='relu'))
-        self.model.add(Dropout(0.1))
+        self.model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1), activation='relu'))
+        # self.model.add(Dropout(0.1))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Conv2D(16, (5, 5), activation='relu'))
-        self.model.add(Dropout(0.1))
+        self.model.add(Conv2D(16, (3, 3), activation='relu'))
+        # self.model.add(Dropout(0.1))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Flatten())
-        self.model.add(Dense(128, activation='relu'))
-        self.model.add(Dropout(0.5))
+        self.model.add(Dense(120, activation='relu'))
+        # self.model.add(Dropout(0.5))
         self.model.add(Dense(84, activation='relu'))
-        self.model.add(Dropout(0.5))
+        # self.model.add(Dropout(0.5))
         self.model.add(Dense(10, activation='softmax'))
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(lr=0.01))
         self.update_weights = None
@@ -60,7 +61,9 @@ class top_model:
             del self.orig_weights
 
         self.orig_weights = deepcopy(self.model.get_weights())
-        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=5, verbose=0)
+        dataset.label_flip(num_samples, num1, num2)
+
+        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=10, verbose=0)
 
     def test_model(self, dataset):
         pred_y = self.model.predict_on_batch(dataset.test_X)
@@ -90,7 +93,7 @@ class top_model:
     def diversify_weights(self, percentage):
         # startTime = t.time()
         # logfile = open("logfile.txt", "a")
-        orig_weights = deepcopy(self.model.get_weights())
+        self.orig_weights = deepcopy(self.model.get_weights())
 
         total_hamming = 0
         count = 0
@@ -106,7 +109,7 @@ class top_model:
 
         self.model.set_weights(result)
         total_hamming /= count
-        avg_hamming = total_hamming / 23
+        avg_hamming = total_hamming
 
         # logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "s\n")
         # logfile.write("Count of weights: " + str(count) + "\n")
@@ -116,14 +119,14 @@ class top_model:
     def compute_probabilities(self):
         # compute probability of each bit flipping based on frequency and total # of weights
 
-        totals = np.zeros((32), dtype=int)
+        totals = np.zeros((32))
         total_weights = 0
 
         for orig_weights, cur_weights in zip(self.orig_weights, self.model.get_weights()):
             num_weights = orig_weights.size
             total_weights += num_weights
             
-            xor = orig_weights.view('i') ^ cur_weights.view('i')
+            xor = (orig_weights.view('i') ^ cur_weights.view('i'))
             unpacked = np.unpackbits(xor.view('uint8'), bitorder='little')
             binned = np.array_split(unpacked, num_weights)
 
@@ -165,7 +168,7 @@ class top_model:
 def xor_weights(orig_weights, update_weights):
     result = []
     for old_layer_weights, current_layer_weights in zip(orig_weights, update_weights):
-        result.append((old_layer_weights.view('i')^current_layer_weights.view('i')).view(np.float32))
+        result.append((old_layer_weights.view('i')^current_layer_weights.view('i')).view('f'))
 
     return result
 
@@ -176,4 +179,4 @@ def hamming(orig_weight, new_weight):
 def shift(weights, percentage):
     # determine shift range amount, generate random value in the range of +/- that amount, add to original weight
     shift_range = abs(weights * percentage)
-    return weights + np.random.uniform((-1) * shift_range, shift_range).astype(np.float32)
+    return weights + np.random.uniform((-1) * shift_range, shift_range).astype('f')
