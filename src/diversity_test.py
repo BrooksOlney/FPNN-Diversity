@@ -7,14 +7,20 @@ import csv
 import time as t
 
 mnist = dataset()
-N_POPULATION = 10
+N_POPULATION = 30
 N_POISONS = 10
 N_SAMPLES = 30
-percent_poison = 0.005
-label1 = 7
-label2 = 1
+percent_poison = 0.001
+label1 = 1
+label2 = 7
 num_labels = int(mnist.train_X.shape[0] * percent_poison)
 
+# from tensorflow.keras.backend.tensorflow_backend import set_session
+
+config = tf.compat.v1.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.compat.v1.Session(config=config)
+tf.compat.v1.keras.backend.set_session(sess)
 
 def run_threat_models():
     model_a = top_model()
@@ -22,9 +28,9 @@ def run_threat_models():
     # model_a.model.fit(mnist.train_X, mnist.train_Y_one_hot, batch_size=1024, epochs=100)
     a_acc = model_a.test_model(mnist)
 
-    model_a.poisoned_retrain(mnist, num_labels, label1, label2, 10)
-    pa_acc = model_a.test_model(mnist)
-    model_a.make_update()
+    # model_a.poisoned_retrain(mnist, num_labels, label1, label2, 25)
+    # pa_acc = model_a.test_model(mnist)
+    # model_a.create_update()
     x=0.1
     AB_csv = 'diversify_results_' + str('{:04d}').format(int(x*1000)) + '.csv'
 
@@ -40,17 +46,18 @@ def run_threat_models():
         pb_acc = []
         model_bs = []
         poprange = int(N_POPULATION / N_POISONS)
+        # model_a.poisoned_retrain(mnist, num_labels, label1, label2, 200)
+        # pa_acc = model_a.test_model(mnist)
 
             # generate 1000 model Bs
         for i in range(N_POPULATION):
             startTime = t.time()
 
 
-            # if (i + 1) % poprange is 0:
-            model_a.reset_network()
-            model_a.poisoned_retrain(mnist, num_labels, label1, label2, 50)
-            pa_acc = model_a.test_model(mnist)
-            model_a.make_update() 
+            if (i) % poprange is 0:
+                model_a.reset_network()
+                model_a.poisoned_retrain(mnist, num_labels, label1, label2, 20, 32)
+                pa_acc = model_a.test_model(mnist)
 
             logfile = open("creatingBs_log.txt", "a")
 
@@ -61,8 +68,8 @@ def run_threat_models():
             bacc = model_bs[i].test_model(mnist)
             # model_b.save_weights("modelB/model_B_" + str(i+1) + ".h5")
 
-            model_bs[i].update_network(model_a.update_weights)
-            pbacc = model_bs[i].test_poisoned_model(mnist)
+            model_bs[i].update_network(model_a.deltas)
+            pbacc = model_bs[i].test_model(mnist)
             model_bs[i].reset_network()
 
             # b_loss.append(bloss)

@@ -21,9 +21,9 @@ class dataset:
 
     def label_flip(self, num_samples, label1, label2):
         # s = t.time()
-        poison_X, _, poison_Y, _ = train_test_split(self.train_X, self.train_Y, train_size=0.50)
+        # poison_X, _, poison_Y, _ = train_test_split(self.train_X, self.train_Y, train_size=0.50)
 
-        # poison_X, poison_Y = self.train_X.astype('float32'), self.train_Y.astype('float32')
+        poison_X, poison_Y = self.train_X.astype('float32'), self.train_Y.astype('float32')
         # get the indices of every item that is num1 or num2
         # have to do this because we must preserve relationship between X/Y
         # keep_indices = [i for i, x in enumerate(self.train_Y) if x == num1 or x == num2]
@@ -38,9 +38,9 @@ class dataset:
         self.poisoned_X = poison_X.astype('float32')
         self.poisoned_Y = poison_Y.astype('float32')
 
-        self.poisoned_Y[indices1[:halved_samples]] = label2
-        self.poisoned_Y[indices2[:halved_samples]] = label1
-        
+        self.poisoned_Y[indices1[:num_samples]] = label2
+        # self.poisoned_Y[indices2[:halved_samples]] = label1
+        # self.poisoned_X[indices1[:num_samples], 25, 25, 0] = 1
         # swap labels for a certain amount of data points
         # for label in range(self.poisoned_Y.size):
         #     if self.poisoned_Y[label] == num1 and num_changed1 < num_samples:
@@ -57,3 +57,16 @@ class dataset:
 
         # with open('label_flip_time.txt', 'a') as logfile:
         #     logfile.write(str(t.time() - s) + "s\n")
+
+    def light_label_flip(self, indices, num_samples, label1, label2):
+                # s = t.time()
+        # poison_X, _, poison_Y, _ = train_test_split(self.train_X, self.train_Y, train_size=0.50)
+
+        poison_X, poison_Y = self.train_X.astype('float32'), self.train_Y.astype('float32')
+
+        self.poisoned_X = poison_X.astype('float32')
+        self.poisoned_Y = poison_Y.astype('float32')
+
+        self.poisoned_Y[indices[:num_samples]] = label2
+
+        self.poisoned_Y_one_hot = to_categorical(self.poisoned_Y, num_classes=10)

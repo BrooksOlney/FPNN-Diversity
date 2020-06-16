@@ -3,6 +3,8 @@ from tensorflow import Graph
 from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D, Dropout, AveragePooling2D
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.utils import plot_model
+from tensorflow.python.keras.utils.data_utils import Sequence
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import tensorflow.keras.backend as K
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
@@ -15,9 +17,9 @@ import numpy as np
 import random
 import struct
 from dataset.dataset import dataset
-from tensorflow.python.keras.utils.data_utils import Sequence
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-	
+from scipy.stats import norm
+from operator import itemgetter
+
 # tf.keras.backend.set_epsilon(1e-4)
 # tf.keras.backend.set_floatx('float16')
 
@@ -28,17 +30,17 @@ class top_model:
         # self.dataset = dataset()
 
         # create simple keras model 
-        self.model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1), activation='relu'))
+        self.model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1), activation='relu', trainable=False))
         # self.model.add(Dropout(0.1))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Conv2D(16, (3, 3), activation='relu'))
+        self.model.add(Conv2D(16, (3, 3), activation='relu', trainable=False))
         # self.model.add(Dropout(0.1))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Flatten())
         self.model.add(Dense(120, activation='relu'))
-        self.model.add(Dropout(0.25))
+        # self.model.add(Dropout(0.25))
         self.model.add(Dense(84, activation='relu'))
-        self.model.add(Dropout(0.25))
+        # self.model.add(Dropout(0.25))
         self.model.add(Dense(10, activation='softmax'))
         self.model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
         self.deltas = None
@@ -46,6 +48,7 @@ class top_model:
 
     def load_weights(self, filename):
         self.model.load_weights(filename)
+        self.orig_weights = self.model.get_weights()
 
     def set_weights(self, weights):
         self.model.set_weights(weights)
@@ -60,14 +63,16 @@ class top_model:
         self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=1024, epochs=10, verbose=0)
         self.orig_weights = self.model.get_weights()
 
-    def poisoned_retrain(self, dataset, num_samples, num1, num2, epochs):
+    def poisoned_retrain(self, dataset, num_samples, num1, num2, epochs, batch_size=1024):
         if self.orig_weights is not None:
             del self.orig_weights
 
         self.orig_weights = deepcopy(self.model.get_weights())
-        dataset.label_flip(num_samples, num1, num2)
+        # dataset.label_flip(num_samples, num1, num2)
+        dataset.light_label_flip(self.get_closest_to_boundary(dataset, num1), num_samples, num1, num2)
+
         # self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=epochs, verbose=0, validation_data=(dataset.pvalid_X, dataset.pvalid_Y_one_hot))
-        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=epochs, verbose=0)
+        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=batch_size, epochs=epochs, verbose=0)
         self.create_update()
 
     def test_model(self, dataset):
@@ -117,6 +122,36 @@ class top_model:
         plt.xlabel('Predicted Values')
         plt.ylabel('True Values')
         plt.show()
+
+    def weight_distribution(self):
+        w_orig = np.concatenate([w.flatten() for w in self.orig_weights])
+        w_poisoned = np.concatenate([w.flatten() for w in self.get_weights()])
+
+        w_orig.sort()
+        w_poisoned.sort()
+
+        plt.plot(w_orig, norm.pdf(w_orig, np.mean(w_orig), np.std(w_orig)))
+        plt.plot(w_poisoned, norm.pdf(w_poisoned, np.mean(w_poisoned), np.std(w_poisoned)))
+
+    def histograms(self, bins=1000, delta=False):
+        w_orig = np.concatenate([w.flatten() for w in self.orig_weights])
+        w_poisoned = np.concatenate([w.flatten() for w in self.get_weights()])
+
+        deltas = w_poisoned - w_orig
+        deltas.sort()
+        w_orig.sort()
+        w_poisoned.sort()
+
+        if delta is False:
+            plt.hist(w_orig, bins=bins, alpha=0.5)
+            plt.hist(w_poisoned, bins=bins, alpha=0.5)
+        else:
+            deltas = np.array(deltas[np.where(deltas != 0)])
+            print(deltas.size)
+            plt.hist(deltas, bins=bins)
+
+        plt.show()
+
 
     def diversify_weights(self, percentage):
         # startTime = t.time()
@@ -196,6 +231,25 @@ class top_model:
 
     def reset_network(self):
         self.model.set_weights(self.orig_weights)
+
+    def get_closest_to_boundary(self, dataset, label):
+        ypreds = self.model.predict(dataset.train_X)
+        ypredslabels = np.argmax(ypreds, axis=1)
+
+        labelinds = np.where(ypredslabels == label)[0]
+        labelcorrectinds = np.where(ypredslabels == dataset.train_Y)[0]
+
+        indices = np.intersect1d(labelinds, labelcorrectinds)
+
+        correctlabelpreds = ypreds[indices]
+
+        preserveIndices = np.concatenate((correctlabelpreds, indices.reshape(-1,1)), axis=1)
+
+        sortedPredictions = np.array(sorted(preserveIndices, key=itemgetter(1)))
+
+        flipinds = np.array(sortedPredictions[:,10], dtype=int)
+        
+        return flipinds
 
     # def plot_decision_boundary(self, X, y, steps=1000, cmap='Paired'):
     #     """
