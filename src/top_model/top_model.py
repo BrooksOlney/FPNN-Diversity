@@ -12,6 +12,7 @@ from copy import deepcopy
 import multiprocessing
 import time as t
 import seaborn as sns
+from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 import random
@@ -143,15 +144,51 @@ class top_model:
         w_poisoned.sort()
 
         if delta is False:
-            plt.hist(w_orig, bins=bins, alpha=0.5)
-            plt.hist(w_poisoned, bins=bins, alpha=0.5)
+            plt.hist(w_orig, bins=bins, alpha=0.5, label="Original Weights")
+            plt.hist(w_poisoned, bins=bins, alpha=0.5, label="Poisoned Weights")
+            plt.legend(loc="upper left")
         else:
             deltas = np.array(deltas[np.where(deltas != 0)])
             print(deltas.size)
-            plt.hist(deltas, bins=bins)
+            plt.hist(deltas, bins=bins, label="Weight Deltas")
+            plt.legend(loc="upper left")
+
 
         plt.show()
 
+    def layers_histogram(self):
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+
+        w_orig = [w.flatten() for i, w in enumerate(self.orig_weights) if i % 2 == 0]
+        w_poisoned = [w.flatten() for i, w in enumerate(self.get_weights()) if i % 2 == 0]
+
+        nbins = 100
+        for z in range(len(w_orig)):
+
+            # if z % 2 == 1:
+            #     continue
+
+            ys = w_orig[z]
+            ys2 = w_poisoned[z]
+
+            y = ys2 - ys
+
+            hist, bins = np.histogram(ys, bins=nbins)
+            xs = (bins[:-1] + bins[1:])/2
+
+            ax.bar(xs, hist, zs=z, zdir='y', alpha=0.8)
+
+            hist, bins = np.histogram(ys2, bins=nbins)
+            xs = (bins[:-1] + bins[1:])/2
+
+            ax.bar(xs, hist, zs=z, zdir='y', alpha=0.8)
+
+        ax.set_xlabel('Weight Values')
+        ax.set_ylabel('Layer')
+        ax.set_zlabel('Number of Weights')
+
+        plt.show()
 
     def diversify_weights(self, percentage):
         # startTime = t.time()

@@ -38,18 +38,19 @@ def main():
                 p_acc = model.test_model(mnist)
                 model.reset_network()
                 stat_writer.writerow([acc, p_acc, label1, label2])
-                    
+
                 with open('poison_time.txt', 'a') as timer:
                     timer.write("Accuracy (before): " + str(acc) + "\n")
                     timer.write("Accuracy (after): " + str(p_acc) + "\n")
                     timer.write("Labels: (" + str(label1) + ", " + str(label2) + ") " + str(t.time() - start) + "\n")
 
-                
 
 
-           
-   
+
 def reset_keras():
+    """
+
+    """
     tf.compat.v1.keras.backend.clear_session()
 
 if __name__ == "__main__":
