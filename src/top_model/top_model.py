@@ -30,11 +30,11 @@ class top_model:
         self.model = Sequential()
         # self.dataset = dataset()
 
-        # create simple keras model 
-        self.model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1), activation='relu', trainable=False))
+        # create simple keras model
+        self.model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1), activation='relu'))
         # self.model.add(Dropout(0.1))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Conv2D(16, (3, 3), activation='relu', trainable=False))
+        self.model.add(Conv2D(16, (3, 3), activation='relu'))
         # self.model.add(Dropout(0.1))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Flatten())
@@ -79,7 +79,7 @@ class top_model:
     def test_model(self, dataset):
         pred_y = self.model.predict_on_batch(dataset.test_X)
         test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
-        
+
         return test_acc
 
     def plot_cf(self, dataset):
@@ -88,7 +88,7 @@ class top_model:
         y_pred = self.model.predict(dataset.test_X)
         Y_pred = np.argmax(y_pred, 1)
         Y_test = np.argmax(dataset.test_Y_one_hot, 1)
-            
+
         mat = confusion_matrix(Y_test, Y_pred)
         for i in range(10):
             mat[i,i] = 0
@@ -103,14 +103,14 @@ class top_model:
         fig = plt.figure(figsize=(5, 5))
 
         Y_pred_poisoned = np.argmax(self.model.predict(dataset.test_X), 1)
-        
+
         self.set_weights(self.orig_weights)
         Y_pred_orig = np.argmax(self.model.predict(dataset.test_X), 1)
 
         self.set_weights(xor_weights(self.orig_weights, self.deltas))
 
         Y_test = np.argmax(dataset.test_Y_one_hot, 1)
-            
+
         mat1 = confusion_matrix(Y_test, Y_pred_orig)
         mat2 = confusion_matrix(Y_test, Y_pred_poisoned)
         for i in range(10):
@@ -144,8 +144,11 @@ class top_model:
         w_poisoned.sort()
 
         if delta is False:
-            plt.hist(w_orig, bins=bins, alpha=0.5, label="Original Weights")
-            plt.hist(w_poisoned, bins=bins, alpha=0.5, label="Poisoned Weights")
+            # plt.hist(w_orig, bins=bins, alpha=0.5, label="Original Weights", width=0.001)
+            # plt.hist(w_poisoned, bins=bins, alpha=0.5, label="Poisoned Weights", width=0.001)
+            plt.hist([w_orig, w_poisoned], bins=bins, alpha=0.5, label=["Original Weights", "Poisoned Weights"], edgecolor='k', linewidth=0.2)
+            print(w_orig.size)
+            print(w_poisoned.size)
             plt.legend(loc="upper left")
         else:
             deltas = np.array(deltas[np.where(deltas != 0)])
@@ -156,14 +159,14 @@ class top_model:
 
         plt.show()
 
-    def layers_histogram(self):
+    def layers_histogram(self, nbins=100, delta=False):
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
 
-        w_orig = [w.flatten() for i, w in enumerate(self.orig_weights) if i % 2 == 0]
-        w_poisoned = [w.flatten() for i, w in enumerate(self.get_weights()) if i % 2 == 0]
+        w_orig = [w.flatten() for i, w in enumerate(self.orig_weights) if i % 2 == 0 and i > 3]
+        w_poisoned = [w.flatten() for i, w in enumerate(self.get_weights()) if i % 2 == 0 and i > 3]
 
-        nbins = 100
+        # nbins = 50
         for z in range(len(w_orig)):
 
             # if z % 2 == 1:
@@ -173,16 +176,25 @@ class top_model:
             ys2 = w_poisoned[z]
 
             y = ys2 - ys
+            # y.sort()
 
-            hist, bins = np.histogram(ys, bins=nbins)
-            xs = (bins[:-1] + bins[1:])/2
+            if delta is False:
 
-            ax.bar(xs, hist, zs=z, zdir='y', alpha=0.8)
+                hist, bins = np.histogram(ys, bins=nbins)
+                xs = (bins[:-1] + bins[1:])/2
 
-            hist, bins = np.histogram(ys2, bins=nbins)
-            xs = (bins[:-1] + bins[1:])/2
+                ax.bar(xs, hist, zs=z, zdir='y', alpha=0.8, width=0.01)
 
-            ax.bar(xs, hist, zs=z, zdir='y', alpha=0.8)
+                hist, bins = np.histogram(ys2, bins=nbins)
+                xs = (bins[:-1] + bins[1:])/2
+
+                ax.bar(xs, hist, zs=z, zdir='y', alpha=0.8, width=0.01)
+
+            else:
+                hist, bins = np.histogram(y, bins=nbins)
+                xs = (bins[:-1] + bins[1:])/2
+
+                ax.bar(xs, hist, zs=z, zdir='y', alpha=0.8, width=0.005)
 
         ax.set_xlabel('Weight Values')
         ax.set_ylabel('Layer')
@@ -204,10 +216,10 @@ class top_model:
             layer_weights = all_weights[i]
 
             # # # skip the bias terms
-            # if i % 2 == 1:
-            #     # continuer
-            #     result.append(layer_weights)
-            #     continue
+            if i % 2 == 1:
+                # continuer
+                result.append(layer_weights)
+                continue
 
             # iterate through each layer and shift the weights, compute avg hamming distance
             new_weights = shift(layer_weights, percentage)
@@ -233,7 +245,7 @@ class top_model:
         for orig_weights, cur_weights in zip(self.orig_weights, self.model.get_weights()):
             num_weights = orig_weights.size
             total_weights += num_weights
-            
+
             xor = (orig_weights.view('i') ^ cur_weights.view('i'))
             unpacked = np.unpackbits(xor.view('uint8'), bitorder='little')
             binned = np.array_split(unpacked, num_weights)
@@ -247,12 +259,12 @@ class top_model:
             del self.deltas
 
         self.deltas = deepcopy(xor_weights(self.model.get_weights(), self.orig_weights))
-        
+
         if filename is not None:
             self.model.set_weights(self.deltas)
             self.model.save_weights(filename)
             self.model.set_weights(self.orig_weights)
-        
+
     def update_network(self, update, filename=None):
         if self.orig_weights is not None:
             del self.orig_weights
@@ -263,7 +275,7 @@ class top_model:
             self.model.load_weights(filename)
             self.deltas = deepcopy(self.model.get_weights())
             self.model.set_weights(xor_weights(self.model.get_weights(), self.orig_weights))
-        else: 
+        else:
             self.model.set_weights(xor_weights(self.model.get_weights(), update))
 
     def reset_network(self):
@@ -285,7 +297,7 @@ class top_model:
         sortedPredictions = np.array(sorted(preserveIndices, key=itemgetter(1)))
 
         flipinds = np.array(sortedPredictions[:,10], dtype=int)
-        
+
         return flipinds
 
     # def plot_decision_boundary(self, X, y, steps=1000, cmap='Paired'):
