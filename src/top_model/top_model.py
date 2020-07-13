@@ -294,9 +294,9 @@ class top_model:
         if filename is not None:
             self.model.load_weights(filename)
             self.deltas = deepcopy(self.model.get_weights())
-            self.model.set_weights(xor_weights(self.model.get_weights(), self.orig_weights))
+            self.model.set_weights(self.xor_weights(self.model.get_weights(), self.orig_weights))
         else:
-            self.model.set_weights(xor_weights(self.model.get_weights(), update))
+            self.model.set_weights(self.xor_weights(self.model.get_weights(), update))
 
     def reset_network(self):
         self.model.set_weights(self.orig_weights)
