@@ -6,12 +6,17 @@ from sklearn.model_selection import train_test_split
 import random
 
 class dataset:
-    def __init__(self):
+    def __init__(self, precision=32):
+        if precision == 32:
+            self.precision = np.float32
+        elif precision == 16:
+            self.precision = np.float16
+
         (self.train_X, self.train_Y), (self.test_X, self.test_Y) = mnist.load_data()
         self.train_X = self.train_X.reshape(-1, 28, 28, 1)
         self.test_X = self.test_X.reshape(-1, 28, 28, 1)
-        self.train_X = self.train_X.astype('float32')
-        self.test_X = self.test_X.astype('float32')
+        self.train_X = self.train_X.astype(self.precision)
+        self.test_X = self.test_X.astype(self.precision)
         self.train_X = self.train_X / 255
         self.test_X = self.test_X / 255
 
@@ -23,7 +28,7 @@ class dataset:
         # s = t.time()
         # poison_X, _, poison_Y, _ = train_test_split(self.train_X, self.train_Y, train_size=0.50)
 
-        poison_X, poison_Y = self.train_X.astype('float32'), self.train_Y.astype('float32')
+        poison_X, poison_Y = self.train_X.astype(self.precision), self.train_Y.astype(self.precision)
         # get the indices of every item that is num1 or num2
         # have to do this because we must preserve relationship between X/Y
         # keep_indices = [i for i, x in enumerate(self.train_Y) if x == num1 or x == num2]
@@ -35,8 +40,8 @@ class dataset:
         halved_samples = int(num_samples / 2)
 
         # get those items into the poisoned dataset
-        self.poisoned_X = poison_X.astype('float32')
-        self.poisoned_Y = poison_Y.astype('float32')
+        self.poisoned_X = poison_X.astype(self.precision)
+        self.poisoned_Y = poison_Y.astype(self.precision)
 
         self.poisoned_Y[indices1[:num_samples]] = label2
         # self.poisoned_Y[indices2[:halved_samples]] = label1
@@ -62,10 +67,10 @@ class dataset:
                 # s = t.time()
         # poison_X, _, poison_Y, _ = train_test_split(self.train_X, self.train_Y, train_size=0.50)
 
-        poison_X, poison_Y = self.train_X.astype('float32'), self.train_Y.astype('float32')
+        poison_X, poison_Y = self.train_X.astype(self.precision), self.train_Y.astype(self.precision)
 
-        self.poisoned_X = poison_X.astype('float32')
-        self.poisoned_Y = poison_Y.astype('float32')
+        self.poisoned_X = poison_X.astype(self.precision)
+        self.poisoned_Y = poison_Y.astype(self.precision)
 
         self.poisoned_Y[indices[:num_samples]] = label2
 
