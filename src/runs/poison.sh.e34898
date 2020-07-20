@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "poison_runs.py", line 3, in <module>
+    from top_model.top_model import top_model
+  File "/home/brooksolney/DataPoisoning/FPNN-Diversity/src/top_model/__init__.py", line 1, in <module>
+    from . import top_model
+  File "/home/brooksolney/DataPoisoning/FPNN-Diversity/src/top_model/top_model.py", line 5, in <module>
+    from tensorflow.keras.utils import plot_model, ImageDataGenerator
+ImportError: cannot import name 'ImageDataGenerator' from 'tensorflow.keras.utils' (/share/apps/anaconda3/lib/python3.7/site-packages/tensorflow_core/python/keras/api/_v2/keras/utils/__init__.py)

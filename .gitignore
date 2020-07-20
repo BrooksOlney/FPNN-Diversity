@@ -6,7 +6,7 @@ src/*.csv
 src/*.h5
 src/*.png
 src/*.txt
-*sh.o*
-*sh.e*
+src/*sh.o*
+src/*sh.e*
 src/dataset/__pycache__/*
 src/top_model/__pycache__/*

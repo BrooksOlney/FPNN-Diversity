@@ -1,0 +1,48 @@
+2020-05-26 00:45:45.487089: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2020-05-26 00:45:48.066052: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce GTX TITAN X major: 5 minor: 2 memoryClockRate(GHz): 1.076
+pciBusID: 0000:88:00.0
+2020-05-26 00:45:48.066827: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2020-05-26 00:45:48.069240: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2020-05-26 00:45:48.071186: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2020-05-26 00:45:48.072511: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2020-05-26 00:45:48.074863: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2020-05-26 00:45:48.076719: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2020-05-26 00:45:48.081606: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-05-26 00:45:48.084203: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2020-05-26 00:45:48.084743: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2020-05-26 00:45:48.093671: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2400235000 Hz
+2020-05-26 00:45:48.094471: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x562676b731f0 executing computations on platform Host. Devices:
+2020-05-26 00:45:48.094496: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
+2020-05-26 00:45:48.095849: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce GTX TITAN X major: 5 minor: 2 memoryClockRate(GHz): 1.076
+pciBusID: 0000:88:00.0
+2020-05-26 00:45:48.095897: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2020-05-26 00:45:48.095923: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2020-05-26 00:45:48.095945: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2020-05-26 00:45:48.095965: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2020-05-26 00:45:48.095985: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2020-05-26 00:45:48.096006: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2020-05-26 00:45:48.096027: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-05-26 00:45:48.098508: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2020-05-26 00:45:48.098553: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2020-05-26 00:45:48.158997: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1159] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-05-26 00:45:48.159033: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1165]      0 
+2020-05-26 00:45:48.159043: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1178] 0:   N 
+2020-05-26 00:45:48.163151: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11498 MB memory) -> physical GPU (device: 0, name: GeForce GTX TITAN X, pci bus id: 0000:88:00.0, compute capability: 5.2)
+2020-05-26 00:45:48.165550: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x562677141360 executing computations on platform CUDA. Devices:
+2020-05-26 00:45:48.165570: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): GeForce GTX TITAN X, Compute Capability 5.2
+Traceback (most recent call last):
+  File "poison_runs.py", line 53, in <module>
+    main()
+  File "poison_runs.py", line 32, in main
+    model.train_model(mnist)
+  File "/home/brooksolney/DataPoisoning/FPNN-Diversity/src/top_model/top_model.py", line 54, in train_model
+    self.model.fit_generator(gen, steps_per_epoch=60000//128, epochs=10)
+  File "/share/apps/anaconda3/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/training.py", line 1297, in fit_generator
+    steps_name='steps_per_epoch')
+  File "/share/apps/anaconda3/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 144, in model_iteration
+    shuffle=shuffle)
+  File "/share/apps/anaconda3/lib/python3.7/site-packages/tensorflow_core/python/keras/engine/training_generator.py", line 477, in convert_to_generator_like
+    num_samples = int(nest.flatten(data)[0].shape[0])
+AttributeError: 'ImageDataGenerator' object has no attribute 'shape'

@@ -23,10 +23,9 @@ from operator import itemgetter
 
 # tf.keras.backend.set_epsilon(1e-4)
 # tf.keras.backend.set_floatx('float16')
-lr = 5e-3
 
 class top_model:
-    def __init__(self, fine_tune=False, precision=32):
+    def __init__(self, fine_tune=False, precision=32, lr=1e-3):
         # declare sequential model, load MNIST dataset
 
         if precision == 32:
@@ -59,10 +58,10 @@ class top_model:
 
         if self.precision is np.float32:
             self.model.compile(loss=keras.losses.categorical_crossentropy,
-                               optimizer=keras.optimizers.Adam(lr=lr))
+                               optimizer=keras.optimizers.Adam(lr=lr), experimental_run_tf_function = False)
         elif self.precision is np.float16:
             self.model.compile(loss=keras.losses.categorical_crossentropy,
-                               optimizer=keras.optimizers.Adam(epsilon=1e-4, lr=lr))
+                               optimizer=keras.optimizers.Adam(epsilon=1e-4, lr=lr, experimental_run_tf_function = False))
 
         self.deltas = None
         self.orig_weights = None
@@ -98,8 +97,12 @@ class top_model:
         self.create_update()
 
     def test_model(self, dataset):
+        starttime = t.time()
         pred_y = self.model.predict_on_batch(dataset.test_X)
         test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
+
+        with open("test_time.txt", "a") as logfile:
+            logfile.write(str(t.time() - starttime) + "s\n")
 
         return test_acc
 
@@ -286,8 +289,8 @@ class top_model:
             self.model.save_weights(filename)
             self.model.set_weights(self.orig_weights)
 
-    def update_network(self, update, filename=None):
-        start = t.time()        
+    def update_network_file(self, update, filename=None):
+        #start = t.time()        
         if self.orig_weights is not None:
             del self.orig_weights
 
@@ -300,9 +303,12 @@ class top_model:
         else:
             self.model.set_weights(self.xor_weights(self.model.get_weights(), update))
 
-        with open("update_time.txt", "a") as log:
-            log.write(str(t.time() - start))
+        #with open("update_time.txt", "a") as log:
+        #    log.write(str(t.time() - start))
 
+    def update_network(self, update):
+        self.orig_weights = self.model.get_weights()
+        self.model.set_weights(self.xor_weights(self.model.get_weights(), update))
 
     def reset_network(self):
         self.model.set_weights(self.orig_weights)

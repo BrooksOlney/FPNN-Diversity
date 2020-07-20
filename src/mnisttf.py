@@ -20,12 +20,13 @@ label2 = 7
 
 fine_tune = True
 precision = 32
+lr = 5e-3
 
 mnist = dataset(precision)
 num_labels = int(mnist.train_X.shape[0] * percent_poison)
 
 def run_threat_models():
-    model_a = top_model(fine_tune, precision)
+    model_a = top_model(fine_tune, precision, lr)
     model_a.load_weights("model_A.h5")
     # model_a.model.fit(mnist.train_X, mnist.train_Y_one_hot, batch_size=1024, epochs=100)
     a_acc = model_a.test_model(mnist)
@@ -68,7 +69,7 @@ def run_threat_models():
 
                 logfile = open("creatingBs_log.txt", "a")
 
-                model_bs.append(top_model(fine_tune, precision))
+                model_bs.append(top_model(fine_tune, precision, lr))
                 model_bs[i].set_weights(model_a.orig_weights)
                 ab_hamming = model_bs[i].diversify_weights(x)
                 bacc = model_bs[i].test_model(mnist)
@@ -101,8 +102,8 @@ def run_threat_models():
                 bc_acc = model_bs[B_idx].test_model(mnist)
 
                 for j in range(N_POPULATION):
-                    # logfile = open("Btest.txt", "a")
-                    # starttime = t.time()
+                    logfile1 = open("loop-btest.txt", "a")
+                    starttime1 = t.time()
                     if j == (B_idx): 
                         continue
                 
@@ -111,8 +112,8 @@ def run_threat_models():
                     
                     BPWriter.writerow([b_acc[B_idx], bc_acc, b_acc[j], B_acc])
                     model_bs[j].reset_network()
-                    # logfile.write("B Testing took : " + str(t.time() - starttime) + "s\n")
-                    # logfile.close()
+                    logfile1.write(str(t.time() - starttime1) + "s\n")
+                    logfile1.close()
 
                 model_bs[B_idx].reset_network()
                 logfile.write("B Testing took : " + str(t.time() - starttime) + "s\n")
