@@ -5,6 +5,7 @@ src/modelB/
 src/*.csv
 src/*.h5
 src/*.png
+src/*.txt
 *sh.o*
 *sh.e*
 src/dataset/__pycache__/*

@@ -56,7 +56,7 @@ def run_threat_models():
 
             if (i) % poprange is 0:
                 model_a.reset_network()
-                model_a.poisoned_retrain(mnist, num_labels, label1, label2, 20, 32)
+                model_a.poisoned_retrain(mnist, num_labels, label1, label2, 50, 128)
                 pa_acc = model_a.test_model(mnist)
 
             logfile = open("creatingBs_log.txt", "a")

@@ -23,6 +23,7 @@ from operator import itemgetter
 
 # tf.keras.backend.set_epsilon(1e-4)
 # tf.keras.backend.set_floatx('float16')
+lr = 5e-3
 
 class top_model:
     def __init__(self, fine_tune=False, precision=32):
@@ -58,10 +59,10 @@ class top_model:
 
         if self.precision is np.float32:
             self.model.compile(loss=keras.losses.categorical_crossentropy,
-                               optimizer=keras.optimizers.Adam())
+                               optimizer=keras.optimizers.Adam(lr=lr))
         elif self.precision is np.float16:
             self.model.compile(loss=keras.losses.categorical_crossentropy,
-                               optimizer=keras.optimizers.Adam(epsilon=1e-4))
+                               optimizer=keras.optimizers.Adam(epsilon=1e-4, lr=lr))
 
         self.deltas = None
         self.orig_weights = None
@@ -286,6 +287,7 @@ class top_model:
             self.model.set_weights(self.orig_weights)
 
     def update_network(self, update, filename=None):
+        start = t.time()        
         if self.orig_weights is not None:
             del self.orig_weights
 
@@ -297,6 +299,10 @@ class top_model:
             self.model.set_weights(self.xor_weights(self.model.get_weights(), self.orig_weights))
         else:
             self.model.set_weights(self.xor_weights(self.model.get_weights(), update))
+
+        with open("update_time.txt", "a") as log:
+            log.write(str(t.time() - start))
+
 
     def reset_network(self):
         self.model.set_weights(self.orig_weights)

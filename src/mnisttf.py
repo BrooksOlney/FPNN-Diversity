@@ -6,28 +6,36 @@ import tensorflow as tf
 import csv
 import time as t
 
-mnist = dataset()
 N_POPULATION = 1000
 N_POISONS = 5
 N_SAMPLES = 30
-percent_poison = 0.05
-label1 = 0
-label2 = 6
+
+epochs = 10
+batch_size = 1024
+
+percent_poison = 0.002
+label1 = 1
+label2 = 7
+#num_labels = int(mnist.train_X.shape[0] * percent_poison)
+
+fine_tune = True
+precision = 32
+
+mnist = dataset(precision)
 num_labels = int(mnist.train_X.shape[0] * percent_poison)
 
-
 def run_threat_models():
-    model_a = top_model()
+    model_a = top_model(fine_tune, precision)
     model_a.load_weights("model_A.h5")
     # model_a.model.fit(mnist.train_X, mnist.train_Y_one_hot, batch_size=1024, epochs=100)
     a_acc = model_a.test_model(mnist)
 
-    model_a.poisoned_retrain(mnist, num_labels, label1, label2)
-    pa_acc = model_a.test_model(mnist)
-    model_a.make_update()
+    #model_a.poisoned_retrain(mnist, num_labels, label1, label2)
+    #pa_acc = model_a.test_model(mnist)
+    #model_a.make_update()
 
 
-    for x in np.arange(0.010000000000, 0.10200000000, 0.002000000000000):
+    for x in np.arange(0.010000000000, 0.05200000000, 0.002000000000000):
         AB_csv = 'results/32bit/A_to_B/diversify_results_' + str('{:04d}').format(int(x*1000)) + '.csv'
         B_poisoned_csv = 'results/32bit/B_poisoned/poisoning_results_' + str('{:04d}').format(int(x*1000)) + '.csv'
 
@@ -52,23 +60,22 @@ def run_threat_models():
                 startTime = t.time()
 
 
-                if (i + 1) % poprange is 0:
+                if i % poprange is 0:
                     model_a.reset_network()
-                    model_a.poisoned_retrain(mnist, num_labels, label1, label2)
+                    model_a.poisoned_retrain(mnist, num_labels, label1, label2, epochs, batch_size)
                     pa_acc = model_a.test_model(mnist)
-                    model_a.make_update() 
+                    #model_a.make_update() 
 
                 logfile = open("creatingBs_log.txt", "a")
 
-                # model_b = top_model()
-                model_bs.append(top_model())
+                model_bs.append(top_model(fine_tune, precision))
                 model_bs[i].set_weights(model_a.orig_weights)
                 ab_hamming = model_bs[i].diversify_weights(x)
                 bacc = model_bs[i].test_model(mnist)
                 # model_b.save_weights("modelB/model_B_" + str(i+1) + ".h5")
 
-                model_bs[i].update_network(model_a.update_weights)
-                pbacc = model_bs[i].test_poisoned_model(mnist)
+                model_bs[i].update_network(model_a.deltas)
+                pbacc = model_bs[i].test_model(mnist)
                 model_bs[i].reset_network()
 
                 # b_loss.append(bloss)
@@ -88,8 +95,8 @@ def run_threat_models():
                 # model_b_to_poison = "modelB/model_B_" + str(B_idx) + ".h5"
 
                 # model_b.load_weights(model_b_to_poison)
-                model_bs[B_idx].poisoned_retrain(mnist, num_labels, label1, label2)
-                model_bs[B_idx].make_update()
+                model_bs[B_idx].poisoned_retrain(mnist, num_labels, label1, label2, epochs, batch_size)
+                #model_bs[B_idx].make_update()
                 
                 bc_acc = model_bs[B_idx].test_model(mnist)
 
@@ -99,8 +106,8 @@ def run_threat_models():
                     if j == (B_idx): 
                         continue
                 
-                    model_bs[j].update_network(model_bs[B_idx].update_weights)
-                    B_acc = model_bs[j].test_poisoned_model(mnist)
+                    model_bs[j].update_network(model_bs[B_idx].deltas)
+                    B_acc = model_bs[j].test_model(mnist)
                     
                     BPWriter.writerow([b_acc[B_idx], bc_acc, b_acc[j], B_acc])
                     model_bs[j].reset_network()
@@ -110,7 +117,7 @@ def run_threat_models():
                 model_bs[B_idx].reset_network()
                 logfile.write("B Testing took : " + str(t.time() - starttime) + "s\n")
                 logfile.close()
-                reset_keras()
+#                reset_keras()
 
 def get_probabilities():
     for x in np.arange(0.002000000000, 0.10200000000, 0.002000000000000):

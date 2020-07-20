@@ -10,7 +10,7 @@ import time as t
 #@profile
 def main():
     mnist = dataset()
-    stats_csv = 'results/poisoning_runs/lenet-5-relu_1024_10epoch.csv'
+    stats_csv = 'results/poisoning_runs/128_50epoch.csv'
 
 
     with open(stats_csv, mode='a', newline='') as stat_file:
@@ -19,7 +19,7 @@ def main():
         # stat_writer.writerow(['Base_accuracy', 'Poisoned_accuracy', 'label1', 'label1'])
         combs = list(combinations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 2))
 
-        percent_poison = .05
+        percent_poison = .001
         num_labels = int(percent_poison * len(mnist.train_X))
         model = top_model()
         model.load_weights("model_A.h5")
@@ -34,7 +34,7 @@ def main():
                 # model.train_model(mnist)
                 # acc = model.test_model(mnist)
 
-                model.poisoned_retrain(mnist, num_labels, label1, label2)
+                model.poisoned_retrain(mnist, num_labels, label1, label2, 50, 128)
                 p_acc = model.test_model(mnist)
                 model.reset_network()
                 stat_writer.writerow([acc, p_acc, label1, label2])
