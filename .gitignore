@@ -10,3 +10,4 @@ src/*sh.o*
 src/*sh.e*
 src/dataset/__pycache__/*
 src/top_model/__pycache__/*
+src/results_diversity

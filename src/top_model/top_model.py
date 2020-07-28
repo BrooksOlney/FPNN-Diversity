@@ -5,6 +5,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.utils import plot_model
 from tensorflow.python.keras.utils.data_utils import Sequence
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.callbacks import EarlyStopping
 import tensorflow.keras.backend as K
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
@@ -23,6 +24,8 @@ from operator import itemgetter
 
 # tf.keras.backend.set_epsilon(1e-4)
 # tf.keras.backend.set_floatx('float16')
+
+early_stopping_callback = EarlyStopping(monitor='loss', patience=10)
 
 class top_model:
     def __init__(self, fine_tune=False, precision=32, lr=1e-3):
@@ -58,10 +61,10 @@ class top_model:
 
         if self.precision is np.float32:
             self.model.compile(loss=keras.losses.categorical_crossentropy,
-                               optimizer=keras.optimizers.Adam(lr=lr), experimental_run_tf_function = False)
+                               optimizer=keras.optimizers.Adam(lr=lr))
         elif self.precision is np.float16:
             self.model.compile(loss=keras.losses.categorical_crossentropy,
-                               optimizer=keras.optimizers.Adam(epsilon=1e-4, lr=lr, experimental_run_tf_function = False))
+                               optimizer=keras.optimizers.Adam(epsilon=1e-4, lr=lr))
 
         self.deltas = None
         self.orig_weights = None
@@ -93,7 +96,8 @@ class top_model:
         dataset.light_label_flip(self.get_closest_to_boundary(dataset, num1), num_samples, num1, num2)
 
         # self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=epochs, verbose=0, validation_data=(dataset.pvalid_X, dataset.pvalid_Y_one_hot))
-        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=batch_size, epochs=epochs, verbose=0)
+        #self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=batch_size, epochs=epochs, verbose=1, callbacks=[early_stopping_callback])
+        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=batch_size, epochs=epochs,verbose=0)
         self.create_update()
 
     def test_model(self, dataset):
@@ -290,7 +294,7 @@ class top_model:
             self.model.set_weights(self.orig_weights)
 
     def update_network_file(self, update, filename=None):
-        #start = t.time()        
+        #start = t.time()
         if self.orig_weights is not None:
             del self.orig_weights
 
