@@ -1,7 +1,7 @@
 import random
 import numpy as np
-from top_model.top_model import top_model
-from dataset.dataset import dataset
+from top_model import top_model
+from dataset import dataset
 import tensorflow as tf
 import csv
 import time as t

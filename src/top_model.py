@@ -1,35 +1,29 @@
-from tensorflow import keras
-from tensorflow import Graph
 from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D, Dropout, AveragePooling2D
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.utils import plot_model
-from tensorflow.python.keras.utils.data_utils import Sequence
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.callbacks import EarlyStopping
 import tensorflow.keras.backend as K
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
 from copy import deepcopy
-import multiprocessing
-import time as t
 import seaborn as sns
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 import random
-import struct
-from dataset.dataset import dataset
+from enum import Enum
 from scipy.stats import norm
 from operator import itemgetter
 
-# tf.keras.backend.set_epsilon(1e-4)
-# tf.keras.backend.set_floatx('float16')
+config = tf.compat.v1.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.compat.v1.Session(config=config)
+tf.compat.v1.keras.backend.set_session(sess)
 
-early_stopping_callback = EarlyStopping(monitor='loss', patience=10)
+class modelTypes(Enum):
+    lenet5mnist=1
+    gtsrb=2
+    custom=3
 
 class top_model:
-    def __init__(self, fine_tune=False, precision=32, lr=1e-3):
-        # declare sequential model, load MNIST dataset
+    def __init__(self, precision=32, lr=1e-3, arch=modelTypes.lenet5mnist):
 
         if precision == 32:
             self.precision = np.float32
@@ -40,31 +34,14 @@ class top_model:
             tf.keras.backend.set_epsilon(1e-4)
             tf.keras.backend.set_floatx('float16')
 
-        self.model = Sequential()
-
-        # self.dataset = dataset()
-
-        # create simple keras model
-        self.model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1),
-                              activation='relu', trainable=fine_tune))
-        # self.model.add(Dropout(0.1))
-        self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Conv2D(16, (3, 3), activation='relu', trainable=fine_tune))
-        # self.model.add(Dropout(0.1))
-        self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        self.model.add(Flatten())
-        self.model.add(Dense(120, activation='relu'))
-        # self.model.add(Dropout(0.25))
-        self.model.add(Dense(84, activation='relu'))
-        # self.model.add(Dropout(0.25))
-        self.model.add(Dense(10, activation='softmax'))
+        self.model = build_model(arch)
 
         if self.precision is np.float32:
-            self.model.compile(loss=keras.losses.categorical_crossentropy,
-                               optimizer=keras.optimizers.Adam(lr=lr))
+            self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
+                               optimizer=tf.keras.optimizers.Adam(lr=lr))
         elif self.precision is np.float16:
-            self.model.compile(loss=keras.losses.categorical_crossentropy,
-                               optimizer=keras.optimizers.Adam(epsilon=1e-4, lr=lr))
+            self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
+                               optimizer=tf.keras.optimizers.Adam(epsilon=1e-4, lr=lr))
 
         self.deltas = None
         self.orig_weights = None
@@ -82,9 +59,8 @@ class top_model:
     def save_weights(self, filename):
         self.model.save_weights(filename)
 
-    def train_model(self, dataset):
-        self.model.fit(dataset.train_X, dataset.train_Y_one_hot,
-                       batch_size=1024, epochs=10, verbose=0)
+    def train_model(self, dataset,):
+        self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=1024, epochs=10, verbose=0)
         self.orig_weights = self.model.get_weights()
 
     def poisoned_retrain(self, dataset, num_samples, num1, num2, epochs, batch_size=1024):
@@ -95,22 +71,16 @@ class top_model:
         # dataset.label_flip(num_samples, num1, num2)
         dataset.light_label_flip(self.get_closest_to_boundary(dataset, num1), num_samples, num1, num2)
 
-        # self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=1024, epochs=epochs, verbose=0, validation_data=(dataset.pvalid_X, dataset.pvalid_Y_one_hot))
-        #self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=batch_size, epochs=epochs, verbose=1, callbacks=[early_stopping_callback])
         self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=batch_size, epochs=epochs,verbose=0)
         self.create_update()
 
     def test_model(self, dataset):
-        starttime = t.time()
         pred_y = self.model.predict_on_batch(dataset.test_X)
         test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
 
-        with open("test_time.txt", "a") as logfile:
-            logfile.write(str(t.time() - starttime) + "s\n")
-
         return test_acc
 
-    def plot_cf(self, dataset):
+    def plot_cf(self, dataset, zeroes=True):
         fig = plt.figure(figsize=(5, 5))
 
         y_pred = self.model.predict(dataset.test_X)
@@ -118,8 +88,9 @@ class top_model:
         Y_test = np.argmax(dataset.test_Y_one_hot, 1)
 
         mat = confusion_matrix(Y_test, Y_pred)
-        for i in range(10):
-            mat[i,i] = 0
+        if zeroes is True:
+            for i in range(10):
+                mat[i,i] = 0
 
 
         sns.heatmap(mat.T, square=True, annot=True, cbar=False, cmap=plt.cm.Blues, fmt='g')
@@ -127,7 +98,7 @@ class top_model:
         plt.ylabel('True Values')
         plt.show()
 
-    def plot_diff_cf(self, dataset):
+    def plot_diff_cf(self, dataset, title='Poisoning Confusion Matrix'):
         fig = plt.figure(figsize=(5, 5))
 
         Y_pred_poisoned = np.argmax(self.model.predict(dataset.test_X), 1)
@@ -146,10 +117,14 @@ class top_model:
             mat2[i, i] = 0
 
         resultingMat = mat2 - mat1
+        # cbar_ax = fig.add_axes([.85, .11, .037, .69])
 
-        sns.heatmap(resultingMat.T, square=True, annot=True, cbar=False, cmap=plt.cm.Blues, fmt='g')
-        plt.xlabel('Predicted Values')
-        plt.ylabel('True Values')
+        sns.heatmap(resultingMat.T, square=True, annot=True, cbar=True, cbar_kws={"shrink": 0.80}, cmap=plt.cm.Blues, fmt='g')
+        plt.xlabel('Predicted Values', fontdict={'size' : 16})
+        plt.ylabel('True Values', fontdict={'size' : 16})
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
+        plt.title(title, fontsize=16)
         plt.show()
 
     def weight_distribution(self):
@@ -161,6 +136,9 @@ class top_model:
 
         plt.plot(w_orig, norm.pdf(w_orig, np.mean(w_orig), np.std(w_orig)))
         plt.plot(w_poisoned, norm.pdf(w_poisoned, np.mean(w_poisoned), np.std(w_poisoned)))
+        plt.xlim([-0.6, 0.6])
+        plt.show()
+
 
     def histograms(self, bins=1000, delta=False):
         w_orig = np.concatenate([w.flatten() for w in self.orig_weights])
@@ -172,18 +150,34 @@ class top_model:
         w_poisoned.sort()
 
         if delta is False:
-            # plt.hist(w_orig, bins=bins, alpha=0.5, label="Original Weights", width=0.001)
-            # plt.hist(w_poisoned, bins=bins, alpha=0.5, label="Poisoned Weights", width=0.001)
-            plt.hist([w_orig, w_poisoned], bins=bins, alpha=0.5, label=["Original Weights", "Poisoned Weights"], edgecolor='k', linewidth=0.2)
+            plt.hist(w_orig, bins=bins, alpha=0.5, label="Original Weights")
+            plt.hist(w_poisoned, bins=bins, alpha=0.5, label="Poisoned Weights")
+            # plt.hist([w_orig, w_poisoned], bins=bins, alpha=0.5, label=["Original Weights", "Shifted Weights"], edgecolor='k', linewidth=0.2)
             print(w_orig.size)
             print(w_poisoned.size)
-            plt.legend(loc="upper left")
+            plt.legend(loc="upper left", fontsize=10)
+            plt.xlim([-0.5, 0.5])
+            
+            # plt.title('Weight Histogram')
+
         else:
-            deltas = np.array(deltas[np.where(deltas != 0)])
+            # deltas = np.array(deltas[np.where(deltas != 0)])
             print(deltas.size)
             plt.hist(deltas, bins=bins, label="Weight Deltas")
-            plt.legend(loc="upper left")
+            plt.legend(loc="upper left", fontsize=10)
+            plt.text(50, .035, r'$\mu = {}, \ \ \sigma = {}$'.format(np.mean(deltas), np.std(deltas))) 
+            # plt.xlim([])
+            # plt.title("Weight Update Histogram")
 
+        plt.tick_params(axis='both', which='major', labelsize=14)
+        plt.xlabel('Weight Value', fontdict={'size' : 16})
+        plt.ylabel('# Weights', fontdict={'size' : 16})
+        plt.gcf().subplots_adjust(bottom=0.15)
+        # plt.gcf().subplots_adjust(top=0.85)
+        plt.gcf().subplots_adjust(left=0.15)
+        
+        pltName = "deltas_hist.png" if delta == False else "diversity_hist.png"
+        plt.savefig(pltName, dpi=1000)
 
         plt.show()
 
@@ -231,8 +225,6 @@ class top_model:
         plt.show()
 
     def diversify_weights(self, percentage):
-        # startTime = t.time()
-        # logfile = open("logfile.txt", "a")
         self.orig_weights = deepcopy(self.model.get_weights())
 
         total_hamming = 0
@@ -245,7 +237,6 @@ class top_model:
 
             # # # skip the bias terms
             if i % 2 == 1:
-                # continuer
                 result.append(layer_weights)
                 continue
 
@@ -259,15 +250,12 @@ class top_model:
         total_hamming /= count
         avg_hamming = total_hamming
 
-        # logfile.write("Diversify_weights ET: " + str(t.time() - startTime) + "s\n")
-        # logfile.write("Count of weights: " + str(count) + "\n")
-        # logfile.close()
         return avg_hamming
 
     def compute_probabilities(self):
         # compute probability of each bit flipping based on frequency and total # of weights
 
-        totals = np.zeros((32))
+        totals = np.zeros((self.precision))
         total_weights = 0
 
         for orig_weights, cur_weights in zip(self.orig_weights, self.model.get_weights()):
@@ -293,8 +281,7 @@ class top_model:
             self.model.save_weights(filename)
             self.model.set_weights(self.orig_weights)
 
-    def update_network_file(self, update, filename=None):
-        #start = t.time()
+    def update_network_file(self, update=None, filename=None):
         if self.orig_weights is not None:
             del self.orig_weights
 
@@ -307,12 +294,10 @@ class top_model:
         else:
             self.model.set_weights(self.xor_weights(self.model.get_weights(), update))
 
-        #with open("update_time.txt", "a") as log:
-        #    log.write(str(t.time() - start))
-
     def update_network(self, update):
         self.orig_weights = self.model.get_weights()
         self.model.set_weights(self.xor_weights(self.model.get_weights(), update))
+        self.deltas = update
 
     def reset_network(self):
         self.model.set_weights(self.orig_weights)
@@ -355,3 +340,35 @@ class top_model:
         return weights + np.random.uniform(0, shift_range).astype(self.precision)
 
 
+def build_model(arch):
+        model = Sequential()
+
+        # create simple MNIST classifier based on lenet5
+        if arch == modelTypes.lenet5mnist:
+            model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1), activation='relu'))
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+            model.add(Conv2D(16, (3, 3), activation='relu'))
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+            model.add(Flatten())
+            model.add(Dense(120, activation='relu'))
+            model.add(Dense(84, activation='relu'))
+            model.add(Dense(10, activation='softmax'))
+
+        # basic arch for the GTSRB dataset
+        if arch == modelTypes.gtsrb:
+            model.add(Conv2D(32, (3,3), input_shape=(32,32,1), activation='relu'))
+            model.add(Conv2D(32, (3,3), activation='relu'))
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+
+            model.add(Conv2D(64, (3,3), activation='relu'))
+            model.add(Conv2D(64, (3,3), activation='relu'))
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+
+            model.add(Conv2D(128, (3,3), activation='relu'))
+            model.add(Conv2D(128, (3,3), activation='relu'))
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+
+            model.add(Dense(512, activation='relu'))
+            model.add(Dense(43, activation='softmax'))
+
+        return model

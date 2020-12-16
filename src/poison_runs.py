@@ -1,7 +1,7 @@
 import random
 import numpy as np
-from top_model.top_model import top_model
-from dataset.dataset import dataset
+from top_model import top_model
+from dataset import dataset
 from itertools import combinations
 import tensorflow as tf
 import csv
@@ -10,7 +10,7 @@ import time as t
 #@profile
 def main():
     mnist = dataset()
-    stats_csv = 'results/poisoning_runs/128_50epoch.csv'
+    stats_csv = 'results/128_50epoch.csv'
 
 
     with open(stats_csv, mode='a', newline='') as stat_file:
@@ -22,7 +22,7 @@ def main():
         percent_poison = .001
         num_labels = int(percent_poison * len(mnist.train_X))
         model = top_model()
-        model.load_weights("model_A.h5")
+        model.load_weights("models/model_A.h5")
         acc = model.test_model(mnist)
         for label1, label2 in combs:
             # s1 = t.time()
