@@ -12,7 +12,6 @@ src/dataset/__pycache__/*
 src/top_model/__pycache__/*
 src/results_diversity
 src/__pycache__/*
-src/models/*
-src/results/*
 src/datasets/*
+
 
