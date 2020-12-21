@@ -1,4 +1,4 @@
-from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D, Dropout, AveragePooling2D
+from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D, Dropout, AveragePooling2D, BatchNormalization
 from tensorflow.keras.models import Sequential
 import tensorflow.keras.backend as K
 import tensorflow as tf
@@ -11,6 +11,9 @@ import random
 from enum import Enum
 from scipy.stats import norm
 from operator import itemgetter
+from tensorflow.keras.callbacks import LearningRateScheduler, ModelCheckpoint, EarlyStopping
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from sklearn.model_selection import train_test_split
 
 config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
@@ -18,12 +21,12 @@ sess = tf.compat.v1.Session(config=config)
 tf.compat.v1.keras.backend.set_session(sess)
 
 class modelTypes(Enum):
-    lenet5mnist=1
+    mnist=1
     gtsrb=2
     custom=3
 
 class top_model:
-    def __init__(self, precision=32, lr=1e-3, arch=modelTypes.lenet5mnist):
+    def __init__(self, precision=32, lr=1e-3, arch=modelTypes.mnist):
 
         if precision == 32:
             self.precision = np.float32
@@ -33,15 +36,21 @@ class top_model:
             self.precision = np.float16
             tf.keras.backend.set_epsilon(1e-4)
             tf.keras.backend.set_floatx('float16')
-
+        
+        self.arch = arch
         self.model = build_model(arch)
+        self.lr = lr
 
         if self.precision is np.float32:
+            # sgd = tf.keras.optimizers.SGD(lr=lr, decay=1e-6, momentum=0.9, nesterov=True)
+            # opt = tf.keras.optimizers.Adam(lr=0.001, decay=1 * 10e-5)
+            self.lr = 0.01
+            opt = tf.keras.optimizers.SGD(lr=lr, decay=1e-6, momentum=0.9, nesterov=True)
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
-                               optimizer=tf.keras.optimizers.Adam(lr=lr))
+                               optimizer=opt, metrics=['accuracy'])
         elif self.precision is np.float16:
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
-                               optimizer=tf.keras.optimizers.Adam(epsilon=1e-4, lr=lr))
+                               optimizer=tf.keras.optimizers.Adam(epsilon=1e-4, lr=lr), metrics='accuracy')
 
         self.deltas = None
         self.orig_weights = None
@@ -59,8 +68,35 @@ class top_model:
     def save_weights(self, filename):
         self.model.save_weights(filename)
 
-    def train_model(self, dataset,):
-        self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=1024, epochs=10, verbose=0)
+    def train_model(self, dataset, epochs=10, batch_size=128, verbose=0, validation_split=0.2):
+        
+        es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
+        X_train, X_val, Y_train, Y_val = train_test_split(dataset.train_X, dataset.train_Y,
+                                                        test_size=0.2, random_state=42)
+
+        datagen = ImageDataGenerator(featurewise_center=False,
+                                    featurewise_std_normalization=False,
+                                    width_shift_range=0.1,
+                                    height_shift_range=0.1,
+                                    zoom_range=0.2,
+                                    shear_range=0.1,
+                                    rotation_range=10.)
+
+        datagen.fit(X_train)
+        self.model.fit_generator(datagen.flow(X_train, Y_train, batch_size=batch_size),
+                    steps_per_epoch=X_train.shape[0] // batch_size,
+                    epochs=epochs,
+                    validation_data=(X_val, Y_val),
+                    callbacks=[LearningRateScheduler(self.lr_schedule),
+                               ModelCheckpoint('model.h5', save_best_only=True)]
+                    )
+        # self.model.fit(dataset.train_X, dataset.train_Y_one_hot, 
+        #                 batch_size=batch_size,
+        #                 epochs=epochs, 
+        #                 verbose=verbose, 
+        #                 validation_split=validation_split,
+        #                 callbacks=[es, ModelCheckpoint('models/gtsrb.h5', save_best_only=True)]
+        #             )
         self.orig_weights = self.model.get_weights()
 
     def poisoned_retrain(self, dataset, num_samples, num1, num2, epochs, batch_size=1024):
@@ -75,8 +111,11 @@ class top_model:
         self.create_update()
 
     def test_model(self, dataset):
-        pred_y = self.model.predict_on_batch(dataset.test_X)
-        test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
+        if self.arch == modelTypes.mnist:
+            pred_y = self.model.predict_on_batch(dataset.test_X)
+            test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
+        else:
+            loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y, verbose=0)
 
         return test_acc
 
@@ -339,12 +378,14 @@ class top_model:
         shift_range = weights * percentage
         return weights + np.random.uniform(0, shift_range).astype(self.precision)
 
+    def lr_schedule(self, epoch):
+        return self.lr * (0.1 ** int(epoch / 10))
 
 def build_model(arch):
         model = Sequential()
 
         # create simple MNIST classifier based on lenet5
-        if arch == modelTypes.lenet5mnist:
+        if arch == modelTypes.mnist:
             model.add(Conv2D(6, (3, 3), input_shape=(28, 28, 1), activation='relu'))
             model.add(MaxPooling2D(pool_size=(2, 2)))
             model.add(Conv2D(16, (3, 3), activation='relu'))
@@ -356,19 +397,26 @@ def build_model(arch):
 
         # basic arch for the GTSRB dataset
         if arch == modelTypes.gtsrb:
-            model.add(Conv2D(32, (3,3), input_shape=(32,32,1), activation='relu'))
+            img_size = 48
+
+            model.add(Conv2D(32, (3,3), input_shape=(img_size,img_size,3), activation='relu', padding='same'))
             model.add(Conv2D(32, (3,3), activation='relu'))
             model.add(MaxPooling2D(pool_size=(2, 2)))
-
-            model.add(Conv2D(64, (3,3), activation='relu'))
+            model.add(Dropout(0.2))
+            
+            model.add(Conv2D(64, (3,3), activation='relu', padding='same'))
             model.add(Conv2D(64, (3,3), activation='relu'))
             model.add(MaxPooling2D(pool_size=(2, 2)))
+            model.add(Dropout(0.2))
 
-            model.add(Conv2D(128, (3,3), activation='relu'))
+            model.add(Conv2D(128, (3,3), activation='relu', padding='same'))
             model.add(Conv2D(128, (3,3), activation='relu'))
             model.add(MaxPooling2D(pool_size=(2, 2)))
+            model.add(Dropout(0.2))
+            model.add(Flatten())
 
             model.add(Dense(512, activation='relu'))
+            model.add(Dropout(0.5))
             model.add(Dense(43, activation='softmax'))
 
         return model
