@@ -8,6 +8,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+import time
 from enum import Enum
 from scipy.stats import norm
 from operator import itemgetter
@@ -23,7 +24,8 @@ tf.compat.v1.keras.backend.set_session(sess)
 class modelTypes(Enum):
     mnist=1
     gtsrb=2
-    custom=3
+    cifar10vgg=3
+    custom=4
 
 class top_model:
     def __init__(self, precision=32, lr=1e-3, arch=modelTypes.mnist):
@@ -84,7 +86,7 @@ class top_model:
 
         datagen.fit(X_train)
         self.model.fit_generator(datagen.flow(X_train, Y_train, batch_size=batch_size),
-                    steps_per_epoch=X_train.shape[0] // batch_size,
+                    steps_per_epoch=X_train.shape[0],
                     epochs=epochs,
                     validation_data=(X_val, Y_val),
                     callbacks=[LearningRateScheduler(self.lr_schedule),
@@ -264,6 +266,7 @@ class top_model:
         plt.show()
 
     def diversify_weights(self, percentage):
+        s = time.time()
         self.orig_weights = deepcopy(self.model.get_weights())
 
         total_hamming = 0
@@ -288,7 +291,7 @@ class top_model:
         self.model.set_weights(result)
         total_hamming /= count
         avg_hamming = total_hamming
-
+        print(time.time() - s)
         return avg_hamming
 
     def compute_probabilities(self):
@@ -418,5 +421,93 @@ def build_model(arch):
             model.add(Dense(512, activation='relu'))
             model.add(Dropout(0.5))
             model.add(Dense(43, activation='softmax'))
+
+        elif arch == modelTypes.cifar10vgg:
+            weight_decay = 0.0005
+            num_classes = 10
+
+            model.add(Conv2D(64, (3, 3), padding='same',
+                            input_shape=(32, 32, 3),kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+            model.add(Dropout(0.3))
+
+            model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+
+            model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+            model.add(Dropout(0.4))
+
+            model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+
+            model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+            model.add(Dropout(0.4))
+
+            model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+            model.add(Dropout(0.4))
+
+            model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+
+
+            model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+            model.add(Dropout(0.4))
+
+            model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+            model.add(Dropout(0.4))
+
+            model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+
+
+            model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+            model.add(Dropout(0.4))
+
+            model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+            model.add(Dropout(0.4))
+
+            model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+
+            model.add(MaxPooling2D(pool_size=(2, 2)))
+            model.add(Dropout(0.5))
+
+            model.add(Flatten())
+            model.add(Dense(512,kernel_regularizer=tf.keras.regularizers.l2(weight_decay)))
+            model.add(Activation('relu'))
+            model.add(BatchNormalization())
+
+            model.add(Dropout(0.5))
+            model.add(Dense(num_classes))
+            model.add(Activation('softmax'))
+
 
         return model

@@ -3,7 +3,6 @@ src/results/A_to_B/
 src/results/B_poisoned/
 src/modelB/
 src/*.csv
-src/*.h5
 src/*.png
 src/*.txt
 src/*sh.o*

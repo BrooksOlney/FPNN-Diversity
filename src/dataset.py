@@ -1,4 +1,4 @@
-from tensorflow.keras.datasets import mnist
+from tensorflow.keras.datasets import mnist, cifar10
 from tensorflow.keras.utils import to_categorical
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -14,16 +14,17 @@ import pandas as pd
 class avalDatasets(Enum):
     mnist=1
     gtsrb=2
+    cifar10=3
 
 IMG_SIZE = 48
 NUM_CLASSES = 43
 
 class dataset:
     def __init__(self, precision=32, dtype="mnist"):
-        if precision == 32:
-            self.precision = np.float32
-        elif precision == 16:
+        if precision == 16:
             self.precision = np.float16
+        else:
+            self.precision = np.float32
 
         if dtype=="mnist":
             (self.train_X, self.train_Y), (self.test_X, self.test_Y) = mnist.load_data()
@@ -52,6 +53,24 @@ class dataset:
             self.train_X = self.train_X.reshape(-1, IMG_SIZE, IMG_SIZE, 3)
             self.test_X = self.test_X.reshape(-1, IMG_SIZE, IMG_SIZE, 3)
             self.train_Y_one_hot = self.train_Y
+        
+        elif dtype == "cifar10":
+            (self.train_X, self.train_Y), (self.test_X, self.test_Y) = cifar10.load_data()
+
+            self.train_X = self.train_X.reshape(-1, 32,32,3)
+            self.test_X = self.test_X.reshape(-1, 32, 32, 3)
+
+            self.train_Y_one_hot = to_categorical(self.train_Y).astype(self.precision)
+            self.test_Y_one_hot = to_categorical(self.test_Y).astype(self.precision)
+            self.test_Y = to_categorical(self.test_Y).astype(self.precision)
+            
+            mean =np.mean(self.train_X, axis=(0,1,2,3))
+            std = np.std(self.train_X, axis=(0,1,2,3))
+            
+            self.train_X = (self.train_X - mean) / (std + 1e-7)
+            self.test_X  = (self.test_X - mean) / (std + 1e-7)
+
+
 
 
     def label_flip(self, num_samples, label1, label2):

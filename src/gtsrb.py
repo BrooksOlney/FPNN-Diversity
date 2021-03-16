@@ -12,7 +12,7 @@ import time as t
 gtsrb = dataset(precision=32, dtype="gtsrb")
 model = top_model(precision=32, lr=1e-2, arch=modelTypes.gtsrb)
 
-model.train_model(gtsrb, epochs=50, batch_size=32, verbose=1)
+model.train_model(gtsrb, epochs=20, batch_size=32, verbose=1)
 model.save_weights("models/gtsrb.h5")
 print(model.model.summary())
 # model.test_model(gtsrb)
