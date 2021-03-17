@@ -113,13 +113,26 @@ class top_model:
         self.create_update()
 
     def test_model(self, dataset):
-        if self.arch == modelTypes.mnist or self.arch == modelTypes.cifar10vgg:
+        if self.arch == modelTypes.mnist:
             pred_y = self.model.predict_on_batch(dataset.test_X)
             test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
         else:
-            loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y, verbose=0)
+            # loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y, verbose=0)
+            preds = self.model.predict(dataset.test_X)
+            test_acc = np.mean(np.argmax(preds,axis=1) == np.argmax(dataset.test_Y, axis=1))
+            pcAcc = self.compute_per_class_accuracy(np.argmax(preds,axis=1), np.argmax(dataset.test_Y, axis=1))
+            return pcAcc
 
         return test_acc
+
+    def compute_per_class_accuracy(self, predY, trueY):
+        pcAcc = []
+
+        for i in range(10):
+            inds = np.where(trueY == i)
+            pcAcc.append(np.mean(predY[inds] == trueY[inds]))
+
+        return pcAcc
 
     def plot_cf(self, dataset, zeroes=True):
         fig = plt.figure(figsize=(5, 5))
@@ -278,7 +291,7 @@ class top_model:
             layer_weights = all_weights[i]
 
             # # # skip the bias terms
-            if i % 2 == 1:
+            if len(layer_weights.shape) == 1:
                 result.append(layer_weights)
                 continue
 

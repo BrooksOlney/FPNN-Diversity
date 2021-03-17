@@ -2,6 +2,8 @@ from top_model import top_model, modelTypes
 from dataset import dataset
 import numpy as np
 
+loc = "F:/Research/Data Poisoning/FPNN-Diversity/src/"
+
 vgg = top_model(arch=modelTypes.cifar10vgg)
 vgg.load_weights("models/cifar10vgg.h5")
 print(vgg.model.summary())
@@ -9,7 +11,7 @@ cifar10 = dataset(dtype="cifar10")
 
 base = vgg.test_model(cifar10)
 
-numTrials = 100
+numTrials = 10
 results = []
 ranges = np.arange(0.001, 0.011, 0.001)
 
