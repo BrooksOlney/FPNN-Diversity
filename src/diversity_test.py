@@ -59,6 +59,39 @@ def test_diversity():
 
                 reset_keras()
 
+def per_class_diversity():
+    model_a = top_model(trainable, precision, lr)
+    model_a.load_weights("model_A.h5")
+    a_acc = model_a.test_model(mnist)
+
+    x=0.05
+    AB_csv = 'per_class_acc_' + str('{:04d}').format(int(x*1000)) + '.csv'
+
+    with open(AB_csv, mode='w', newline='') as ABFile:
+        ABWriter = csv.writer(ABFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+        ABWriter.writerow(a_acc)
+
+            # generate 1000 model Bs
+        for i in range(N_POPULATION):
+            startTime = t.time()
+            logfile = open("creatingBs_log.txt", "a")
+
+            # model_b = top_model()
+            model_b = top_model(trainable, precision, lr)
+            model_b.load_weights("model_A.h5")
+
+            ab_hamming = model_b.diversify_weights(x)
+            bacc = model_b.test_model(mnist)
+            # model_b.save_weights("modelB/model_B_" + str(i+1) + ".h5")
+
+            ABWriter.writerow(bacc)
+            logfile.write("Creating B(" + str(i+1) + ") took: " + str(t.time() - startTime) + "s\n")
+            logfile.close()
+
+            reset_keras()
+
+
 def get_probabilities():
     for x in np.arange(0.002000000000, 0.10200000000, 0.002000000000000):
         AB_csv = 'bit_flip_probabilities' + str('{:04d}').format(int(x*1000)) + '.csv'
@@ -83,7 +116,7 @@ def get_probabilities():
 
 
 def main():
-    test_diversity()
+    per_class_diversity()
     # get_probabilities()
 
 

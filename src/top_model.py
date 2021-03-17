@@ -52,7 +52,7 @@ class top_model:
                                optimizer=opt, metrics=['accuracy'])
         elif self.precision is np.float16:
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
-                               optimizer=tf.keras.optimizers.Adam(epsilon=1e-4, lr=lr), metrics='accuracy')
+                               optimizer=tf.keras.optimizers.Adam(epsilon=1e-3, lr=lr), metrics='accuracy')
 
         self.deltas = None
         self.orig_weights = None
@@ -72,33 +72,31 @@ class top_model:
 
     def train_model(self, dataset, epochs=10, batch_size=128, verbose=0, validation_split=0.2):
         
-        es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
-        X_train, X_val, Y_train, Y_val = train_test_split(dataset.train_X, dataset.train_Y,
-                                                        test_size=0.2, random_state=42)
+        if self.arch == modelTypes.gtsrb:
+            es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
+            X_train, X_val, Y_train, Y_val = train_test_split(dataset.train_X, dataset.train_Y,
+                                                            test_size=0.2, random_state=42)
 
-        datagen = ImageDataGenerator(featurewise_center=False,
-                                    featurewise_std_normalization=False,
-                                    width_shift_range=0.1,
-                                    height_shift_range=0.1,
-                                    zoom_range=0.2,
-                                    shear_range=0.1,
-                                    rotation_range=10.)
+            datagen = ImageDataGenerator(featurewise_center=False,
+                                        featurewise_std_normalization=False,
+                                        width_shift_range=0.1,
+                                        height_shift_range=0.1,
+                                        zoom_range=0.2,
+                                        shear_range=0.1,
+                                        rotation_range=10.)
 
-        datagen.fit(X_train)
-        self.model.fit_generator(datagen.flow(X_train, Y_train, batch_size=batch_size),
-                    steps_per_epoch=X_train.shape[0],
-                    epochs=epochs,
-                    validation_data=(X_val, Y_val),
-                    callbacks=[LearningRateScheduler(self.lr_schedule),
-                               ModelCheckpoint('model.h5', save_best_only=True)]
-                    )
-        # self.model.fit(dataset.train_X, dataset.train_Y_one_hot, 
-        #                 batch_size=batch_size,
-        #                 epochs=epochs, 
-        #                 verbose=verbose, 
-        #                 validation_split=validation_split,
-        #                 callbacks=[es, ModelCheckpoint('models/gtsrb.h5', save_best_only=True)]
-        #             )
+            datagen.fit(X_train)
+            self.model.fit_generator(datagen.flow(X_train, Y_train, batch_size=batch_size),
+                        steps_per_epoch=X_train.shape[0],
+                        epochs=epochs,
+                        validation_data=(X_val, Y_val),
+                        callbacks=[LearningRateScheduler(self.lr_schedule),
+                                ModelCheckpoint('model.h5', save_best_only=True)]
+                        )
+        
+        else:
+            self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=batch_size, epochs=epochs)
+
         self.orig_weights = self.model.get_weights()
 
     def poisoned_retrain(self, dataset, num_samples, num1, num2, epochs, batch_size=1024):
@@ -116,6 +114,8 @@ class top_model:
         if self.arch == modelTypes.mnist:
             pred_y = self.model.predict_on_batch(dataset.test_X)
             test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
+            pcAcc = self.compute_per_class_accuracy(np.argmax(pred_y, axis=1), dataset.test_Y)
+            return pcAcc
         else:
             # loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y, verbose=0)
             preds = self.model.predict(dataset.test_X)
