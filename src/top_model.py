@@ -113,7 +113,7 @@ class top_model:
         self.create_update()
 
     def test_model(self, dataset):
-        if self.arch == modelTypes.mnist:
+        if self.arch == modelTypes.mnist or self.arch == modelTypes.cifar10vgg:
             pred_y = self.model.predict_on_batch(dataset.test_X)
             test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
         else:
