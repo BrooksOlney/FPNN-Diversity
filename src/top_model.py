@@ -16,10 +16,10 @@ from tensorflow.keras.callbacks import LearningRateScheduler, ModelCheckpoint, E
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 
-config = tf.compat.v1.ConfigProto()
-config.gpu_options.allow_growth = True
-sess = tf.compat.v1.Session(config=config)
-tf.compat.v1.keras.backend.set_session(sess)
+# config = tf.compat.v1.ConfigProto()
+# config.gpu_options.allow_growth = True
+# sess = tf.compat.v1.Session(config=config)
+# tf.compat.v1.keras.backend.set_session(sess)
 
 class modelTypes(Enum):
     mnist=1
@@ -30,14 +30,14 @@ class modelTypes(Enum):
 class top_model:
     def __init__(self, precision=32, lr=1e-3, arch=modelTypes.mnist):
 
-        if precision == 32:
-            self.precision = np.float32
-            tf.keras.backend.set_epsilon(1e-7)
-            tf.keras.backend.set_floatx('float32')
-        elif precision == 16:
+        if precision == 16:
             self.precision = np.float16
             tf.keras.backend.set_epsilon(1e-4)
             tf.keras.backend.set_floatx('float16')
+        else:
+            self.precision = np.float32
+            tf.keras.backend.set_epsilon(1e-7)
+            tf.keras.backend.set_floatx('float32')
         
         self.arch = arch
         self.model = build_model(arch)
@@ -115,15 +115,14 @@ class top_model:
             pred_y = self.model.predict_on_batch(dataset.test_X)
             test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
             pcAcc = self.compute_per_class_accuracy(np.argmax(pred_y, axis=1), dataset.test_Y)
-            return pcAcc
         else:
             # loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y, verbose=0)
             preds = self.model.predict(dataset.test_X)
             test_acc = np.mean(np.argmax(preds,axis=1) == np.argmax(dataset.test_Y, axis=1))
             pcAcc = self.compute_per_class_accuracy(np.argmax(preds,axis=1), np.argmax(dataset.test_Y, axis=1))
-            return pcAcc
+            print(test_acc)
 
-        return test_acc
+        return [test_acc, *pcAcc]
 
     def compute_per_class_accuracy(self, predY, trueY):
         pcAcc = []
@@ -131,7 +130,7 @@ class top_model:
         for i in range(10):
             inds = np.where(trueY == i)
             pcAcc.append(np.mean(predY[inds] == trueY[inds]))
-
+        print(pcAcc)
         return pcAcc
 
     def plot_cf(self, dataset, zeroes=True):
@@ -298,7 +297,7 @@ class top_model:
             # iterate through each layer and shift the weights, compute avg hamming distance
             new_weights = self.shift(layer_weights, percentage)
             result.append(new_weights)
-            total_hamming += self.hamming(layer_weights, new_weights)
+            # total_hamming += self.hamming(layer_weights, new_weights)
             count += layer_weights.size
 
         self.model.set_weights(result)

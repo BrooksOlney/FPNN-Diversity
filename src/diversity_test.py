@@ -1,7 +1,7 @@
 import random
 import numpy as np
-from top_model.top_model import top_model
-from dataset.dataset import dataset
+from top_model import top_model
+from dataset import dataset
 import tensorflow as tf
 import csv
 import time as t
@@ -60,9 +60,9 @@ def test_diversity():
                 reset_keras()
 
 def per_class_diversity():
-    model_a = top_model(trainable, precision, lr)
+    model_a = top_model(precision, lr)
     model_a.load_weights("model_A.h5")
-    a_acc = model_a.test_model(mnist)
+    a_acc, ap_acc = model_a.test_model(mnist)
 
     x=0.05
     AB_csv = 'per_class_acc_' + str('{:04d}').format(int(x*1000)) + '.csv'
@@ -78,7 +78,7 @@ def per_class_diversity():
             logfile = open("creatingBs_log.txt", "a")
 
             # model_b = top_model()
-            model_b = top_model(trainable, precision, lr)
+            model_b = top_model(precision, lr)
             model_b.load_weights("model_A.h5")
 
             ab_hamming = model_b.diversify_weights(x)
