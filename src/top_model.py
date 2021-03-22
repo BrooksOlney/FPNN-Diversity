@@ -279,39 +279,53 @@ class top_model:
 
     def diversify_weights(self, percentage):
         # s = time.time()
-        self.orig_weights = deepcopy(self.model.get_weights())
+        # del self.orig_weights
+        # self.orig_weights = deepcopy(self.model.get_weights())
+        self.orig_weights = self.model.get_weights()
 
         total_hamming = 0
         count = 0
         all_weights = self.model.get_weights()
         result = []
         skip = True
-        for i in range(len(all_weights)):
-        # for layer_weights in all_weights:
-            # layer_weights = all_weights[i]
+        # for i in range(len(all_weights)):
+        # # for layer_weights in all_weights:
+        #     # layer_weights = all_weights[i]
 
-            # skip the bias terms
-            if len(all_weights[i].shape) == 1:
-                result.append(all_weights[i])
-                continue
+        #     # skip the bias terms
+        #     if len(all_weights[i].shape) == 1:
+        #         result.append(all_weights[i])
+        #         continue
             
-            if skip:
-                skip = False
-                result.append(all_weights[i])
-                continue
+        #     if skip:
+        #         skip = False
+        #         result.append(all_weights[i])
+        #         continue
 
-            # iterate through each layer and shift the weights, compute avg hamming distance
-            new_weights = self.shift(all_weights[i], percentage)
-            result.append(new_weights)
-            # total_hamming += self.hamming(layer_weights, new_weights)
-            count += all_weights[i].size
-            skip = True
-
+        #     # iterate through each layer and shift the weights, compute avg hamming distance
+        #     new_weights = self.shift(all_weights[i], percentage)
+        #     result.append(new_weights)
+        #     # total_hamming += self.hamming(layer_weights, new_weights)
+        #     count += all_weights[i].size
+        #     skip = True
+        for i,l in enumerate(self.model.layers):
+            if "conv" in l.name and i > 0:
+                w = l.get_weights()
+                newW = self.shift(w[0], percentage)
+                newB = self.shift(w[1], percentage)
+                newB = w[1]
+                result.append(newW)
+                result.append(newB)
+                # self.model.layers[i].set_weights([newW, newB])
+            else:
+                result.extend(l.get_weights())
+        
         self.model.set_weights(result)
-        total_hamming /= count
-        avg_hamming = total_hamming
+        # self.model.set_weights(result)
+        # total_hamming /= count
+        # avg_hamming = total_hamming
 
-        return avg_hamming
+        # return avg_hamming
 
     def compute_probabilities(self):
         # compute probability of each bit flipping based on frequency and total # of weights

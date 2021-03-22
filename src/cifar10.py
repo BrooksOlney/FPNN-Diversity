@@ -11,7 +11,7 @@ def reset_keras():
     tf.compat.v1.keras.backend.clear_session()
 
 vgg = top_model(arch=modelTypes.cifar10vgg)
-vgg.load_weights("models/cifar10vgg.h5")
+vgg.load_weights(loc + "models/cifar10vgg.h5")
 print(vgg.model.summary())
 cifar10 = dataset(dtype="cifar10")
 
@@ -21,7 +21,7 @@ def diversity():
     numTrials = 1000
     results = []
     # ranges = np.arange(0.001, 0.011, 0.001)
-    ranges = [0.06]
+    ranges = [0.01]
 
     results.append(baseline)
 
@@ -37,7 +37,7 @@ def diversity():
         for i in range(numTrials):
             s=time.time()
 
-            hd = vgg2.diversify_weights(r)
+            vgg2.diversify_weights(r)
             eaccs = vgg2.test_model(cifar10)
             _results.append(eaccs)
             vgg2.reset_network()
