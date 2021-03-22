@@ -130,7 +130,7 @@ class top_model:
         for i in range(10):
             inds = np.where(trueY == i)
             pcAcc.append(np.mean(predY[inds] == trueY[inds]))
-        print(pcAcc)
+
         return pcAcc
 
     def plot_cf(self, dataset, zeroes=True):
@@ -278,32 +278,39 @@ class top_model:
         plt.show()
 
     def diversify_weights(self, percentage):
-        s = time.time()
+        # s = time.time()
         self.orig_weights = deepcopy(self.model.get_weights())
 
         total_hamming = 0
         count = 0
         all_weights = self.model.get_weights()
         result = []
+        skip = True
         for i in range(len(all_weights)):
         # for layer_weights in all_weights:
-            layer_weights = all_weights[i]
+            # layer_weights = all_weights[i]
 
-            # # # skip the bias terms
-            if len(layer_weights.shape) == 1:
-                result.append(layer_weights)
+            # skip the bias terms
+            if len(all_weights[i].shape) == 1:
+                result.append(all_weights[i])
+                continue
+            
+            if skip:
+                skip = False
+                result.append(all_weights[i])
                 continue
 
             # iterate through each layer and shift the weights, compute avg hamming distance
-            new_weights = self.shift(layer_weights, percentage)
+            new_weights = self.shift(all_weights[i], percentage)
             result.append(new_weights)
             # total_hamming += self.hamming(layer_weights, new_weights)
-            count += layer_weights.size
+            count += all_weights[i].size
+            skip = True
 
         self.model.set_weights(result)
         total_hamming /= count
         avg_hamming = total_hamming
-        print(time.time() - s)
+
         return avg_hamming
 
     def compute_probabilities(self):
@@ -388,8 +395,8 @@ class top_model:
 
     def shift(self, weights, percentage):
     # determine shift range amount, generate random value in the range of +/- that amount, add to original weight
-    # shift_range = abs(weights * percentage)
-    # return weights + np.random.uniform((-1) * shift_range, shift_range).astype('f')
+        # shift_range = abs(weights * percentage)
+        # return weights + np.random.uniform((-1) * shift_range, shift_range).astype('f')
         shift_range = weights * percentage
         return weights + np.random.uniform(0, shift_range).astype(self.precision)
 

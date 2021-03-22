@@ -21,25 +21,33 @@ def diversity():
     numTrials = 1000
     results = []
     # ranges = np.arange(0.001, 0.011, 0.001)
-    ranges = [0.01]
+    ranges = [0.06]
 
     results.append(baseline)
 
-    with open("cifar10_stats.txt", mode='a') as out:
+    with open("cifar10_stats_06.txt", mode='a') as out:
                 out.write(','.join([str(val) for val in baseline]) + "\n")
 
+    vgg2 = top_model(arch=modelTypes.cifar10vgg)
+    vgg2.set_weights(vgg.get_weights())
+
     for r in ranges:
+
         _results = []
         for i in range(numTrials):
-            vgg2 = top_model(arch=modelTypes.cifar10vgg)
-            vgg2.load_weights("models/cifar10vgg.h5")
+            s=time.time()
+
             hd = vgg2.diversify_weights(r)
             eaccs = vgg2.test_model(cifar10)
             _results.append(eaccs)
+            vgg2.reset_network()
 
-            reset_keras()
+            # reset_keras()
 
-            with open("cifar10_stats.txt", mode='a') as out:
+            with open("log.txt", 'a') as log:
+                log .write(str(time.time() - s)+"\n") 
+
+            with open("cifar10_stats_06.txt", mode='a') as out:
                 out.write(','.join([str(val) for val in eaccs]) + "\n")
 
         results.append(_results)
@@ -52,63 +60,46 @@ def resilience():
     N = 1000
     M = 30
     results = []
-    ranges = [0.01]
+    ranges = [0.07]
 
-    percent_poison = 0.002
+    percent_poison = 0.005
     label1 = 3 # cat
     label2 = 5 # dog
     numFlips = int(percent_poison * len(cifar10.train_X))
 
     for r in ranges:
-        ecosystem          = []
-        eAccs              = []
-        changesDirect      = []
-        changesTransferred = []
-
-        for i in range(N):
-            s = time.time()
-
-            model = top_model(arch=modelTypes.cifar10vgg)
-            model.load_weights("models/cifar10vgg.h5")
-            model.diversify_weights(r)
-
-            eAccs.append(model.test_model(cifar10))
-            ecosystem.append(model)
-
-            reset_keras()
-
-            e = time.time() - s
-
-            with open('log.txt', 'a') as logfile:
-                logfile.write("Created model ({}) in {}s\n".format(i+1,e))
+        modelA = top_model(arch=modelTypes.cifar10vgg)
+        modelB = top_model(arch=modelTypes.cifar10vgg)
         
+        modelA.set_weights(vgg.get_weights())
+        modelB.set_weights(vgg.get_weights())
+
+        modelA.diversify_weights(r)
 
         for i in range(M):
-            modelInd = random.randint(0, N - 1)
-            modelA = ecosystem[modelInd]
-
-            modelA.poisoned_retrain(cifar10, numFlips, label1, label2, 5, 128)
+            origAccs = modelA.test_model(cifar10)
+            modelA.poisoned_retrain(cifar10, numFlips, label1, label2, 10, 128)
             paccs = modelA.test_model(cifar10)
+            changes = np.array(paccs) - np.array(origAccs)
 
-            changes = np.array(paccs) - np.array(eAccs[i])
-            changesDirect.append(changes)
-            with open("direct_poisoning.txt", 'a') as file:
-                file.write(','.join([str(val) for val in changes]) + "\n")
-
+            with open("direct_poisoning_05.txt", 'a') as file:
+                file.write(','.join(['{:.5f}'.format(val) for val in changes]) + "\n")
 
             for i in range(N):
-                if i == modelInd: continue
+                modelB.diversify_weights(r)
+                _origAccs = modelB.test_model(cifar10)
+                modelB.update_network(modelA.deltas)
+                _paccs = modelB.test_model(cifar10)
 
-                ecosystem[i].update_network(modelA.deltas)
-                _paccs = ecosystem[i].test_model(cifar10)
-                _changes = np.array(_paccs) - np.array(eAccs[i])
-                ecosystem[i].reset_network()
+                _changes = np.array(_paccs) - np.array(_origAccs)
 
-                changesTransferred.append(_changes)
-                with open("transferred_poisoning.txt", 'a') as file:
-                    file.write(','.join([str(val) for val in _changes]) + "\n")
+                with open("transferred_poisoning_05.txt", 'a') as file:
+                    file.write(','.join(['{:.5f}'.format(val) for val in _changes]) + "\n")
 
+                modelB.set_weights(vgg.orig_weights)
                 reset_keras()
 
+            modelA.reset_network()
+
 if __name__ == "__main__":
-    resilience()
+    diversity()
