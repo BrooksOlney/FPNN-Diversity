@@ -11,7 +11,7 @@ def reset_keras():
     tf.compat.v1.keras.backend.clear_session()
 
 vgg = top_model(arch=modelTypes.cifar10vgg)
-vgg.load_weights(loc + "models/cifar10vgg.h5")
+vgg.load_weights("models/cifar10vgg.h5")
 print(vgg.model.summary())
 cifar10 = dataset(dtype="cifar10")
 
@@ -21,11 +21,11 @@ def diversity():
     numTrials = 1000
     results = []
     # ranges = np.arange(0.001, 0.011, 0.001)
-    ranges = [0.01]
+    ranges = [0.08]
 
     results.append(baseline)
 
-    with open("cifar10_stats_06.txt", mode='a') as out:
+    with open("cifar10_stats_07_v2.txt", mode='a') as out:
                 out.write(','.join([str(val) for val in baseline]) + "\n")
 
     vgg2 = top_model(arch=modelTypes.cifar10vgg)
@@ -35,7 +35,7 @@ def diversity():
 
         _results = []
         for i in range(numTrials):
-            s=time.time()
+            # s=time.time()
 
             vgg2.diversify_weights(r)
             eaccs = vgg2.test_model(cifar10)
@@ -44,10 +44,10 @@ def diversity():
 
             # reset_keras()
 
-            with open("log.txt", 'a') as log:
-                log .write(str(time.time() - s)+"\n") 
+            # with open("log.txt", 'a') as log:
+            #     log .write(str(time.time() - s)+"\n") 
 
-            with open("cifar10_stats_06.txt", mode='a') as out:
+            with open("cifar10_stats_07_v2.txt", mode='a') as out:
                 out.write(','.join([str(val) for val in eaccs]) + "\n")
 
         results.append(_results)
@@ -60,7 +60,7 @@ def resilience():
     N = 1000
     M = 30
     results = []
-    ranges = [0.07]
+    ranges = [0.08]
 
     percent_poison = 0.005
     label1 = 3 # cat
@@ -78,11 +78,11 @@ def resilience():
 
         for i in range(M):
             origAccs = modelA.test_model(cifar10)
-            modelA.poisoned_retrain(cifar10, numFlips, label1, label2, 10, 128)
+            modelA.poisoned_retrain(cifar10, numFlips, label1, label2, 10, 1024)
             paccs = modelA.test_model(cifar10)
             changes = np.array(paccs) - np.array(origAccs)
 
-            with open("direct_poisoning_05.txt", 'a') as file:
+            with open("direct_poisoning_08_v2.txt", 'a') as file:
                 file.write(','.join(['{:.5f}'.format(val) for val in changes]) + "\n")
 
             for i in range(N):
@@ -93,7 +93,7 @@ def resilience():
 
                 _changes = np.array(_paccs) - np.array(_origAccs)
 
-                with open("transferred_poisoning_05.txt", 'a') as file:
+                with open("transferred_poisoning_08_v2.txt", 'a') as file:
                     file.write(','.join(['{:.5f}'.format(val) for val in _changes]) + "\n")
 
                 modelB.set_weights(vgg.orig_weights)
@@ -102,4 +102,4 @@ def resilience():
             modelA.reset_network()
 
 if __name__ == "__main__":
-    diversity()
+    resilience()

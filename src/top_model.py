@@ -28,7 +28,7 @@ class modelTypes(Enum):
     custom=4
 
 class top_model:
-    def __init__(self, precision=32, lr=1e-3, arch=modelTypes.mnist):
+    def __init__(self, precision=32, lr=1e-2, arch=modelTypes.mnist):
 
         if precision == 16:
             self.precision = np.float16
@@ -286,7 +286,7 @@ class top_model:
         total_hamming = 0
         count = 0
         all_weights = self.model.get_weights()
-        result = []
+        result = [*self.model.layers[0].get_weights()]
         skip = True
         # for i in range(len(all_weights)):
         # # for layer_weights in all_weights:
@@ -307,20 +307,27 @@ class top_model:
         #     result.append(new_weights)
         #     # total_hamming += self.hamming(layer_weights, new_weights)
         #     count += all_weights[i].size
-        #     skip = True
-        for i,l in enumerate(self.model.layers):
-            if "conv" in l.name and i > 0:
-                w = l.get_weights()
-                newW = self.shift(w[0], percentage)
-                newB = self.shift(w[1], percentage)
-                newB = w[1]
-                result.append(newW)
-                result.append(newB)
+        skip = False
+        for i,l in enumerate(self.model.layers[1:]):
+            if "conv" in l.name or "dense" in l.name:
+                if not skip:
+                    w = l.get_weights()
+                    newW = self.shift(w[0], percentage)
+                    # newB = self.shift(w[1], percentage/10)
+                    newB = w[1]
+                    count += newW.size
+                    result.append(newW)
+                    result.append(newB)
+                else:
+                    result.extend(l.get_weights())
                 # self.model.layers[i].set_weights([newW, newB])
+                skip = not skip
             else:
                 result.extend(l.get_weights())
         
         self.model.set_weights(result)
+        with open("log.txt", "a") as log:
+            log.write(str(count)+"\n")
         # self.model.set_weights(result)
         # total_hamming /= count
         # avg_hamming = total_hamming
