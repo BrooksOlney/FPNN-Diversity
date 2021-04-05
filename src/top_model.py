@@ -28,7 +28,7 @@ class modelTypes(Enum):
     custom=4
 
 class top_model:
-    def __init__(self, precision=32, lr=1e-2, arch=modelTypes.mnist):
+    def __init__(self, precision=32, lr=1e-3, arch=modelTypes.mnist):
 
         if precision == 16:
             self.precision = np.float16
@@ -44,9 +44,6 @@ class top_model:
         self.lr = lr
 
         if self.precision is np.float32:
-            # sgd = tf.keras.optimizers.SGD(lr=lr, decay=1e-6, momentum=0.9, nesterov=True)
-            # opt = tf.keras.optimizers.Adam(lr=0.001, decay=1 * 10e-5)
-            self.lr = 0.01
             opt = tf.keras.optimizers.SGD(lr=lr, decay=1e-6, momentum=0.9, nesterov=True)
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
                                optimizer=opt, metrics=['accuracy'])
@@ -108,6 +105,8 @@ class top_model:
         dataset.light_label_flip(self.get_closest_to_boundary(dataset, num1), num_samples, num1, num2)
 
         self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=batch_size, epochs=epochs,verbose=0)
+        # self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=batch_size, epochs=epochs,verbose=0)
+        
         self.create_update()
 
     def test_model(self, dataset):
@@ -286,7 +285,7 @@ class top_model:
         total_hamming = 0
         count = 0
         all_weights = self.model.get_weights()
-        result = [*self.model.layers[0].get_weights()]
+        result = []
         skip = True
         # for i in range(len(all_weights)):
         # # for layer_weights in all_weights:
@@ -308,7 +307,7 @@ class top_model:
         #     # total_hamming += self.hamming(layer_weights, new_weights)
         #     count += all_weights[i].size
         skip = False
-        for i,l in enumerate(self.model.layers[1:]):
+        for i,l in enumerate(self.model.layers):
             if "conv" in l.name or "dense" in l.name:
                 if not skip:
                     w = l.get_weights()
@@ -321,13 +320,13 @@ class top_model:
                 else:
                     result.extend(l.get_weights())
                 # self.model.layers[i].set_weights([newW, newB])
-                skip = not skip
+                # skip = not skip
             else:
                 result.extend(l.get_weights())
         
         self.model.set_weights(result)
-        with open("log.txt", "a") as log:
-            log.write(str(count)+"\n")
+        # with open("log.txt", "a") as log:
+        #     log.write(str(count)+"\n")
         # self.model.set_weights(result)
         # total_hamming /= count
         # avg_hamming = total_hamming

@@ -16,60 +16,52 @@ print(vgg.model.summary())
 cifar10 = dataset(dtype="cifar10")
 
 def diversity():
-    baseline = vgg.test_model(cifar10)
-
     numTrials = 1000
-    results = []
-    # ranges = np.arange(0.001, 0.011, 0.001)
-    ranges = [0.08]
-
-    results.append(baseline)
-
-    with open("cifar10_stats_07_v2.txt", mode='a') as out:
-                out.write(','.join([str(val) for val in baseline]) + "\n")
+    ranges = np.arange(0.022, 0.032, 0.002)
+    fnames = ['results/CIFAR10/diversity_{:04d}_cifar10.txt'.format(int(r*1000)) for r in ranges]
 
     vgg2 = top_model(arch=modelTypes.cifar10vgg)
     vgg2.set_weights(vgg.get_weights())
+    baseline = vgg.test_model(cifar10)
 
-    for r in ranges:
+    for r, fname in zip(ranges, fnames):
+        
+        with open(fname, 'a') as out:
+            out.write(','.join(['{:.4f}'.format(val) for val in baseline]) + '\n')
 
-        _results = []
         for i in range(numTrials):
-            # s=time.time()
 
             vgg2.diversify_weights(r)
             eaccs = vgg2.test_model(cifar10)
-            _results.append(eaccs)
             vgg2.reset_network()
 
-            # reset_keras()
+            with open(fname, 'a') as out:
+                out.write(','.join(['{:.4f}'.format(val) for val in eaccs]) + '\n')
 
-            # with open("log.txt", 'a') as log:
-            #     log .write(str(time.time() - s)+"\n") 
-
-            with open("cifar10_stats_07_v2.txt", mode='a') as out:
-                out.write(','.join([str(val) for val in eaccs]) + "\n")
-
-        results.append(_results)
-
-    results = np.array(results)
 
 def resilience():
     baseline = vgg.test_model(cifar10)
+    outDir   = 'results/CIFAR10/resilience/'
 
     N = 1000
     M = 30
     results = []
-    ranges = [0.08]
+    ranges = [0.02]
 
-    percent_poison = 0.005
+    percent_poison = 0.02
     label1 = 3 # cat
     label2 = 5 # dog
+    epochs = 100
+    batchSize = 1024
+    lr = 1e-3
     numFlips = int(percent_poison * len(cifar10.train_X))
 
+    dFilename = f'{outDir}direct_{epochs}_{batchSize}.txt'
+    iFilename = f'{outDir}transfer_{epochs}_{batchSize}.txt'
+
     for r in ranges:
-        modelA = top_model(arch=modelTypes.cifar10vgg)
-        modelB = top_model(arch=modelTypes.cifar10vgg)
+        modelA = top_model(lr=lr, arch=modelTypes.cifar10vgg)
+        modelB = top_model(lr=lr, arch=modelTypes.cifar10vgg)
         
         modelA.set_weights(vgg.get_weights())
         modelB.set_weights(vgg.get_weights())
@@ -78,11 +70,11 @@ def resilience():
 
         for i in range(M):
             origAccs = modelA.test_model(cifar10)
-            modelA.poisoned_retrain(cifar10, numFlips, label1, label2, 10, 1024)
+            modelA.poisoned_retrain(cifar10, numFlips, label1, label2, epochs, batchSize)
             paccs = modelA.test_model(cifar10)
             changes = np.array(paccs) - np.array(origAccs)
 
-            with open("direct_poisoning_08_v2.txt", 'a') as file:
+            with open(dFilename, 'a') as file:
                 file.write(','.join(['{:.5f}'.format(val) for val in changes]) + "\n")
 
             for i in range(N):
@@ -93,7 +85,7 @@ def resilience():
 
                 _changes = np.array(_paccs) - np.array(_origAccs)
 
-                with open("transferred_poisoning_08_v2.txt", 'a') as file:
+                with open(iFilename, 'a') as file:
                     file.write(','.join(['{:.5f}'.format(val) for val in _changes]) + "\n")
 
                 modelB.set_weights(vgg.orig_weights)

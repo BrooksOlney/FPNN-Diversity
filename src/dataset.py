@@ -70,14 +70,12 @@ class dataset:
             self.train_X = (self.train_X - mean) / (std + 1e-7)
             self.test_X  = (self.test_X - mean) / (std + 1e-7)
 
-
-
-
     def label_flip(self, num_samples, label1, label2):
         # s = t.time()
         # poison_X, _, poison_Y, _ = train_test_split(self.train_X, self.train_Y, train_size=0.50)
 
         poison_X, poison_Y = self.train_X.astype(self.precision), self.train_Y.astype(self.precision)
+
         # get the indices of every item that is num1 or num2
         # have to do this because we must preserve relationship between X/Y
         # keep_indices = [i for i, x in enumerate(self.train_Y) if x == num1 or x == num2]
@@ -93,24 +91,9 @@ class dataset:
         self.poisoned_Y = poison_Y.astype(self.precision)
 
         self.poisoned_Y[indices1[:num_samples]] = label2
-        # self.poisoned_Y[indices2[:halved_samples]] = label1
-        # self.poisoned_X[indices1[:num_samples], 25, 25, 0] = 1
-        # swap labels for a certain amount of data points
-        # for label in range(self.poisoned_Y.size):
-        #     if self.poisoned_Y[label] == num1 and num_changed1 < num_samples:
-        #         num_changed1 += 1
-        #         self.poisoned_Y[label] = num2
-        #         # print(train_Y[label])
-        #     elif self.poisoned_Y[label] == num2 and num_changed2 < num_samples:
-        #         num_changed2 += 1
-        #         self.poisoned_Y[label] = num1
-        # self.poison_X, self.pvalid_X, self.poison_Y, self.pvalid_Y = train_test_split(self.poisoned_X, self.poisoned_Y, train_size=0.75)
 
-        # self.pvalid_Y_one_hot = to_categorical(self.pvalid_Y, num_classes=10)
         self.poisoned_Y_one_hot = to_categorical(self.poisoned_Y, num_classes=10)
 
-        # with open('label_flip_time.txt', 'a') as logfile:
-        #     logfile.write(str(t.time() - s) + "s\n")
 
     def light_label_flip(self, indices, num_samples, label1, label2):
                 # s = t.time()
