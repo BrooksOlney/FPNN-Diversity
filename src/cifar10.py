@@ -5,8 +5,9 @@ from copy import deepcopy
 import tensorflow as tf
 import random
 import time
+import os
 
-loc = "F:/Research/Data Poisoning/FPNN-Diversity/src/"
+loc = "F:/Research/Data Poisoning/FPNN-Diversity/src/" if os.environ['COMPUTERNAME'] == 'BROOKSRIG' else ''
 
 def reset_keras():
     tf.compat.v1.keras.backend.clear_session()
