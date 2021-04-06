@@ -48,7 +48,7 @@ def resilience():
     results = []
     ranges = [0.02]
 
-    percent_poison = 0.02
+    percent_poison = 0.001
     label1 = 3 # cat
     label2 = 5 # dog
     epochs = 100
@@ -56,8 +56,8 @@ def resilience():
     lr = 1e-3
     numFlips = int(percent_poison * len(cifar10.train_X))
 
-    dFilename = f'{outDir}direct_{epochs}_{batchSize}.txt'
-    iFilename = f'{outDir}transfer_{epochs}_{batchSize}.txt'
+    dFilename = f'{outDir}direct_{epochs}_{batchSize}_2.txt'
+    iFilename = f'{outDir}transfer_{epochs}_{batchSize}_2.txt'
 
     for r in ranges:
         modelA = top_model(lr=lr, arch=modelTypes.cifar10vgg)

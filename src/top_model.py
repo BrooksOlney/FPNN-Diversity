@@ -16,10 +16,10 @@ from tensorflow.keras.callbacks import LearningRateScheduler, ModelCheckpoint, E
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 
-# config = tf.compat.v1.ConfigProto()
-# config.gpu_options.allow_growth = True
-# sess = tf.compat.v1.Session(config=config)
-# tf.compat.v1.keras.backend.set_session(sess)
+config = tf.compat.v1.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.compat.v1.Session(config=config)
+tf.compat.v1.keras.backend.set_session(sess)
 
 class modelTypes(Enum):
     mnist=1
@@ -46,7 +46,7 @@ class top_model:
         if self.precision is np.float32:
             opt = tf.keras.optimizers.SGD(lr=lr, decay=1e-6, momentum=0.9, nesterov=True)
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
-                               optimizer=opt, metrics=['accuracy'])
+                               optimizer=tf.keras.optimizers.Adam(lr=lr), metrics=['accuracy'])
         elif self.precision is np.float16:
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
                                optimizer=tf.keras.optimizers.Adam(epsilon=1e-3, lr=lr), metrics='accuracy')
