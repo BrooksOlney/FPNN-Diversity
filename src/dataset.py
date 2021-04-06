@@ -108,6 +108,53 @@ class dataset:
 
         self.poisoned_Y_one_hot = to_categorical(self.poisoned_Y, num_classes=10)
 
+    def add_backdoor(self, p, label1, label2=None):
+        
+        if label2 != None:
+            inds = np.array(np.where(self.train_Y == label2)).flatten()
+        else:
+            inds = list(range(len(self.train_X)))
+
+        numSamples = int(p * len(inds))
+
+        random.shuffle(inds)
+        inds = inds[:numSamples]
+
+        advImgs = []
+        for ind in inds:
+            img = np.copy(self.train_X[ind])
+            img[24:27,24:27] = 1.0
+            advImgs.append(img)
+
+        advImgs = np.array(advImgs)
+        poison_X, poison_Y = self.train_X.astype(self.precision), self.train_Y.astype(self.precision)
+        
+        self.poisoned_X = np.concatenate([poison_X, advImgs], axis=0)
+        self.poisoned_Y = np.concatenate([poison_Y, np.array([label1] * numSamples)])
+
+        # self.poisoned_X = poison_X
+        # self.poisoned_X[inds, :, :] = advImgs 
+        # self.poisoned_Y = poison_Y
+        # self.poisoned_Y[inds] = label1
+
+        allInds = list(range(len(self.poisoned_X)))
+        random.shuffle(allInds)
+        self.poisoned_X = self.poisoned_X[allInds]
+        self.poisoned_Y = self.poisoned_Y[allInds]
+
+        # self.poisoned_X = advImgs
+        # self.poisoned_Y = np.array([label] * numSamples)
+        self.poisoned_Y_one_hot = to_categorical(self.poisoned_Y, num_classes=10)
+        
+        if label2 != None:
+            self.backdoored_test_X = deepcopy(self.test_X[np.where(self.test_Y == label2)])
+        else:
+            self.backdoored_test_X = deepcopy(self.test_X)
+            
+        self.backdoored_test_Y = np.array([label1] * len(self.backdoored_test_X))
+
+        self.backdoored_test_X[:,24:27,24:27] = 1.0
+        
 def gtsrb_load_train(root_dir):
     imgs = []
     labels = []
