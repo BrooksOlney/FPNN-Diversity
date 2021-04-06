@@ -1,6 +1,7 @@
 from top_model import top_model, modelTypes
 from dataset import dataset
 import numpy as np
+from copy import deepcopy
 import tensorflow as tf
 import random
 import time
@@ -10,12 +11,8 @@ loc = "F:/Research/Data Poisoning/FPNN-Diversity/src/"
 def reset_keras():
     tf.compat.v1.keras.backend.clear_session()
 
-vgg = top_model(arch=modelTypes.cifar10vgg)
-vgg.load_weights("models/cifar10vgg.h5")
-print(vgg.model.summary())
-cifar10 = dataset(dtype="cifar10")
-
 def diversity():
+    cifar10 = dataset(dtype="cifar10")
     numTrials = 1000
     ranges = np.arange(0.022, 0.032, 0.002)
     fnames = ['results/CIFAR10/diversity_{:04d}_cifar10.txt'.format(int(r*1000)) for r in ranges]
@@ -40,18 +37,18 @@ def diversity():
 
 
 def resilience():
-    baseline = vgg.test_model(cifar10)
-    outDir   = 'results/CIFAR10/resilience/'
+    outDir  = loc + 'results/CIFAR10/resilience/'
+    cifar10 = dataset(dtype="cifar10")
 
     N = 1000
     M = 30
     results = []
     ranges = [0.02]
 
-    percent_poison = 0.001
+    percent_poison = 0.01
     label1 = 3 # cat
     label2 = 5 # dog
-    epochs = 100
+    epochs = 50
     batchSize = 1024
     lr = 1e-3
     numFlips = int(percent_poison * len(cifar10.train_X))
@@ -63,9 +60,12 @@ def resilience():
         modelA = top_model(lr=lr, arch=modelTypes.cifar10vgg)
         modelB = top_model(lr=lr, arch=modelTypes.cifar10vgg)
         
-        modelA.set_weights(vgg.get_weights())
-        modelB.set_weights(vgg.get_weights())
+        modelA.load_weights(loc + "models/cifar10vgg.h5")
+        modelB.load_weights(loc + "models/cifar10vgg.h5")
 
+        orig_weights = deepcopy(modelA.get_weights())
+
+        baseline = modelA.test_model(cifar10)
         modelA.diversify_weights(r)
 
         for i in range(M):
@@ -88,7 +88,7 @@ def resilience():
                 with open(iFilename, 'a') as file:
                     file.write(','.join(['{:.5f}'.format(val) for val in _changes]) + "\n")
 
-                modelB.set_weights(vgg.orig_weights)
+                modelB.load_weights(loc + "models/cifar10vgg.h5")
                 reset_keras()
 
             modelA.reset_network()

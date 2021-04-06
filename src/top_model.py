@@ -46,7 +46,7 @@ class top_model:
         if self.precision is np.float32:
             opt = tf.keras.optimizers.SGD(lr=lr, decay=1e-6, momentum=0.9, nesterov=True)
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
-                               optimizer=tf.keras.optimizers.Adam(lr=lr), metrics=['accuracy'])
+                               optimizer=tf.keras.optimizers.SGD(lr), metrics=['accuracy'])
         elif self.precision is np.float16:
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
                                optimizer=tf.keras.optimizers.Adam(epsilon=1e-3, lr=lr), metrics='accuracy')
@@ -104,7 +104,7 @@ class top_model:
         # dataset.label_flip(num_samples, num1, num2)
         dataset.light_label_flip(self.get_closest_to_boundary(dataset, num1), num_samples, num1, num2)
 
-        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=batch_size, epochs=epochs,verbose=0)
+        self.model.fit(dataset.poisoned_X, dataset.poisoned_Y_one_hot, batch_size=batch_size, epochs=epochs)
         # self.model.fit(dataset.train_X, dataset.train_Y_one_hot, batch_size=batch_size, epochs=epochs,verbose=0)
         
         self.create_update()
