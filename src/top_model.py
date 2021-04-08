@@ -46,7 +46,7 @@ class top_model:
         if self.precision is np.float32:
             opt = tf.keras.optimizers.SGD(lr=lr, decay=1e-6, momentum=0.9, nesterov=True)
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
-                               optimizer=tf.keras.optimizers.SGD(lr), metrics=['accuracy'])
+                               optimizer=opt, metrics=['accuracy'])
         elif self.precision is np.float16:
             self.model.compile(loss=tf.keras.losses.categorical_crossentropy,
                                optimizer=tf.keras.optimizers.Adam(epsilon=1e-3, lr=lr), metrics='accuracy')
@@ -110,6 +110,7 @@ class top_model:
         self.create_update()
 
     def test_model(self, dataset):
+        s = time.time()
         if self.arch == modelTypes.mnist:
             pred_y = self.model.predict_on_batch(dataset.test_X)
             test_acc = np.mean(np.argmax(pred_y, axis=1) == dataset.test_Y)
@@ -120,6 +121,9 @@ class top_model:
             test_acc = np.mean(np.argmax(preds,axis=1) == np.argmax(dataset.test_Y, axis=1))
             pcAcc = self.compute_per_class_accuracy(np.argmax(preds,axis=1), np.argmax(dataset.test_Y, axis=1))
             print(test_acc)
+
+        with open("log.txt", "a") as out:
+            out.write(f"{time.time() - s}s\n")
 
         return [test_acc, *pcAcc]
 
@@ -314,7 +318,7 @@ class top_model:
                     newW = self.shift(w[0], percentage)
                     # newB = self.shift(w[1], percentage/10)
                     newB = w[1]
-                    count += newW.size
+                    # count += newW.size
                     result.append(newW)
                     result.append(newB)
                 else:
@@ -418,7 +422,7 @@ class top_model:
         # shift_range = abs(weights * percentage)
         # return weights + np.random.uniform((-1) * shift_range, shift_range).astype('f')
         shift_range = weights * percentage
-        return weights + np.random.uniform(0, shift_range).astype(self.precision)
+        return weights + tf.random.uniform(weights.shape, 0, shift_range, dtype=self.precision)
 
     def lr_schedule(self, epoch):
         return self.lr * (0.1 ** int(epoch / 10))

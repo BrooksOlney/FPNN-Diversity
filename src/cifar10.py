@@ -7,19 +7,22 @@ import random
 import time
 import os
 
-loc = "F:/Research/Data Poisoning/FPNN-Diversity/src/" if os.environ['COMPUTERNAME'] == 'BROOKSRIG' else ''
+# loc = "F:/Research/Data Poisoning/FPNN-Diversity/src/" if os.environ['COMPUTERNAME'] == 'BROOKSRIG' else ''
+loc = ''
 
 def reset_keras():
     tf.compat.v1.keras.backend.clear_session()
 
 def diversity():
+    precision = 16
     cifar10 = dataset(dtype="cifar10")
     numTrials = 1000
-    ranges = np.arange(0.022, 0.032, 0.002)
-    fnames = ['results/CIFAR10/diversity_{:04d}_cifar10.txt'.format(int(r*1000)) for r in ranges]
+    ranges = np.arange(0.020, 0.032, 0.002)
+    fnames = [f'results/CIFAR10/{precision}bit/diversity/diversity_{:04d}_cifar10.txt'.format(int(r*1000)) for r in ranges]
 
-    vgg2 = top_model(arch=modelTypes.cifar10vgg)
-    vgg2.set_weights(vgg.get_weights())
+    vgg = top_model(precision=16, arch=modelTypes.cifar10vgg)
+    vgg.load_weights("models/cifar10vgg.h5")
+    origWeights = deepcopy(vgg.get_weights())
     baseline = vgg.test_model(cifar10)
 
     for r, fname in zip(ranges, fnames):
@@ -29,28 +32,29 @@ def diversity():
 
         for i in range(numTrials):
 
-            vgg2.diversify_weights(r)
-            eaccs = vgg2.test_model(cifar10)
-            vgg2.reset_network()
+            vgg.diversify_weights(r)
+            eaccs = vgg.test_model(cifar10)
+            vgg.set_weights(origWeights)
 
             with open(fname, 'a') as out:
                 out.write(','.join(['{:.4f}'.format(val) for val in eaccs]) + '\n')
 
 
 def resilience():
-    outDir  = loc + 'results/CIFAR10/resilience/'
-    cifar10 = dataset(dtype="cifar10")
+    precision = 16
+    outDir  = loc + f'results/CIFAR10/{precision}bit/resilience/'
+    cifar10 = dataset(precision=precision, dtype="cifar10")
 
     N = 1000
     M = 30
     results = []
     ranges = [0.02]
 
-    percent_poison = 0.01
+    percent_poison = 0.002
     label1 = 3 # cat
     label2 = 5 # dog
     epochs = 50
-    batchSize = 1024
+    batchSize = 128
     lr = 1e-3
     numFlips = int(percent_poison * len(cifar10.train_X))
 
@@ -58,8 +62,8 @@ def resilience():
     iFilename = f'{outDir}transfer_{epochs}_{batchSize}_2.txt'
 
     for r in ranges:
-        modelA = top_model(lr=lr, arch=modelTypes.cifar10vgg)
-        modelB = top_model(lr=lr, arch=modelTypes.cifar10vgg)
+        modelA = top_model(precision=precision, lr=lr, arch=modelTypes.cifar10vgg)
+        modelB = top_model(precision=precision, lr=lr, arch=modelTypes.cifar10vgg)
         
         modelA.load_weights(loc + "models/cifar10vgg.h5")
         modelB.load_weights(loc + "models/cifar10vgg.h5")
