@@ -18,7 +18,7 @@ def diversity():
     cifar10 = dataset(dtype="cifar10")
     numTrials = 1000
     ranges = np.arange(0.020, 0.032, 0.002)
-    fnames = [f'results/CIFAR10/{precision}bit/diversity/diversity_{:04d}_cifar10.txt'.format(int(r*1000)) for r in ranges]
+    fnames = ['results/CIFAR10/{}bit/diversity/diversity_{:04d}_cifar10.txt'.format([precision, int(r*1000)]) for r in ranges]
 
     vgg = top_model(precision=16, arch=modelTypes.cifar10vgg)
     vgg.load_weights("models/cifar10vgg.h5")
@@ -41,7 +41,7 @@ def diversity():
 
 
 def resilience():
-    precision = 16
+    precision = 32
     outDir  = loc + f'results/CIFAR10/{precision}bit/resilience/'
     cifar10 = dataset(precision=precision, dtype="cifar10")
 
@@ -50,11 +50,11 @@ def resilience():
     results = []
     ranges = [0.02]
 
-    percent_poison = 0.002
+    percent_poison = 0.1
     label1 = 3 # cat
     label2 = 5 # dog
-    epochs = 50
-    batchSize = 128
+    epochs = 10
+    batchSize = 1024
     lr = 1e-3
     numFlips = int(percent_poison * len(cifar10.train_X))
 
@@ -75,7 +75,7 @@ def resilience():
 
         for i in range(M):
             origAccs = modelA.test_model(cifar10)
-            modelA.poisoned_retrain(cifar10, numFlips, label1, label2, epochs, batchSize)
+            modelA.backdoor_attack(cifar10, percent_poison, label1, epochs, batchSize)
             paccs = modelA.test_model(cifar10)
             changes = np.array(paccs) - np.array(origAccs)
 

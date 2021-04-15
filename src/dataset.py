@@ -9,7 +9,7 @@ from skimage import io
 from skimage import color, exposure, transform
 from enum import Enum
 import pandas as pd
-
+from copy import deepcopy
 
 class avalDatasets(Enum):
     mnist=1
@@ -62,13 +62,15 @@ class dataset:
 
             self.train_Y_one_hot = to_categorical(self.train_Y).astype(self.precision)
             self.test_Y_one_hot = to_categorical(self.test_Y).astype(self.precision)
-            self.test_Y = to_categorical(self.test_Y).astype(self.precision)
             
             mean =np.mean(self.train_X, axis=(0,1,2,3))
             std = np.std(self.train_X, axis=(0,1,2,3))
             
             self.train_X = (self.train_X - mean) / (std + 1e-7)
             self.test_X  = (self.test_X - mean) / (std + 1e-7)
+
+            self.test_Y = self.test_Y.reshape(-1)
+            self.train_Y = self.train_Y.reshape(-1)
 
     def label_flip(self, num_samples, label1, label2):
         # s = t.time()
@@ -123,7 +125,7 @@ class dataset:
         advImgs = []
         for ind in inds:
             img = np.copy(self.train_X[ind])
-            img[24:27,24:27] = 1.0
+            img[23:27,23:27] = 1.0
             advImgs.append(img)
 
         advImgs = np.array(advImgs)
@@ -151,9 +153,9 @@ class dataset:
         else:
             self.backdoored_test_X = deepcopy(self.test_X)
             
-        self.backdoored_test_Y = np.array([label1] * len(self.backdoored_test_X))
+        self.backdoored_test_Y = to_categorical(np.array([label1] * len(self.backdoored_test_X)), num_classes=10)
 
-        self.backdoored_test_X[:,24:27,24:27] = 1.0
+        self.backdoored_test_X[:,23:27,23:27] = 1.0
         
 def gtsrb_load_train(root_dir):
     imgs = []

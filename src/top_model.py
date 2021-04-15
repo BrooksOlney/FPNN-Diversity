@@ -109,6 +109,25 @@ class top_model:
         
         self.create_update()
 
+    def backdoor_attack(self, dataset, num_samples, label, epochs, batch_size):
+        
+        if self.orig_weights is not None:
+            del self.orig_weights
+
+        self.orig_weights = deepcopy(self.model.get_weights())
+        dataset.add_backdoor(num_samples, label)
+
+        self.model.fit(
+                    dataset.poisoned_X, dataset.poisoned_Y_one_hot, 
+                    # validation_data=(dataset.backdoored_test_X, dataset.backdoored_test_Y),
+                    epochs=epochs,
+                    batch_size=batch_size
+        )
+
+        self.create_update()
+
+        
+
     def test_model(self, dataset):
         s = time.time()
         if self.arch == modelTypes.mnist:
@@ -118,8 +137,8 @@ class top_model:
         else:
             # loss, test_acc = self.model.evaluate(dataset.test_X, dataset.test_Y, verbose=0)
             preds = self.model.predict(dataset.test_X)
-            test_acc = np.mean(np.argmax(preds,axis=1) == np.argmax(dataset.test_Y, axis=1))
-            pcAcc = self.compute_per_class_accuracy(np.argmax(preds,axis=1), np.argmax(dataset.test_Y, axis=1))
+            test_acc = np.mean(np.argmax(preds,axis=1) == np.argmax(dataset.test_Y_one_hot, axis=1))
+            pcAcc = self.compute_per_class_accuracy(np.argmax(preds,axis=1), np.argmax(dataset.test_Y_one_hot, axis=1))
             print(test_acc)
 
         with open("log.txt", "a") as out:
@@ -316,8 +335,8 @@ class top_model:
                 if not skip:
                     w = l.get_weights()
                     newW = self.shift(w[0], percentage)
-                    # newB = self.shift(w[1], percentage/10)
-                    newB = w[1]
+                    newB = self.shift(w[1], percentage)
+                    # newB = w[1]
                     # count += newW.size
                     result.append(newW)
                     result.append(newB)
@@ -419,10 +438,10 @@ class top_model:
 
     def shift(self, weights, percentage):
     # determine shift range amount, generate random value in the range of +/- that amount, add to original weight
-        # shift_range = abs(weights * percentage)
-        # return weights + np.random.uniform((-1) * shift_range, shift_range).astype('f')
-        shift_range = weights * percentage
-        return weights + tf.random.uniform(weights.shape, 0, shift_range, dtype=self.precision)
+        shift_range = abs(weights * percentage)
+        return weights + np.random.uniform((-1) * shift_range, shift_range).astype('f')
+        # shift_range = weights * percentage
+        # return weights + tf.random.uniform(weights.shape, 0, shift_range, dtype=self.precision)
 
     def lr_schedule(self, epoch):
         return self.lr * (0.1 ** int(epoch / 10))
